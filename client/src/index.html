@@ -1,6 +1,6 @@
 <!doctype html>
 
-<html>
+<html ng-app="cgiAdpq">
 	<head>
 		<base href="/">
 		
@@ -14,11 +14,11 @@
 		<!-- end css template tags -->
 	</head>
 	
-	<body ng-app="cgiAdpq">
+	<body ng-controller="MainController">
 		<ng-include src="'nav/navbar.html'"></ng-include>
 		
 		<div class="container">
-			<section ui-view></section>		
+			<section ui-view></section>
 		</div>
 	</body>
 	

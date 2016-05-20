@@ -206,7 +206,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-angular-gettext');    
     
-    grunt.registerTask('test', ['clean:test1', 'bowercopy:test', 'clean:test2', 'karma']);
+    grunt.registerTask('test', ['clean:test1', 'jshint', 'bowercopy:test', 'clean:test2', 'karma']);
     
     grunt.registerTask('extract', ['nggettext_extract']);
     grunt.registerTask('compile', ['nggettext_compile', 'dev']);

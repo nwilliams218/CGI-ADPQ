@@ -27,6 +27,14 @@ describe('Navbar Controller', function() {
 
 		expect(isActive).toBe('active');
 		expect(notActive).toBe('');
-		
 	});
+	
+	it('collapses the navbar', function () {
+		scope.navCollapsed = false;
+		expect(scope.navCollapsed).toBe(false);
+		
+		scope.collapse()
+		expect(scope.navCollapsed).toBe(true);
+	});
+
 });

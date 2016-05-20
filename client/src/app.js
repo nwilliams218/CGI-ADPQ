@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	
-	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'cgiAdpq.nav', 'cgiAdpq.user'])
+	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
 		 function($stateProvider,   $urlRouterProvider,   $locationProvider) {  
 			$locationProvider.html5Mode(true);
@@ -26,8 +26,13 @@
 			;
 
 			$urlRouterProvider.otherwise("/");
-		}]);
+		}])
+		.run(['gettextCatalog', '$localStorage', 'LOCALES', function (gettextCatalog, $localStorage, LOCALES) {
+			var currentLocale = $localStorage.currentLocale || LOCALES.English;
+            gettextCatalog.setCurrentLanguage(currentLocale.language);
+        }]);
 
+	var mainModule = angular.module('cgiAdpq.main', []);	
 	var navModule = angular.module('cgiAdpq.nav', []);	
 	var userModule = angular.module('cgiAdpq.user', []);
 })();

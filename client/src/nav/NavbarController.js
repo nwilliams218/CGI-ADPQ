@@ -13,6 +13,10 @@
 			$scope.isActive = function(linkName) {
 				return 	$state.current.name === linkName ? 'active' : ''; 
 			};
+			
+			$scope.collapse = function() {
+				$scope.navCollapsed = true;
+			};
 		}
 	]);
 })();
