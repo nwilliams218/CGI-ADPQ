@@ -23,13 +23,38 @@
 					url: "/contact",
 					templateUrl: "staticPages/contact.html"
 				})
+				.state('profile', {
+					url: "/profile",
+					templateUrl: "user/profile.html",
+					data: {auth:true}
+				})
 			;
 
 			$urlRouterProvider.otherwise("/");
 		}])
-		.run(['gettextCatalog', '$localStorage', 'LOCALES', function (gettextCatalog, $localStorage, LOCALES) {
+		.run(['$rootScope', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', '$state', 'postman',
+	 function ($rootScope,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   $state,   postman) {
+			//set the current locale/language
 			var currentLocale = $localStorage.currentLocale || LOCALES.English;
             gettextCatalog.setCurrentLanguage(currentLocale.language);
+            
+            //check for authentication (logged in)
+			$rootScope.$on('$stateChangeStart', function (event, next) {
+				if (next.hasOwnProperty('data') && next.data.hasOwnProperty('auth') && !authService.isAuthenticated()) {	
+					event.preventDefault();
+					
+					$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated, next);
+				}
+			});
+			
+			//listen for not being authenticated
+			$rootScope.$on(AUTH_EVENTS.notAuthenticated, function(event, nextState) {
+				$localStorage.nextState = nextState;
+				
+				postman.warn(gettextCatalog.getString('You must log in first'));
+				
+				$state.go('login');
+			});
         }]);
 
 	var mainModule = angular.module('cgiAdpq.main', []);	

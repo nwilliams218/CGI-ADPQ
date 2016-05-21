@@ -2,12 +2,12 @@
 	<form ng-submit="login()" class="col-md-6">
 		<fieldset class="form-group">
 			<label for="email" translate>Email address</label>
-			<input ng-model="credentials.email" type="email" class="form-control" id="email" placeholder="Email" required>
+			<input ng-model="credentials.email" type="email" class="form-control" id="email" placeholder="{{'Email address'|translate}}" required>
 <!-- 		<small class="text-muted">We'll never share your email with anyone else.</small> -->
 		</fieldset>
 		<fieldset class="form-group">
 			<label for="password" translate>Password</label>
-			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="Password" required>
+			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="{{'Password'|translate}}" required>
 		</fieldset>
 		
 		<button type="submit" class="btn btn-primary" translate>Login</button>

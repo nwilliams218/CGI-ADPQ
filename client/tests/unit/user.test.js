@@ -2,17 +2,18 @@ describe('User Service', function() {
 
 	beforeEach(module('cgiAdpq'));
 	
-	var userService, $q;
+	var authService, $q, session;
 	
-	beforeEach(inject(function (_userService_, _$q_) {
-		userService = _userService_;
+	beforeEach(inject(function (_authService_, _$q_, _gettextCatalog_, _session_) {
+		authService = _authService_;
 		$q = _$q_;
+		session = _session_;
 	}));
 	
 	it('successfully logs in', function () {
 		var password = 'testing' + new Date().getDate();
 		
-		userService.login({email: 'testing@test.com', password: password}).then(function(data) {
+		authService.login({email: 'testing@test.com', password: password}).then(function(data) {
 			expect(data).toEqual('success');
 		});
 	});
@@ -20,13 +21,15 @@ describe('User Service', function() {
 	it('fails logging in', function () {
 		var password = 'testing';
 		
-		userService.login({email: 'testing@test.com', password: password}).then(function(data) {
+		authService.login({email: 'testing@test.com', password: password}).then(function(data) {
 			expect(data).toEqual('success');
 		});
 	});
 	
 	it('checks existing authorization', function () {
-		expect(userService.isAuthed()).toBe(true);
+		session.create(new Date().getTime(), new Date().getTime());
+		
+		expect(authService.isAuthenticated()).toBe(true);
 	});
 
 });
