@@ -178,7 +178,7 @@ module.exports = function (grunt) {
                     }
                 },
                 files: {
-                    'client/src/translations/template.pot': ['client/src/**/*.html']
+                    'client/src/translations/template.pot': ['client/src/**/*.html', 'client/src/app.js', 'client/src/**/*.js']
                 }
             },
         },
