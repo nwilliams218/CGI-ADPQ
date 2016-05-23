@@ -27,5 +27,9 @@
     "karma-phantomjs-launcher": "^1.0.0",
     "node-sass": "^3.7.0",
     "phantomjs-prebuilt": "^2.1.7"
+  },
+  "scripts": {
+    "install": "bower install",
+     "build": "grunt build"
   }
 }
