@@ -8,7 +8,7 @@
 						 
 			$stateProvider
 				.state('home', {
-					url: "/",
+					url: "/home",
 					templateUrl: "staticPages/home.html"
 				})
 				.state('login', {
@@ -30,7 +30,7 @@
 				})
 			;
 
-			$urlRouterProvider.otherwise("/");
+			$urlRouterProvider.otherwise("/login");
 		}])
 		.run(['$rootScope', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', '$state', 'postman',
 	 function ($rootScope,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   $state,   postman) {

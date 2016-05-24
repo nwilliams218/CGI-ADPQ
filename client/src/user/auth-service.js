@@ -9,6 +9,7 @@
 		authService.isAuthenticated = function () {
 			return !!session.userId;
 		};
+/*
 		
 		authService.isAuthorized = function (authorizedRoles) {
 			if (!angular.isArray(authorizedRoles)) {
@@ -19,12 +20,12 @@
 			authorizedRoles.indexOf(session.userRole) !== -1);
 		};
 		
+*/
 		authService.login = function(credentials) {
 			var d = new $q.defer();
-			
 			if (credentials.password == 'testing' + new Date().getDate()) {
 				session.create(new Date().getTime(), new Date().getTime());
-				
+
 				d.resolve(gettextCatalog.getString('success'));
 			} else {
 				d.reject(gettextCatalog.getString('failure'));
