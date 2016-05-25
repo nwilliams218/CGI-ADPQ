@@ -9,6 +9,7 @@ public class Household {
     private String id;
     private String name;
     private String address;
+    private Integer ownerId; // current thinking says this is a caseworker
     private List<Integer> caseworkerids; // this may not be correct - assumes no joins
     private List<Integer> profileIds; // this may not be correct - assumes no joins
 
@@ -34,6 +35,14 @@ public class Household {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(Integer ownerId) {
+        this.ownerId = ownerId;
     }
 
     public List<Integer> getCaseworkerids() {
