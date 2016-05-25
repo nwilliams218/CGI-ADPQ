@@ -1,0 +1,26 @@
+//breakpoints
+$small-screen: 768px;
+
+//colors
+$nav-bg: #323A45;
+$messages-bg: #4773AA;
+$plan-even-bg: #3E94CF;
+$plan-odd-bg: #8BA6CA;
+
+$link-color: #fdb81e;
+$link-visited: darken($link-color, 10%);
+$link-hover: lighten($link-color, 10%);
+
+$button: #3e94cf;
+
+$hamburger: #fff;
+
+//typography
+$main-font: 'Source Sans Pro';
+
+$h1: 32px;
+$h2: 24px;
+$h3: 18px;
+
+//overrides
+$postman-parcels-offset: 55px;

@@ -1,0 +1,59 @@
+nav {
+	background: $nav-bg;
+	padding: 15px 20px;
+	
+	h2, h4 {
+		color: white;
+		margin: 5px 0;
+	}
+	
+	h2 {
+		font-size: 28px;
+	}
+	
+	h4 {
+		font-size: 12px;
+		font-weight: lighter;
+	}
+	
+	li {
+		a:hover, a:focus {
+			background-color: lighten($nav-bg, 10%) !important;
+		}
+	}
+}
+
+.navbar-brand {
+	padding: 0;
+}
+.navbar-toggle {
+	margin-top: 22px;
+	
+	.icon-bar {
+		background: $hamburger;
+	}
+}
+
+.welcome {
+	float: left;
+	margin-left: 10px;
+	
+	a {
+		text-decoration: underline;
+		font-size: 12px;
+	}
+}
+
+#navbar {
+	float: right;
+	margin-top: 35px;
+}
+
+@media (max-width: ($small-screen - 1)) {
+	#navbar {
+		background: $nav-bg;
+	    width: 100%;
+	    float: none;
+	    margin-top: 12px;
+	}
+}

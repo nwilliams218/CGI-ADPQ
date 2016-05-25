@@ -1,0 +1,46 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.collapse {
+	transition: height 0.35s ease 0s;
+}
+
+body {
+  padding-top: 0px;
+  font-family: $main-font;
+}
+
+h1 {
+	font-size: $h1;
+}
+
+h2 { 
+	font-size: $h2;
+}
+
+h3 {
+	font-size: $h3;
+}
+
+a {
+	&, &.no-change:visited {
+		color: $link-color;
+	}
+	
+	&.no-change {
+		outline: 0;
+	}
+	
+	&:visted {
+		color: $link-visited;
+	}
+	
+	&:hover, &:active {
+		color: $link-hover;
+	}
+}
+
+.nav a, .navbar-brand {
+	&:focus {
+		outline: 0;
+	}
+}

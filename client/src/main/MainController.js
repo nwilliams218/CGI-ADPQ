@@ -15,12 +15,15 @@
 			  	gettextCatalog.setCurrentLanguage(locale.language);
 		  	};
 		  	
-			$scope.currentUser = null;
 			$scope.isAuthorized = authService.isAuthorized;
-			
-			$scope.setCurrentUser = function (user) {
-				$scope.currentUser = user;
+
+			$scope.userData = null;
+			this.getUserData = function() {
+				authService.getUserData().then(function(userData) {
+					$scope.userData = userData;
+				});
 			};
+			this.getUserData();
 		}
 	]);
 })();
