@@ -1,9 +1,11 @@
-package com.cgi.chhs.adpq.service.micro.profile;
+package com.cgi.chhs.adpq.service.profile.service.micro;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityScan;
 
 @SpringBootApplication
+@EntityScan("com.cgi.chhs.adpq.service.profile.entity")
 public class ProfileServiceApplication {
 
 	public static void main(String[] args) {
