@@ -8,7 +8,7 @@
 		var authService = {};
 		
 		authService.isAuthenticated = function () {
-			return !!session.userId;
+			return !!session.data.userId;
 		};
 /*
 		
@@ -25,7 +25,7 @@
 		authService.login = function(credentials) {
 			var d = new $q.defer();
 			if (credentials.password == 'testing' + new Date().getDate()) {
-				session.create(new Date().getTime(), new Date().getTime());
+				session.create({sessionId: new Date().getTime(), userId: new Date().getTime(), userRole: ''});
 
 				d.resolve(gettextCatalog.getString('success'));
 			} else {
@@ -35,20 +35,27 @@
 			return d.promise;
 		};
 		
+		authService.logout = function() {
+			session.destroy();
+		};
+		
 		authService.getUserData = function() {
 			var d = new $q.defer();
 
 			//dummy branching until working GET
 			if (1==1) {	
 				var userData = {
+					id: 1,
 					firstName: 'Virginia',
 					lastName: 'Woolf',
-					profilePicture: 'http://d26uhratvi024l.cloudfront.net/gsc/S8VE9S/d0/6b/a5/d06ba5387dff4d6f82aed87c941ebcfa/images/home_1/u277.png?token=30ebae8fe5edebfcbb4b500e43bdb558',
+					profilePicture: 'https://dl.dropboxusercontent.com/s/3o5ahnqhnf17820/u311.png',
 					address1: '1444 S. Alameda St.',
 					address2: '',
 					city: 'Los Angeles',
 					state: 'CA',
 					zip: '90021',
+					phone: '3049339016',
+					cell: '5037575467',
 					email: 'virginiawoolf@lighthouse.com',
 					gender: 'Female',
 					dob: new Date (1882, 1, 25),
@@ -60,6 +67,7 @@
 			}
 			
 			$rootScope.$broadcast(AUTH_EVENTS.userInfo, userData);
+			
 			return d.promise;
 		};
 		

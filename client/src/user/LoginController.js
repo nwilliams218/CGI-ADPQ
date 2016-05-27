@@ -19,6 +19,7 @@
 				if ($localStorage.nextState) { 
 					var nextState = angular.copy($localStorage.nextState);
 					delete $localStorage.nextState;
+					
 					$state.go(nextState.name, nextState.params || {});
 				} else {
 					$state.go('home');

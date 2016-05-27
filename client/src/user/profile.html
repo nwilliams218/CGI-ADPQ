@@ -1,1 +1,43 @@
-<h1>My Profile</h1>
+<div ng-controller="ProfileController" class="profile">
+	<div class="profile-name">
+		<div class="circle-picture">
+			<img ng-src="{{user.profilePicture}}">
+		</div>
+		<h1>{{user.firstName}} {{user.lastName}}</h1>
+	</div>
+	<div class="links">
+		<a ui-sref="editProfile({id:user.id})" translate>Update My Profile</a>
+		<a ui-sref="resetPassword({id:user.id})" translate>Reset Password</a>
+	</div>
+	
+	<span ng-show="user.address1">{{user.address1}}</span>
+	<span ng-show="user.address2">{{user.address2}}</span>
+	<span ng-show="user.city && user.state">{{user.city}}, {{user.state}} {{user.zip}}</span>
+	<span ng-show="user.phone"><span translate>Home:</span> {{user.phone}}</span>
+	<span ng-show="user.cell"><span translate>Cell:</span> {{user.cell}}</span>
+	<span ng-show="user.email"><span>{{user.email}}</span></span>
+	<span ng-show="user.gender"><span>{{user.gender}}</span></span>
+	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
+	
+	<h1 translate>Family & Household</h1>
+	<button class="btn btn-primary add-family" translate>Add New Family or Friend</button>
+	
+	<div class="family-member" ng-class="{'has-plan': f.hasPlan}" ng-repeat="f in family">
+		<div class="circle-picture">
+			<img ng-src="{{f.profilePicture}}">
+		</div>
+		
+		<div>
+			<h3>{{f.firstName}} {{f.lastName}}</h3>
+			
+			<div>{{f.gender}} / {{f.relationship}}</div>
+			
+			<div ng-show="f.dob"><span translate>DOB:</span> {{f.dob|date:'M/d/yy'}}</div>
+		</div>
+		
+		<div>
+			<i class="fa fa-users" aria-hidden="true" ng-show="f.group"></i>
+			<i class="fa fa-home" aria-hidden="true" ng-show="f.home"></i>
+		</div>
+	</div>
+</div>

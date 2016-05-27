@@ -1,0 +1,126 @@
+//home
+.summary-section {
+	&.messages {
+		& > :first-child  {
+			background: $messages-bg;
+			
+			h3 {
+				text-transform: uppercase;
+			}
+			
+			span {
+				font-weight: lighter;
+			}
+		}
+		
+	}
+	
+	&.plan {
+		div {
+			&:last-child {
+				& > span {
+					font-size: 16px;
+					font-weight: lighter;
+					margin-left: 15px;
+				}
+			}
+			
+			& > div {
+				float: left;
+				width: 50%;
+				
+				
+			}
+			
+			h4 {
+				font-size: 16px;
+				font-weight: lighter;
+			}
+		}
+		
+		table {
+			margin-left: 15px;
+			width: 92%;
+			
+			tr {
+				margin-bottom: 10px;
+				
+				&:first-child td {
+					padding-top: 0px !important;
+				}
+			}
+			
+			td {
+				padding-top: 10px;
+				
+				a, a:hover {
+					color: black !important;
+					cursor: pointer;
+				}
+				
+				font-weight: bold;
+				padding-right: 10px;
+				
+				&:not(:first-child) {
+					border-bottom: 1px solid #aaa;
+				}
+				
+				i {
+					font-size: 25px;
+					position: relative;
+					top: 4px !important;
+				}
+			}
+		}
+	}
+	
+}
+
+//profile
+.profile{
+	font-size: 16px;
+	font-weight: lighter;
+	
+	.profile-name {
+		display: inline-block;
+	}
+	
+	h1 {
+		font-size: 28px;
+		font-weight: lighter;
+		position: relative;
+		top: 5px;
+		
+		&.profile-name {
+			display: inline-block;
+		}
+	}
+	
+	.links {
+		display: inline-block;
+		margin-left: 40px;
+		position: relative;
+		top: 40px;
+		
+		a {
+			display: block;
+			color: $button-bg;
+			font-weight: bold;
+			font-size: 14px;
+			text-decoration: underline;
+			
+			&:first-child {
+				margin-bottom: 20px;
+			}
+		}
+	}
+	
+	& > span {
+		display: block;
+	}
+	
+	.add-family {
+		display: block;
+		margin-bottom: 25px;
+	}
+}

@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	
-	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user'])
+	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user', 'cgiAdpq.message', 'cgiAdpq.event'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
 		 function($stateProvider,   $urlRouterProvider,   $locationProvider) {  
 			$locationProvider.html5Mode(true);
@@ -9,7 +9,8 @@
 			$stateProvider
 				.state('home', {
 					url: "/home",
-					templateUrl: "staticPages/home.html"
+					templateUrl: "main/home.html",
+					data: {auth:true}
 				})
 				.state('login', {
 					url: "/login",
@@ -28,15 +29,35 @@
 					templateUrl: "user/profile.html",
 					data: {auth:true}
 				})
+				.state('messages', {
+					url: "/messages/:id",
+					templateUrl: "messages/messages.html",
+					data: {auth:true}
+				})
+				.state('plan', {
+					url: "/plan/:id",
+					templateUrl: "plans/plan.html",
+					data: {auth:true}
+				})
+				.state('event', {
+					url: "/event/:id",
+					templateUrl: "events/events.html",
+					data: {auth:true}
+				})
 			;
 
 			$urlRouterProvider.otherwise("/login");
 		}])
-		.run(['$rootScope', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', '$state', 'postman',
-	 function ($rootScope,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   $state,   postman) {
+		.run(['$rootScope', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', 'session', '$state', 'postman',
+	 function ($rootScope,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   session,   $state,   postman) {
 			//set the current locale/language
 			var currentLocale = $localStorage.currentLocale || LOCALES.English;
             gettextCatalog.setCurrentLanguage(currentLocale.language);
+            
+            //check for existing session data
+            if ($localStorage.hasOwnProperty('sessionData') && $localStorage.sessionData.expiration > new Date().getTime()) {
+	            session.create($localStorage.sessionData);
+            }
             
             //check for authentication (logged in)
 			$rootScope.$on('$stateChangeStart', function (event, next) {
@@ -60,4 +81,6 @@
 	var mainModule = angular.module('cgiAdpq.main', []);	
 	var navModule = angular.module('cgiAdpq.nav', []);	
 	var userModule = angular.module('cgiAdpq.user', []);
+	var messageModule = angular.module('cgiAdpq.message', []);
+	var eventModule = angular.module('cgiAdpq.event', []);
 })();

@@ -22,6 +22,8 @@ h3 {
 }
 
 a {
+	cursor: pointer;
+
 	&, &.no-change:visited {
 		color: $link-color;
 	}
@@ -34,8 +36,8 @@ a {
 		color: $link-visited;
 	}
 	
-	&:hover, &:active {
-		color: $link-hover;
+	&:hover, &:active, &:focus {
+		color: $link-hover !important;
 	}
 }
 
@@ -43,4 +45,28 @@ a {
 	&:focus {
 		outline: 0;
 	}
+}
+
+.btn {
+	text-transform: uppercase;
+	font-weight: bold;	
+	padding: 10px 45px;
+}
+
+.btn-primary {
+	background-color: $button-bg;
+	border-color: darken($button-bg, 10%);
+}
+
+.link-button-color {
+	color: $button-bg;
+}
+
+.login-btn {
+	margin-right: 25px;
+}
+
+.forgot-password {
+	display: inline-block;
+	margin-top: 15px;
 }
