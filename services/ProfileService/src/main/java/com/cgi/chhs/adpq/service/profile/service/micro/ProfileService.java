@@ -2,11 +2,13 @@ package com.cgi.chhs.adpq.service.profile.service.micro;
 
 import javax.inject.Inject;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.micro.ServiceHealth;
@@ -49,21 +51,17 @@ public class ProfileService {
 		return editStatus;
 	}
 	
-	@Path("/add/{name}/{email}")
-	@GET
+
+	@Path("/addProfile")
+	@POST
     @Produces("application/json")
-	public SaveStatus add(@PathParam("name") String name,@PathParam("email") String email)
-	{
-		//TODO: Instead of getting the parameters through GET, do it via POST method.
-		Profile profile = new Profile();
-		profile.setName(name);
-		profile.setEmail(email);
-		//TODO:Add more fields to profile as needed
-		repository.save(profile);
+	public SaveStatus addProfile(@RequestBody Profile profileObj)
+	{		
+		repository.save(profileObj);
 		SaveStatus saveStatus = new SaveStatus();
 		saveStatus.setSuccess(true);
 		saveStatus.setMessage("Profile added successfully and a notification has been sent to the case worker.");
-		saveStatus.setSavedObjectId(profile.getId());
+		saveStatus.setSavedObjectId(profileObj.getId());
 		//TODO: Add Error/Exception logic
 		return saveStatus;
 	}
