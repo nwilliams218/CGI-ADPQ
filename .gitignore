@@ -5,3 +5,4 @@ client/tmp
 client/src/sass/_bootstrap.scss
 client/src/sass/_postman.scss
 client/src/sass/_toastr.scss
+npm-debug.log
