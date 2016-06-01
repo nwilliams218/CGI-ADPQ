@@ -2,7 +2,9 @@ version: '2'
 services:
   ### Angular Container #########################################
   angular:
-    build: ./angular
+    build:
+      context: ../
+      dockerfile: docker/angular/Dockerfile
     container_name: cgi-angular
     image: quay.io/surgeforward/cgi:angular
     environment:
