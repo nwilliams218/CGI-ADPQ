@@ -10,6 +10,7 @@ RUN apt-get update \
     ca-certificates \
     wget \
     xz-utils \
+    bzip2 \
  && apt-get clean \
  && rm -r /var/lib/apt/lists/*
 
