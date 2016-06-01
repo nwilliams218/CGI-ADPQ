@@ -35,6 +35,8 @@ services:
       - data
     ports:
       - "3306:3306"
+    depends_on:
+      - data
 
 
   ### Redis Container #########################################
@@ -46,3 +48,5 @@ services:
       - data
     ports:
       - "6379:6379"
+    depends_on:
+      - data

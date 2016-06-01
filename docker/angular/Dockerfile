@@ -9,11 +9,24 @@ RUN apt-get update \
  && apt-get install -y -q --no-install-recommends \
     ca-certificates \
     wget \
+    xz-utils \
  && apt-get clean \
  && rm -r /var/lib/apt/lists/*
 
+# Install Node 4.4.5
+
+RUN wget https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz
+RUN tar --strip-components 1 -xf node-v4.4.5-linux-x64.tar.xz -C /usr/local
+
+# Install NPM 3
+RUN npm install -g npm@latest
+
+COPY ../client /src
+COPY conf.d/default.conf /etc/nginx/conf.d/default.conf
+
+WORKDIR /src
+
+RUN npm install --unsafe-perm; npm run build; 
+
 # PORT
 EXPOSE 80
-
-# Copy over code
-COPY client/dist /usr/share/nginx/html
