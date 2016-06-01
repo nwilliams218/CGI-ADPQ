@@ -29,7 +29,11 @@
     "phantomjs-prebuilt": "^2.1.7"
   },
   "scripts": {
-    "install": "bower install",
-     "build": "grunt build"
+    "install": "bower install --config.interactive=false --allow-root",
+    "build": "grunt build",
+    "test": "grunt test"
+  },
+  "config": {
+    "unsafe-perm": "true"
   }
 }
