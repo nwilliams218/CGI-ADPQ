@@ -25,6 +25,7 @@ services:
   ### MySQL Container #########################################
   mysql:
     container_name: cgi-mysql
+    build: ./mysql
     image: quay.io/surgeforward/cgi:mysql
     volumes_from:
       - data
