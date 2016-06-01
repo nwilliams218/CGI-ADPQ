@@ -30,10 +30,10 @@ services:
     volumes_from:
       - data
     environment:
-      - MYSQL_DATABASE:cgi_adpq
-      - MYSQL_USER:cgi_adpq_user
-      - MYSQL_PASSWORD:UtcPWBk.+6wEirpez4j)P
-      - MYSQL_ROOT_PASSWORD:QyzgkE]CWC(Pd7Aq9(Gmj
+      - MYSQL_DATABASE=cgi_adpq
+      - MYSQL_USER=cgi_adpq_user
+      - MYSQL_PASSWORD=UtcPWBk.+6wEirpez4j)P
+      - MYSQL_ROOT_PASSWORD=QyzgkE]CWC(Pd7Aq9(Gmj
     volumes_from:
       - data
     ports:
