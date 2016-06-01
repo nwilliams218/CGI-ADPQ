@@ -23,11 +23,7 @@ RUN tar --strip-components 1 -xf node-v4.4.5-linux-x64.tar.xz -C /usr/local
 # Install NPM 3
 RUN npm install -g npm@latest
 
-COPY ./client /src
-COPY ./package.json /src/
-COPY ./bower.json /src/
-COPY ./Gruntfile.js /src/
-
+COPY ./ /src
 COPY ./docker/angular/conf.d/default.conf /etc/nginx/conf.d/default.conf
 
 WORKDIR /src
