@@ -1,4 +1,4 @@
-package com.cgi.chhs.adpq.service.micro.profile;
+package com.cgi.chhs.adpq.service.profile.service.micro;
 
 import org.glassfish.jersey.server.ResourceConfig;
 import org.springframework.context.annotation.Configuration;
