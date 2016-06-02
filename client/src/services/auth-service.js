@@ -39,39 +39,7 @@
 			session.destroy();
 		};
 		
-		authService.getUserData = function() {
-			var d = new $q.defer();
-
-			//dummy branching until working GET
-			if (1==1) {	
-				var userData = {
-					id: 1,
-					firstName: 'Virginia',
-					lastName: 'Woolf',
-					profilePicture: 'https://dl.dropboxusercontent.com/s/3o5ahnqhnf17820/u311.png',
-					address1: '1444 S. Alameda St.',
-					address2: '',
-					city: 'Los Angeles',
-					state: 'CA',
-					zip: '90021',
-					phone: '3049339016',
-					cell: '5037575467',
-					email: 'virginiawoolf@lighthouse.com',
-					gender: 'Female',
-					dob: new Date (1882, 1, 25),
-				};
 				
-				d.resolve(userData);
-			} else {
-				d.reject(AUTH_EVENTS.notAuthorized);
-			}
-			
-			$rootScope.$broadcast(AUTH_EVENTS.userInfo, userData);
-			
-			return d.promise;
-		};
-		
-		
 		return authService;
 	}]);
 })();

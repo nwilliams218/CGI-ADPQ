@@ -13,7 +13,7 @@ describe('Auth Service', function() {
 		//deferred = $q.defer();
 		//spyOn(authService, 'login').and.returnValue(deferred.promise); 
 		
-		$httpBackend.whenGET('staticPages/home.html').respond('home view');
+		$httpBackend.whenGET('main/home.html').respond('home view');
 		//$httpBackend.expectGET('staticPages/home.html');
 		
 		$httpBackend.whenGET('user/login.html').respond('login page');
@@ -41,7 +41,10 @@ describe('Auth Service', function() {
 	});
 	
 	it('checks existing authorization', function () {
-		session.create(new Date().getTime(), new Date().getTime());
+		var expiration = new Date();
+		expiration.setDate(expiration.getDate() + 7);
+			
+		session.create({sessionId: new Date().getTime(), userId: new Date().getTime(), expiration: expiration});
 		
 		expect(authService.isAuthenticated()).toBe(true);
 	});

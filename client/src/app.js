@@ -44,6 +44,11 @@
 					templateUrl: "events/events.html",
 					data: {auth:true}
 				})
+				.state('editProfile', {
+					url: "/edit-profile/:id",
+					templateUrl: "user/edit-profile.html",
+					data: {auth:true}
+				})
 			;
 
 			$urlRouterProvider.otherwise("/login");

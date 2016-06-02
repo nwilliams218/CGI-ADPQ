@@ -7,11 +7,11 @@
 									    	function($scope,   $rootScope,   userService,   postman,   $state,   AUTH_EVENTS,   familyService) {	
 			$scope.user = {};
 			
-			if ($scope.$parent.userData != null) {
-				$scope.user = $scope.$parent.userData;
+			if ($scope.$parent.userData !== null) {
+				$scope.user = angular.copy($scope.$parent.userData);
 			} else {
-				$rootScope.$on(AUTH_EVENTS.userInfo, function(data){					
-					$scope.user = data;
+				$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data){					
+					$scope.user = angular.copy(data);
 				});
 			}
 			

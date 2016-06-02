@@ -26,7 +26,7 @@
 				}
 				
 			}, function(data) {
-				postman.error('', 'Could not login');
+				postman.error('', gettextCatalog.getString('Could not login'));
 			});	
 		};
 	}]);

@@ -3,8 +3,8 @@
 	
 	var mainModule = angular.module('cgiAdpq.main');
 	
-	mainModule.controller('MainController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'authService',
-									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   authService) {	
+	mainModule.controller('MainController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', 'familyService',
+									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   familyService) {	
 		$scope.page = $state.current.name;
 		
 		$rootScope.$on('$stateChangeStart', function (event, next) {
@@ -29,12 +29,19 @@
 			$state.go('login');
 		};
 		
+		$scope.userLoaded = false;
 		$scope.userData = null;
 		this.getUserData = function() {
-			authService.getUserData().then(function(userData) {
-				$scope.userData = userData;
+			familyService.getUser().then(function(userData) {
+				$scope.userLoaded = true;
+				
+				$scope.userData = angular.copy(userData);
 			});
 		};
 		this.getUserData();
+				
+		$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data) { console.log('asdf');
+			$scope.userData = angular.copy(data);
+		});
 	}]);
 })();

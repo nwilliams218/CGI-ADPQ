@@ -3,8 +3,8 @@
 	
 	var mainModule = angular.module('cgiAdpq.main');
 	
-	mainModule.controller('HomeController', ['$scope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService',
-									  function($scope,  postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService) {	
+	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS',
+									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS) {	
 		
 		$scope.unreadCount = 0;
 		$scope.messages = [];
@@ -26,9 +26,9 @@
 			familyService.getPlans($scope.$parent.userData.id).then(function(plans) {
 				$scope.plans = plans;
 			});
-		};
+		};	
 		$scope.getPlans($scope.userData.id);
-
+		
 		$scope.events = [];
 		$scope.getEvents = function(id) {
 			eventService.getEvents(id).then(function(data) {
@@ -41,8 +41,6 @@
 				  events[ele.eventFor].push(ele);
 				});
 				$scope.events = events;
-				
-				console.log($scope.events);
 			});
 		};
 		$scope.getEvents($scope.userData.id);

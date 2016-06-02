@@ -58,6 +58,12 @@ a {
 	border-color: darken($button-bg, 10%);
 }
 
+.btn-secondary {
+	background-color: white;
+	color: $button-bg;
+	border-color: $button-bg;
+}
+
 .link-button-color {
 	color: $button-bg;
 }

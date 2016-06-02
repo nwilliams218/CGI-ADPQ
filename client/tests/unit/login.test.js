@@ -22,7 +22,7 @@ describe('Login Controller', function() {
 		
 		deferred = $q.defer();
 		
-		$httpBackend.whenGET('staticPages/home.html').respond('home view');
+		$httpBackend.whenGET('main/home.html').respond('home view');
 		//$httpBackend.expectGET('staticPages/home.html');
 		
 		$httpBackend.whenGET('user/login.html').respond('login page');

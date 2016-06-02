@@ -28,13 +28,17 @@
 			& > div {
 				float: left;
 				width: 50%;
-				
+				border-left: 1px solid #aaa;
+				padding-left: 10px;
+				position: relative;
+				top: 10px;
 				
 			}
 			
 			h4 {
 				font-size: 16px;
 				font-weight: lighter;
+				margin-top: 0;
 			}
 		}
 		
@@ -122,5 +126,91 @@
 	.add-family {
 		display: block;
 		margin-bottom: 25px;
+	}
+}
+
+//edit profile
+.edit-profile {
+	::-webkit-input-placeholder {
+	   font-style: italic;
+	}
+	:-moz-placeholder {
+	   font-style: italic;  
+	}
+	::-moz-placeholder {
+	   font-style: italic;  
+	}
+	:-ms-input-placeholder {  
+	   font-style: italic; 
+	}
+	
+	input, select {
+		font-size: 16px;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		border-bottom: 1px solid #999;
+	}
+	
+	select {
+		 -webkit-appearance: none;
+		 
+		background:
+			linear-gradient(45deg, transparent 50%, #999 50%),
+			linear-gradient(135deg, #999 50%, transparent 50%),
+			linear-gradient(to right, transparent, transparent);
+		background-position:
+			calc(100% - 21px) calc(1em + 2px),
+			calc(100% - 16px) calc(1em + 2px),
+			100% 0;
+		background-size:
+			5px 5px,
+			5px 5px,
+			2.5em 2.5em;
+		background-repeat: no-repeat;
+		
+		padding-left: 8px;
+  /* reset */
+
+  border-radius: 0;
+  margin: 0;      
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance:none;
+  -moz-appearance:none;
+		 
+		 
+	}
+	
+	label.radio-inline {
+		font-size: 16px;
+		border-width: 3px;
+		margin-left: 10px;
+	}
+	
+	small {
+		width: 150px;
+		margin-left: 25px;
+		display: inline-block;
+	}
+	
+	hr {
+		border-color: #999;
+		margin-top: 0;
+		margin-bottom: 40px;
+	}
+	
+	.btn {
+		margin-right: 25px;
+		margin-bottom: 25px;
+	}
+	
+	@media (max-width: ($small-screen-max)) {
+		
+		.btn {
+			margin-right: 0;
+			width: 100%;
+		}
 	}
 }
