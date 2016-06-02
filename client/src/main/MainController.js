@@ -40,7 +40,7 @@
 		};
 		this.getUserData();
 				
-		$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data) { console.log('asdf');
+		$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data) {
 			$scope.userData = angular.copy(data);
 		});
 	}]);

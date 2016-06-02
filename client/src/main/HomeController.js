@@ -19,7 +19,7 @@
 			    $scope.unreadCount = count;
 		    });
 		};
-		$scope.getMessages($scope.userData.id);
+		$scope.getMessages($scope.$parent.userData.id);
 		
 		$scope.plans = [];
 		$scope.getPlans = function(id) {
@@ -27,7 +27,7 @@
 				$scope.plans = plans;
 			});
 		};	
-		$scope.getPlans($scope.userData.id);
+		$scope.getPlans($scope.$parent.userData.id);
 		
 		$scope.events = [];
 		$scope.getEvents = function(id) {
@@ -43,6 +43,6 @@
 				$scope.events = events;
 			});
 		};
-		$scope.getEvents($scope.userData.id);
+		$scope.getEvents($scope.$parent.userData.id);
 	}]);
 })();

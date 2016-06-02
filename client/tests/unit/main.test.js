@@ -6,26 +6,39 @@ describe('Main Controller', function() {
 	beforeEach(module('cgiAdpq.main'));
 	
 	var controller,
+	$rootScope,
 	scope,
 	$localStorage,
-	LOCALES;
+	LOCALES,
+	sessioin,
+	AUTH_EVENTS;
 	
 	var currentState = 'login';
 	var otherState = 'contact';
 	
-	beforeEach(inject(function ($rootScope, $controller, $state, _gettextCatalog_, _$localStorage_, _LOCALES_) {
+	beforeEach(inject(function (_$rootScope_, $controller, _$state_, _gettextCatalog_, _$localStorage_, _LOCALES_, _session_, $httpBackend, _AUTH_EVENTS_) {
+		$rootScope = _$rootScope_;
 		scope = $rootScope.$new();
 		$localStorage = _$localStorage_;
 		LOCALES = _LOCALES_;
+		session = _session_;
+		AUTH_EVENTS = _AUTH_EVENTS_;
 		
 		controller = $controller('MainController', {
 			$scope: scope,
 			//postman: postman,
-			$state: {current: {name: currentState}},
+			$state: {current: {name: currentState}, go: function() {}},
 			gettextCatalog: _gettextCatalog_,
 			$localStorage: _$localStorage_,
 			LOCALES: LOCALES
 		});
+		
+		$httpBackend.whenGET('main/home.html').respond('home view');
+		//$httpBackend.expectGET('staticPages/home.html');
+		
+		$httpBackend.whenGET('user/login.html').respond('login page');
+		//$httpBackend.expectGET('user/login.html');
+
 	}));
 	
 	it('has a default current locale', function () {
@@ -39,6 +52,28 @@ describe('Main Controller', function() {
 		
 		expect(scope.currentLocale).toEqual(localeToSet);
 		expect($localStorage.currentLocale).toEqual(localeToSet);
+	});
+	
+	it('logs out', function() {
+		scope.logout();
+		
+		expect(session.data).toEqual({});
+	});
+	
+	it('sets the page name based on the route', function() {
+		var pageName = 'login';
+		$rootScope.$broadcast('$stateChangeStart', {name: pageName});
+		$rootScope.$digest();
+		
+		expect(scope.page).toEqual(pageName);
+	});
+	
+	it ('gets user data on auth event', function() {
+		$rootScope.$broadcast(AUTH_EVENTS.userInfo, {firstName: 'tester'});
+		$rootScope.$digest();
+		
+		expect(scope.userData).not.toEqual({});
+		
 	});
 	
 
