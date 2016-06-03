@@ -3,6 +3,12 @@ module.exports = function(config) {
     basePath: '../../',
     frameworks: ['jasmine'],
     browsers: ['PhantomJS'],
+    plugins : [
+        'karma-phantomjs-launcher',
+        'karma-jasmine',
+        'karma-junit-reporter',
+        'karma-coverage'
+    ],
     files: [
 		'../bower_components/angular/angular.js',
 		'!tmp/angular/angular.min.js',
@@ -14,8 +20,10 @@ module.exports = function(config) {
 	//logLevel: config.LOG_DEBUG,
 	included: false,
 	singleRun: true,
-	
-	reporters: ['progress', 'coverage'],
+	reporters: ['progress', 'coverage', 'dots', 'junit'],
+	junitReporter: {
+	  outputFile: 'test-results.xml'
+	},
 
     preprocessors: {
 		'src/**/*.js': ['coverage']
