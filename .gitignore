@@ -7,3 +7,4 @@ client/src/sass/_postman.scss
 client/src/sass/_toastr.scss
 client/src/translations
 npm-debug.log
+PhantomJS_*
