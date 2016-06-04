@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 public class ProfileService extends CGIService{
 
-	
+
 	@Inject
 	public ProfileRepository repository;
 
@@ -29,10 +29,10 @@ public class ProfileService extends CGIService{
     @Produces("application/json")
 	public Profile view(@PathParam("id") Long id)
 	{
-		
+
 		return repository.findOne(id);
 	}
-	
+
 	@Path("/updateProfile")
 	@POST
     @Produces("application/json")

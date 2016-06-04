@@ -2,8 +2,10 @@ package com.cgi.chhs.adpq.service.mirco;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.orm.jpa.EntityScan;
 
 @SpringBootApplication
+@EntityScan("com.cgi.chhs.adpq.service.mirco.entity")
 public class HouseholdApplication {
 
 	public static void main(String[] args) {

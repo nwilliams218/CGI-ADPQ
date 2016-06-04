@@ -1,4 +1,4 @@
-package com.cgi.chhs.adpq.service.mirco;
+package com.cgi.chhs.adpq.service.mirco.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,14 +17,13 @@ public class Household {
     private String name;
     private String address;
     private Integer ownerId; // current thinking says this is a caseworker
-    private List<Integer> caseworkerids; // this may not be correct - assumes no joins
-    private List<Integer> profileIds; // this may not be correct - assumes no joins
 
-    public String getId() {
+
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -52,19 +51,4 @@ public class Household {
         this.ownerId = ownerId;
     }
 
-    public List<Integer> getCaseworkerids() {
-        return caseworkerids;
-    }
-
-    public void setCaseworkerids(List<Integer> caseworkerids) {
-        this.caseworkerids = caseworkerids;
-    }
-
-    public List<Integer> getProfileIds() {
-        return profileIds;
-    }
-
-    public void setProfileIds(List<Integer> profileIds) {
-        this.profileIds = profileIds;
-    }
 }
