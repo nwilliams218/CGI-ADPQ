@@ -36,29 +36,24 @@ public class ProfileService extends CGIService{
 	@Path("/updateProfile")
 	@POST
     @Produces("application/json")
-	public SaveStatus editProfile(@RequestBody Profile profileObj){			
-		
-		SaveStatus editStatus = new SaveStatus();
-		try{
-		Profile profileDBObj = repository.findOne(profileObj.getId());	
-		profileDBObj.setPassword(profileObj.getPassword());
-		profileDBObj.setAddress(profileObj.getAddress());
-		profileDBObj.setEmail(profileObj.getEmail());
-		
-		repository.save(profileDBObj);
-		editStatus.setSuccess(true);
-		editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
-		return editStatus;
-		}catch(Exception e)
-		{
-			editStatus.setSuccess(false);
-			editStatus.setMessage("Profile updation failed and notification has been sent to the case worker.");
-			return editStatus;
-		}
-		
-		
-	}
+    public SaveStatus editProfile(@RequestBody Profile profileObj){
+        SaveStatus editStatus = new SaveStatus();
+        try {
+            Profile profileDBObj = repository.findOne(profileObj.getId());
+            profileDBObj.setPassword(profileObj.getPassword());
+            profileDBObj.setAddress(profileObj.getAddress());
+            profileDBObj.setEmail(profileObj.getEmail());
 
+            repository.save(profileDBObj);
+            editStatus.setSuccess(true);
+            editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
+            return editStatus;
+        } catch(Exception e) {
+            editStatus.setSuccess(false);
+            editStatus.setMessage("Profile updation failed and notification has been sent to the case worker.");
+            return editStatus;
+        }
+    }
 
 	@Path("/addProfile")
 	@POST
@@ -81,10 +76,7 @@ public class ProfileService extends CGIService{
 			saveStatus.setSuccess(false);
 			saveStatus.setMessage("Adding  profile failed, a notification has been sent to the case worker.");
 			return saveStatus;
-
 		}
-		
-		
 	}
 
 }
