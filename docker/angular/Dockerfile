@@ -4,8 +4,6 @@ FROM nginx
 RUN echo "America/Los_Angeles" > /etc/timezone \
  && dpkg-reconfigure -f noninteractive tzdata
 
-RUN
-
 # Install wget and install/updates certificates
 RUN apt-get upgrade \
  && apt-get update \
