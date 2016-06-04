@@ -8,6 +8,7 @@
   "devDependencies": {
     "bower": "^1.7.9",
     "grunt": "^1.0.1",
+    "grunt-angular-gettext": "^2.2.0",
     "grunt-angular-templates": "^1.0.3",
     "grunt-bowercopy": "^1.2.4",
     "grunt-contrib-clean": "^1.0.0",

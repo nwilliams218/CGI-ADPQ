@@ -10,8 +10,16 @@
 				$scope.navCollapsed = true;
 			});
 			
+			$rootScope.$on('user-info-returned', function(event, data) {
+				console.log(data);
+			});
+			
 			$scope.isActive = function(linkName) {
 				return 	$state.current.name === linkName ? 'active' : ''; 
+			};
+			
+			$scope.collapse = function() {
+				$scope.navCollapsed = true;
 			};
 		}
 	]);

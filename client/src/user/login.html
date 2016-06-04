@@ -1,15 +1,17 @@
 <div ng-controller="LoginController" class="row">	
 	<form ng-submit="login()" class="col-md-6">
 		<fieldset class="form-group">
-			<label for="email">Email address</label>
-			<input ng-model="credentials.email" type="email" class="form-control" id="email" placeholder="Email" required>
+			<label for="email" translate>Email address</label>
+			<input ng-model="credentials.email" type="email" class="form-control" id="email" placeholder="{{'Email address'|translate}}" required>
 <!-- 		<small class="text-muted">We'll never share your email with anyone else.</small> -->
 		</fieldset>
 		<fieldset class="form-group">
-			<label for="password">Password</label>
-			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="Password" required>
+			<label for="password" translate>Password</label>
+			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="{{'Password'|translate}}" required>
 		</fieldset>
 		
-		<button type="submit" class="btn btn-primary">Login</button>
+		<button type="submit" class="btn btn-primary login-btn" translate>Login</button>
+		
+		<a ng-click="return;" class="link-button-color forgot-password" translate>Forgot Password</a>
 	</form>
 </div>

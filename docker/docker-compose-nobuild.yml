@@ -2,9 +2,9 @@ version: '2'
 services:
   ### Angular Container #########################################
   angular:
-    build:
-      context: ../
-      dockerfile: docker/angular/Dockerfile
+#    build:
+#      context: ../
+#      dockerfile: docker/angular/Dockerfile
     container_name: cgi-angular
     image: quay.io/surgeforward/cgi:angular
     environment:
@@ -27,7 +27,7 @@ services:
   ### DATA Container ##########################################
   data:
     container_name: cgi-data
-    build: ./data
+#    build: ./data
     image: quay.io/surgeforward/cgi:data
     volumes:
       - /var/lib/mysql
@@ -36,7 +36,7 @@ services:
   ### MySQL Container #########################################
   mysql:
     container_name: cgi-mysql
-    build: ./mysql
+#    build: ./mysql
     image: quay.io/surgeforward/cgi:mysql
     volumes_from:
       - data
@@ -56,7 +56,7 @@ services:
   ### Redis Container #########################################
   redis:
     container_name: cgi-redis
-    build: ./redis
+#    build: ./redis
     image: quay.io/surgeforward/cgi:redis
     volumes_from:
       - data

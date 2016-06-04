@@ -1,14 +1,15 @@
 module.exports = function (grunt) {
     var libFiles = {
         //"jquery.js": "jquery/client/dist/jquery.js",
-        "angular.min.js": "angular/angular.min.js",
         //"lodash.min.js": "lodash/dist/lodash.min.js",
         //"moment.min.js": "moment/min/moment.min.js",
         "postman.min.js": "angular-postman/js/postman.min.js",
         "ui-bootstrap.min.js": "angular-bootstrap/ui-bootstrap.min.js",
         "ui-bootstrap-tpls.min.js": "angular-bootstrap/ui-bootstrap-tpls.min.js",
         //"angular-mocks.js": "angular-mocks/angular-mocks.js",
-        "angular-ui-router.min.js": "angular-ui-router/release/angular-ui-router.min.js"
+        "angular-ui-router.min.js": "angular-ui-router/release/angular-ui-router.min.js",
+        "ngStorage.min.js": "ngstorage/ngStorage.min.js",
+        "angular-gettext.min.js": "angular-gettext/dist/angular-gettext.min.js"
     };
 
     grunt.initConfig({
@@ -43,6 +44,17 @@ module.exports = function (grunt) {
             options: {
                 runBower: false,
                 destPrefix: "client/dist/js/"
+            },
+            
+            angular: {
+	            files: {
+		            "angular.js": "angular/angular.js"
+	            }
+            },
+            angularmin: {
+	            files: {
+		            "angular.min.js": "angular/angular.min.js"
+	            }
             },
             
             libs: {
@@ -102,6 +114,7 @@ module.exports = function (grunt) {
 		            closeTag: '<!-- end script template tags -->'
 		        },
 		        src: [
+			        'client/dist/js/angular.js',
 			        'client/dist/js/angular.min.js',
 			        'client/dist/js/toastr.min.js',
 		            'client/dist/js/*.js'
@@ -149,7 +162,34 @@ module.exports = function (grunt) {
 		  unit: {
 		    configFile: 'client/tests/unit/karma.conf.js'
 		  }
-		}	
+		},
+		
+		nggettext_extract: {
+            pot: {
+                options: {
+                    extensions: {
+                        htm: 'html',
+                        html: 'html',
+                        php: 'html',
+                        phtml: 'html',
+                        tml: 'html',
+                        js: 'js',
+                        cshtml: 'html'
+                    }
+                },
+                files: {
+                    'client/src/translations/template.pot': ['client/src/**/*.html', 'client/src/app.js', 'client/src/**/*.js']
+                }
+            },
+        },
+
+        nggettext_compile: {
+            all: {
+                files: {
+                    'client/src/translations.js': ['client/src/translations/*.po']
+                }
+            },
+        },
     });
 
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -164,10 +204,13 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-angular-gettext');    
     
+    grunt.registerTask('test', ['clean:test1', 'jshint', 'bowercopy:test', 'clean:test2', 'karma']);
     
-    grunt.registerTask('test', ['clean:test1', 'bowercopy:test', 'clean:test2', 'karma']);
+    grunt.registerTask('extract', ['nggettext_extract']);
+    grunt.registerTask('compile', ['nggettext_compile', 'dev']);
     
-    grunt.registerTask('dev', ['clean:dist', 'bowercopy:libs', 'bowercopy:css', 'sass', 'ngtemplates', 'concat', 'copy:index', 'tags']);
-    grunt.registerTask('build', ['jshint', 'test', 'clean:dist', 'bowercopy:libs', 'bowercopy:css', 'sass', 'ngtemplates', 'concat', 'copy:index', 'uglify', 'cssmin', 'tags']);
+    grunt.registerTask('dev', ['clean:dist', 'bowercopy:angular', 'bowercopy:libs', 'bowercopy:css', 'sass', 'ngtemplates', 'concat', 'copy:index', 'tags']);
+    grunt.registerTask('build', ['jshint', 'test', 'clean:dist', 'bowercopy:angularmin', 'bowercopy:libs', 'bowercopy:css', 'sass', 'ngtemplates', 'concat', 'copy:index', 'uglify', 'cssmin', 'tags']);
 };
