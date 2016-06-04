@@ -1,12 +1,19 @@
 package com.cgi.chhs.adpq.service.mirco;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
 /**
  * Created by michael on 5/25/16.
  */
+@Entity
 public class Household {
-    private String id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
     private String name;
     private String address;
     private Integer ownerId; // current thinking says this is a caseworker
