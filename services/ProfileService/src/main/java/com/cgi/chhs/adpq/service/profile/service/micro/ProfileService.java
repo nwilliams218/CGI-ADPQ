@@ -71,6 +71,7 @@ public class ProfileService extends CGIService{
 			profile.setAddress(params.get("address"));
 			profile.setEmail(params.get("email"));
 			profile.setPassword(params.get("password"));
+            profile.setHouseholdId(Integer.parseInt(params.get("household_id")));
 			repository.save(profile);
 			saveStatus.setSuccess(true);
 			saveStatus.setMessage("Profile added successfully and a notification has been sent to the case worker.");
