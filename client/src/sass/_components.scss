@@ -161,7 +161,7 @@
 .family-member {
 	padding: 15px;
 	background-color: $panel-bg;
-	border: 5px solid $panel-bg;
+	border: $plan-border-width solid $panel-bg;
 	position: relative;
 	display: inline-block;
 	margin-right: 20px;
@@ -177,14 +177,14 @@
 		margin: 0 0 7px;
 	}
 	
-	& > div:nth-child(2) {
+	& > a > div:nth-child(2) {
 		display: inline-block;
 		position: relative;
 		top: -11px;
 		margin-left: 10px;
 	}
 	
-	& > div:last-child {
+	& > a > div:last-child {
 		position: absolute;
 		top: 5px;
 		right: 5px;
@@ -193,5 +193,83 @@
 			display: block;
 			margin-bottom: 5px;
 		}
+	}
+}
+
+.plan-item {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin-bottom: 25px;
+
+	& > span {
+		display: block;
+	}
+	
+	.toggle-comments {
+		margin: 15px 0;
+		padding: 10px 15px;
+		
+		i {
+			font-size: 20px;
+			
+			&.fa-comment {
+				margin-right: 20px;	
+			}
+			
+			&.fa-angle-up, &.fa-angle-down {
+				margin-left: 20px;
+			}
+		}
+	}
+	
+	.comment {
+		padding: 10px;
+		position: relative;
+		
+		&:nth-child(even) {
+			background: #F2F2F2;
+		}
+		
+		span {
+			display: block;
+			
+			&:first-child {
+				font-weight: bold;
+			}
+			
+			&:last-child {
+				font-size: 13px;
+			}
+		}
+		
+		i {
+			font-size: 20px;	
+			position: absolute;
+			top: 50%;
+			transform: translateY(-50%);
+		} 
+		
+		div {
+			display: inline-block;
+			width: 80%;
+			margin-left: 50px;
+		}
+	}
+	
+	.add-comment, .save-comment {
+		color: $button-bg;
+		text-decoration: underline;
+		margin-left: 60px;
+		font-weight: bold;
+		display: block;
+		margin-top: 15px;
+	}
+	
+	textarea {
+		margin-left: 60px;
+		width: 60%;
+		border: 1px solid #ccc;
+		height: 150px;
+		padding: 10px;
 	}
 }

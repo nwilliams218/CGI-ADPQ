@@ -81,12 +81,17 @@
 }
 
 //profile
-.profile{
+.profile, .plan {
 	font-size: 16px;
 	font-weight: lighter;
 	
 	.profile-name {
 		display: inline-block;
+		
+		h1 {
+			display: inline-block;
+			top: -30px;
+		}
 	}
 	
 	h1 {
@@ -104,7 +109,6 @@
 		display: inline-block;
 		margin-left: 40px;
 		position: relative;
-		top: 40px;
 		
 		a {
 			display: block;
@@ -127,6 +131,14 @@
 		display: block;
 		margin-bottom: 25px;
 	}
+	
+	@media (max-width: ($small-screen-max)) {
+		.links {
+			display: block;
+			margin-left: 0;
+			top: -10px;
+		}
+	}
 }
 
 //edit profile
@@ -143,6 +155,22 @@
 	:-ms-input-placeholder {  
 	   font-style: italic; 
 	}
+	
+	i {
+		font-size: 50px;
+		color: #999;
+		margin-bottom: 25px;
+		margin-left: 25px;
+	}
+	
+	a {
+		color: $button-bg;
+		margin-left: 25px;
+		position: relative;
+		text-decoration: underline;
+		font-weight: bolder;
+	}
+
 	
 	input, select {
 		font-size: 16px;
@@ -196,7 +224,6 @@
 	}
 	
 	hr {
-		border-color: #999;
 		margin-top: 0;
 		margin-bottom: 40px;
 	}
@@ -212,5 +239,124 @@
 			margin-right: 0;
 			width: 100%;
 		}
+	}
+}
+
+
+.messages {
+	.view-message {
+		color: black;
+		
+		&:hover {
+			color: $button-bg !important;
+		}
+	}
+	
+	hr {
+		margin: 20px 0;
+		padding: 0;
+	}
+	
+	.message-filter {
+		margin-bottom: 25px;
+		
+		@media (max-width: ($small-screen-max)) {
+			.btn {
+				margin-bottom: 10px;
+			}
+		}
+	}
+	
+	h5 {
+		margin-top: 0;
+		font-weight: bold;
+	}
+	
+	.message {
+		margin-bottom: 15px;
+		
+		&.read {
+			.view-message {
+				color: #888;
+			}
+		}
+	}
+	
+	.from {
+		overflow: hidden;
+		
+		i {
+			font-size: 25px;
+			margin-right: 5px;
+			position: relative;
+			top: 3px;
+		}
+		
+		h5 {
+			display: inline-block;
+			position: relative;
+			top: -8px;	
+			font-size: 18px;
+			font-weight: lighter;
+		}
+		
+		.date {
+			position: relative;
+			left: 33px;
+			top: -18px;
+			font-weight: lighter;
+		}
+	}
+	
+	.content {
+		border-left: 1px solid #aaa;
+		
+		h5 {
+			margin: 0;
+		}
+		
+	}
+	
+	.body {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		height: 3vh;
+	}
+	
+	.single-message {
+		h5 {
+			font-size: 18px;
+			margin-bottom: 5px;
+			font-weight: lighter;
+			
+			&.subject {
+				font-size: 16px;
+			}
+		}
+		.date {
+			margin-bottom: 15px;
+		}
+		
+		.body {
+			height: auto;
+			margin-bottom: 25px;
+		}
+	}
+}
+
+.plan {
+	& > .container:not(.plan) {
+		margin: 0;
+		padding: 0;
+		width: auto;
+	}
+	
+	&.has-plan {
+		min-height: 85vh;
+		border: $plan-border-width solid $plan-even-bg;
+	}
+	
+	.goal {
+		margin-bottom: 25px;
 	}
 }

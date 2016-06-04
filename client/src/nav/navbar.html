@@ -11,9 +11,11 @@
 		<div class="breadcrumbs">
 			<a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i></a>
 			<i class="fa fa-chevron-right" aria-hidden="true"></i>
+			
+			<a ui-sref="{{$parent.page}}({id:null})" class="current-page" ng-hide="$parent.page == 'login' || $parent.page == 'profile'">{{$parent.page}}</a>
 		</div>
 		
-		<a ng-show="$parent.isAuthenticated()" 
+		<a ng-show="$parent.isAuthenticated() && ($parent.page == 'profile' || $parent.page == 'home')" 
 	       class="navbar-brand circle-picture {{$parent.page}}" 
 		   ui-sref="home"
 		>

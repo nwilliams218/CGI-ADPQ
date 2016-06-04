@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	
-	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user', 'cgiAdpq.message', 'cgiAdpq.event'])
+	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user', 'cgiAdpq.message', 'cgiAdpq.event', 'cgiAdpq.plan'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
 		 function($stateProvider,   $urlRouterProvider,   $locationProvider) {  
 			$locationProvider.html5Mode(true);
@@ -31,7 +31,7 @@
 				})
 				.state('messages', {
 					url: "/messages/:id",
-					templateUrl: "messages/messages.html",
+					templateUrl: "messaging/messages.html",
 					data: {auth:true}
 				})
 				.state('plan', {
@@ -88,4 +88,5 @@
 	var userModule = angular.module('cgiAdpq.user', []);
 	var messageModule = angular.module('cgiAdpq.message', []);
 	var eventModule = angular.module('cgiAdpq.event', []);
+	var planModule = angular.module('cgiAdpq.plan', []);
 })();

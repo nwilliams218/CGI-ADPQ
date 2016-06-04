@@ -11,7 +11,7 @@
 			});
 			
 			$rootScope.$on('user-info-returned', function(event, data) {
-				console.log(data);
+
 			});
 			
 			$scope.isActive = function(linkName) {

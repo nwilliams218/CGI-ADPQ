@@ -1,1 +1,54 @@
-<h1>Plans</h1>
+<div class="plan container" ng-controller="PlanController" ng-class="{'has-plan': user.hasPlan}">
+	<div class="profile-name">
+		<div class="circle-picture">
+			<img ng-src="{{user.profilePicture}}">
+		</div>
+		<h1>{{user.firstName}} {{user.lastName}}</h1>
+	</div>
+	<div class="links" ng-show="">
+		<a ui-sref="editProfile({id:user.id})" translate>Update My Profile</a>
+	</div>
+	
+	<span ng-show="user.relationship"><span translate>Relationship:</span> {{user.relationship}}</span>
+	<span ng-show="user.location"><span translate>Location:</span> {{user.location}}</span>
+	<span ng-show="user.facility">{{user.location}}</span>
+	<span ng-show="user.gender"><span>{{user.gender}}</span></span>
+	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
+	
+	<h1 class="goal"><span translate>Goal:</span> {{user.goal}}</h1>
+	
+	<div class="plan-item" ng-repeat="item in user.items">
+		<span ng-show="item.serviceType"><span translate>Service Type:</span> {{item.serviceType}}</span>
+		<span ng-show="item.explanation"><span translate>Explanation:</span> {{item.explanation}}</span>
+		<span ng-show="item.provider"><span translate>Provider:</span> {{item.provider}}</span>
+		<span ng-show="item.frequency"><span translate>Frequency:</span> {{item.frequency}}</span>
+		
+		<div class="comment-area" >
+			<a class="btn btn-secondary toggle-comments" ng-click="toggleComments(item.id)">
+				<i class="fa fa-comment" aria-hidden="true"></i>
+				<span translate>View Progress Comments</span>
+				<i class="fa" ng-class="{'fa-angle-down': !showComments[item.id], 'fa-angle-up': showComments[item.id]}" aria-hidden="true"></i>
+			</a>
+			
+			<div class="comments" ng-show="showComments[item.id]">
+				<div class="comment" ng-repeat="comment in item.comments">
+					<i class="fa fa-comment" aria-hidden="true"></i>
+					<div>
+						<span>{{comment.from}} - {{comment.date|date:'M/d/y'}}</span>						
+						<span>{{comment.body}}</span>
+					</div>
+				</div>
+				
+				<a class="add-comment" ng-click="addComment()" ng-hide="comment" translate>Add Comment</a>
+				
+				<div class="new-comment" ng-show="comment">
+					<textarea ng-model="comment.body"></textarea>
+					<a class="save-comment" ng-show="comment" ng-click="saveComment(item, comment)" translate>Save Comment</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		
+	
+</div>
