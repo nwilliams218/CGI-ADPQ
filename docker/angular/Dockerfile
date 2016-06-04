@@ -14,7 +14,7 @@ RUN apt-get upgrade \
     bzip2 \
     git \
  && apt-get clean \
- && rm -r /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ && rm -r /var/lib/apt/lists/*
 
 
 # Install Node 4.4.5
