@@ -4,8 +4,11 @@ FROM nginx
 RUN echo "America/Los_Angeles" > /etc/timezone \
  && dpkg-reconfigure -f noninteractive tzdata
 
+RUN
+
 # Install wget and install/updates certificates
-RUN apt-get update \
+RUN apt-get upgrade \
+ && apt-get update \
  && apt-get install -y -q --no-install-recommends \
     ca-certificates \
     wget \
@@ -13,12 +16,14 @@ RUN apt-get update \
     bzip2 \
     git \
  && apt-get clean \
- && rm -r /var/lib/apt/lists/*
+ && rm -r /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # Install Node 4.4.5
 
 RUN wget https://nodejs.org/dist/v4.4.5/node-v4.4.5-linux-x64.tar.xz
 RUN tar --strip-components 1 -xf node-v4.4.5-linux-x64.tar.xz -C /usr/local
+RUN rm -rf ./node-v4.4.5-linux-x64.tar.xz
 
 # Install NPM 3
 RUN npm install -g npm@latest
