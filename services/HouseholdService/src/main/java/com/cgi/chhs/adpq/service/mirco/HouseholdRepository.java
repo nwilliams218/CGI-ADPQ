@@ -1,6 +1,5 @@
 package com.cgi.chhs.adpq.service.mirco;
 
-import com.cgi.chhs.adpq.service.mirco.entity.Household;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.data.repository.CrudRepository;
 

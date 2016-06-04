@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.orm.jpa.EntityScan;
 
 @SpringBootApplication
-@EntityScan("com.cgi.chhs.adpq.service.mirco.entity")
+@EntityScan("com.cgi.chhs.adpq.service.mirco")
 public class HouseholdApplication {
 
 	public static void main(String[] args) {
