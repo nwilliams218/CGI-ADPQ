@@ -14,11 +14,13 @@ import com.cgi.chhs.adpq.service.common.CGIService;
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Profile;
 
+import java.util.HashMap;
+
 @Component
 
 public class ProfileService extends CGIService{
-	
-	
+
+
 	@Inject
 	public ProfileRepository repository;
 
@@ -27,59 +29,54 @@ public class ProfileService extends CGIService{
     @Produces("application/json")
 	public Profile view(@PathParam("id") Long id)
 	{
-		
+
 		return repository.findOne(id);
 	}
-	
+
 	@Path("/updateProfile")
 	@POST
     @Produces("application/json")
-	public SaveStatus editProfile(@RequestBody Profile profileObj){			
-		
-		SaveStatus editStatus = new SaveStatus();
-		try{
-		Profile profileDBObj = repository.findOne(profileObj.getId());	
-		profileDBObj.setPassword(profileObj.getPassword());
-		profileDBObj.setAddress(profileObj.getAddress());
-		profileDBObj.setContact(profileObj.getContact());
-		profileDBObj.setEmail(profileObj.getEmail());	
-		
-		repository.save(profileDBObj);
-		editStatus.setSuccess(true);
-		editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
-		return editStatus;
-		}catch(Exception e)
-		{
-			editStatus.setSuccess(false);
-			editStatus.setMessage("Profile updation failed and notification has been sent to the case worker.");
-			return editStatus;
-		}
-		
-		
-	}
-	
+    public SaveStatus editProfile(@RequestBody Profile profileObj){
+        SaveStatus editStatus = new SaveStatus();
+        try {
+            Profile profileDBObj = repository.findOne(profileObj.getId());
+            profileDBObj.setPassword(profileObj.getPassword());
+            profileDBObj.setAddress(profileObj.getAddress());
+            profileDBObj.setEmail(profileObj.getEmail());
+
+            repository.save(profileDBObj);
+            editStatus.setSuccess(true);
+            editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
+            return editStatus;
+        } catch(Exception e) {
+            editStatus.setSuccess(false);
+            editStatus.setMessage("Profile updation failed and notification has been sent to the case worker.");
+            return editStatus;
+        }
+    }
 
 	@Path("/addProfile")
 	@POST
-    @Produces("application/json")
-	public SaveStatus addProfile(@RequestBody Profile profileObj)
-	{	
+	@Produces("application/json")
+	public SaveStatus addProfile(@RequestBody HashMap<String, String> params) {
 		SaveStatus saveStatus = new SaveStatus();
-		
-		try{
-			repository.save(profileObj);
+
+		try {
+			Profile profile = new Profile();
+			profile.setAddress(params.get("address"));
+			profile.setEmail(params.get("email"));
+			profile.setPassword(params.get("password"));
+            profile.setHouseholdId(Integer.parseInt(params.get("household_id")));
+			repository.save(profile);
 			saveStatus.setSuccess(true);
 			saveStatus.setMessage("Profile added successfully and a notification has been sent to the case worker.");
-			saveStatus.setSavedObjectId(profileObj.getId());			
+			saveStatus.setSavedObjectId(profile.getId());
 			return saveStatus;
-		}catch(Exception e){
+		} catch (Exception e) {
 			saveStatus.setSuccess(false);
 			saveStatus.setMessage("Adding  profile failed, a notification has been sent to the case worker.");
 			return saveStatus;
-			
 		}
-		
-		
 	}
-	
+
 }

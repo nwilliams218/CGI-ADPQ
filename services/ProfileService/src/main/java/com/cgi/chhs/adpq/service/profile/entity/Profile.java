@@ -14,7 +14,7 @@ public class Profile {
 	private String password;
 	private String email;
 	private String address;
-	private Integer contact;
+	private Integer householdId;
 	//TODO: Add more fields as needed
 
 	public long getId() {
@@ -36,18 +36,19 @@ public class Profile {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public int getContact() {
-		return contact;
-	}
-	public void setContact(Integer contact) {		
-		this.contact = contact;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
+
+	public Integer getHouseholdId() {
+		return householdId;
+	}
+
+	public void setHouseholdId(Integer householdId) {
+		this.householdId = householdId;
+	}
 }
