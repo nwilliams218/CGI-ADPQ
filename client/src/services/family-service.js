@@ -27,6 +27,11 @@
 				dob: '2005-01-15',
 				group: true,
 				goal: 'Reunification',
+				caseworker: {
+					name: 'Ann Trason',
+					email: 'caseworker@internet.com',
+					phone:  '000.999.8888'
+				},
 				items: [
 					{
 						id: 1,
@@ -97,7 +102,13 @@
 				gender: 'Female',
 				dob: '2010-03-22',
 				group: true,
-				home: true
+				home: true,
+				goal: 'Reunification',
+				caseworker: {
+					name: 'Ann Trason',
+					email: 'caseworker@internet.com',
+					phone:  '000.999.8888'
+				}
 			},
 			{
 				id: 4,

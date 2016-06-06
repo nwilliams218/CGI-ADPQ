@@ -14,7 +14,11 @@
 	<span ng-show="user.facility">{{user.facility}}</span>
 	<span ng-show="user.gender"><span>{{user.gender}}</span></span>
 	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
-	
+	<br>
+	<span ng-show="user.caseworker.name"><span translate>Caseworker:</span> {{user.caseworker.name}}</span>
+	<span ng-show="user.caseworker.email"><span translate>Email:</span> {{user.caseworker.email}}</span>
+	<span ng-show="user.caseworker.phone"><span translate>Phone:</span> {{user.caseworker.phone}}</span>
+		
 	<h1 class="goal" ng-show="user.goal"><span translate>Goal:</span> {{user.goal}}</h1>
 	<h1 class="goal" ng-hide="user.goal" translate>No Goal Set</h1>
 	
