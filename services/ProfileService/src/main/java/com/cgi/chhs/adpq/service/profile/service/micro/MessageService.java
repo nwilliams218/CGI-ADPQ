@@ -3,6 +3,7 @@ package com.cgi.chhs.adpq.service.profile.service.micro;
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Message;
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Inject;
@@ -12,6 +13,7 @@ import java.util.HashMap;
 /**
  * Created by michael on 6/5/16.
  */
+@CrossOrigin(origins = "*", maxAge = 3600)
 @Component
 @Path("/messages")
 public class MessageService {

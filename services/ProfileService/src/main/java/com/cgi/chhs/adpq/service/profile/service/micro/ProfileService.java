@@ -8,6 +8,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cgi.chhs.adpq.service.common.CGIService;
@@ -17,7 +18,7 @@ import com.cgi.chhs.adpq.service.profile.entity.Profile;
 import java.util.HashMap;
 
 @Component
-
+@CrossOrigin(origins = "*", maxAge = 3600)
 public class ProfileService extends CGIService{
 
 
