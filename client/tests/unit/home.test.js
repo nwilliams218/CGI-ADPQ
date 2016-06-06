@@ -61,13 +61,6 @@ describe('Home Controller', function() {
 			LOCALES: LOCALES,
 			messageService: messageService
 		});
-		
-		$httpBackend.whenGET('main/home.html').respond('home view');
-		//$httpBackend.expectGET('staticPages/home.html');
-		
-		$httpBackend.whenGET('user/login.html').respond('login page');
-		//$httpBackend.expectGET('user/login.html');
-
 	}));
 	
 	it('gets messages', function() {
