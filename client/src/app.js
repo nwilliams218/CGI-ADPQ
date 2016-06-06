@@ -1,7 +1,7 @@
 (function() {
 	'use strict';
 	
-	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user', 'cgiAdpq.message', 'cgiAdpq.event', 'cgiAdpq.plan'])
+	angular.module('cgiAdpq', ['ui.router', 'ui.bootstrap', 'Postman', 'ngStorage', 'gettext', 'cgiAdpq.main', 'cgiAdpq.nav', 'cgiAdpq.user', 'cgiAdpq.message', 'cgiAdpq.event', 'cgiAdpq.plan', 'cgiAdpq.facility'])
 		.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', 
 		 function($stateProvider,   $urlRouterProvider,   $locationProvider) {  
 			$locationProvider.html5Mode(true);
@@ -34,6 +34,11 @@
 					templateUrl: "messaging/messages.html",
 					data: {auth:true}
 				})
+				.state('facilities', {
+					url: "/facilities",
+					templateUrl: "facility/facilities.html",
+					data: {auth:true}
+				})
 				.state('plan', {
 					url: "/plan/:id",
 					templateUrl: "plans/plan.html",
@@ -41,7 +46,7 @@
 				})
 				.state('event', {
 					url: "/event/:id",
-					templateUrl: "events/events.html",
+					templateUrl: "staticPages/events.html",
 					data: {auth:true}
 				})
 				.state('editProfile', {
@@ -89,4 +94,5 @@
 	var messageModule = angular.module('cgiAdpq.message', []);
 	var eventModule = angular.module('cgiAdpq.event', []);
 	var planModule = angular.module('cgiAdpq.plan', []);
+	var facilityModule = angular.module('cgiAdpq.facility', []);
 })();
