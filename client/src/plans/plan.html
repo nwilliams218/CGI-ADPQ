@@ -15,7 +15,8 @@
 	<span ng-show="user.gender"><span>{{user.gender}}</span></span>
 	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
 	
-	<h1 class="goal"><span translate>Goal:</span> {{user.goal}}</h1>
+	<h1 class="goal" ng-show="user.goal"><span translate>Goal:</span> {{user.goal}}</h1>
+	<h1 class="goal" ng-hide="user.goal" translate>No Goal Set</h1>
 	
 	<div class="plan-item" ng-repeat="item in user.items">
 		<span ng-show="item.serviceType"><span translate>Service Type:</span> {{item.serviceType}}</span>

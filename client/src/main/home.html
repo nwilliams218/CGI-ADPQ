@@ -35,7 +35,7 @@
 	
 	<div class="summary-section plan" ng-repeat="plan in plans">
 		<div>
-			<a ui-sref="plan({id: plan.id })">
+			<a ui-sref="plan({id: plan.id })" class="block-wrap">
 				<div class="circle-picture"><img ng-src="{{plan.profilePicture}}"></div>
 				<h3>
 					<span ng-show="$parent.currentLocale.language == 'es'">Plan de</span>

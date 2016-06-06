@@ -180,16 +180,20 @@
 			},
 			
 			saveUser: function(user) {
-				if (user.id > 1) {
+				console.log(user);
+				
+				if (user.id > 1 ||  !user.hasOwnProperty('id')) {
 					var index = -1;
 					for (var i = 0; i < data.length; i++) {
 						if (data[i].id == user.id) {
 							index = i;
 						}
 					} 
-					
-					if (i > -1) {
+
+					if (i > -1 && user.hasOwnProperty('id')) {
 						data.splice(index, 1, user);
+					} else if (!user.hasOwnProperty('id')) {
+						data.push(user);
 					}
 					
 				} else {

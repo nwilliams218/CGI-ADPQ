@@ -20,7 +20,7 @@
 	<span ng-show="user.dob"><span translate>DOB:</span> {{user.dob|date:'M/d/y'}}</span>
 	
 	<h1 translate>Family & Household</h1>
-	<button class="btn btn-primary add-family" translate>Add New Family or Friend</button>
+	<a class="btn btn-primary add-family" translate ui-sref="editProfile({id:'new'})">Add New Family or Friend</a>
 	
 	<div class="family-member" ng-class="{'has-plan': f.hasPlan}" ng-repeat="f in family">
 		<a ui-sref="plan({id:f.id})" class="block-wrap">
@@ -31,7 +31,7 @@
 			<div>
 				<h3>{{f.firstName}} {{f.lastName}}</h3>
 				
-				<div>{{f.gender}} / {{f.relationship}}</div>
+				<div>{{f.gender}} <span ng-show="user.dob">/</span> {{f.relationship}}</div>
 				
 				<div ng-show="f.dob"><span translate>DOB:</span> {{f.dob|date:'M/d/yy'}}</div>
 			</div>

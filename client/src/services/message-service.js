@@ -51,6 +51,14 @@
 			
 			markRead: function(messageId) {
 				
+			},
+			
+			sendMessage: function(message) {
+				var deferred = $q.defer();
+				
+				deferred.resolve('');
+				
+				return deferred.promise;
 			}
 		};
 		

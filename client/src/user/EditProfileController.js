@@ -9,11 +9,16 @@
 			
 			$scope.user = {};			
 			function getProfile(userId) {
-				familyService.getUser($stateParams.id).then(function(user) {
+				familyService.getUser(userId).then(function(user) {
 					$scope.user = angular.copy(user);
 				});
 			}
-			getProfile();
+			
+			$scope.showRelation = false;
+			if ($stateParams.id === 'new') {
+			} else {
+				getProfile($stateParams.id);
+			}
 			
 			
 			$scope.save = function(user) {
