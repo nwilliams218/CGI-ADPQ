@@ -28,6 +28,6 @@
 				if ($scope.input.zipcode.length === 5) {
 					$scope.getFacilities($scope.input.zipcode);
 				}
-			})
+			});
 	}]);
 })();

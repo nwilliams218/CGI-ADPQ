@@ -23,7 +23,7 @@
 				    });			
 				    $scope.unreadCount = count;
 
-				    if (typeof $scope.messageId !== 'undefined' && $scope.messageId != '') {
+				    if (typeof $scope.messageId !== 'undefined' && $scope.messageId !== '') {
 					    $scope.message = messages.find(function(ele) {
 						    return ele.id == $scope.messageId;
 					    });
