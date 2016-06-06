@@ -180,7 +180,6 @@
 			},
 			
 			saveUser: function(user) {
-				console.log(user);
 				
 				if (user.id > 1 ||  !user.hasOwnProperty('id')) {
 					var index = -1;

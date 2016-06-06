@@ -8,7 +8,7 @@
 			
 			$scope.messageId = $stateParams.id;
 			$scope.message = null;
-			console.log($scope.messageId);		    	
+			
 			$scope.messageType = 'received';
 										    	
 			$scope.unreadCount = 0;
