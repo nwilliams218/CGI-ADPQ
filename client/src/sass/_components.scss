@@ -220,6 +220,21 @@
 				margin-left: 20px;
 			}
 		}
+		
+		@media (max-width: ($small-screen-max)) {
+			padding: 10px;
+			
+			i {
+				&.fa-comment {
+					margin-right: 10px;	
+				}
+				
+				&.fa-angle-up, &.fa-angle-down {
+					margin-left: 10px;
+				}
+			}
+			
+		}
 	}
 	
 	.comment {

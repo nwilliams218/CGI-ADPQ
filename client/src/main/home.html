@@ -1,7 +1,7 @@
 <div ng-controller="HomeController">
 	<div class="summary-section messages">
-		<div>
-			<a ui-sref="messages">
+		<div ui-sref="messages">
+			<a ui-sref="messages" class="block-wrap">
 				<i class="fa fa-envelope" aria-hidden="true">
 					<div class="badge" ng-show="unreadCount > 0">
 						<span>{{unreadCount}}</span>
