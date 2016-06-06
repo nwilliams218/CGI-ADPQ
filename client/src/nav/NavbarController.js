@@ -21,6 +21,10 @@
 			$scope.collapse = function() {
 				$scope.navCollapsed = true;
 			};
+			
+			$scope.gotoPage = function() {
+				$state.go($scope.$parent.page, {id:null});
+			};
 		}
 	]);
 })();

@@ -12,7 +12,7 @@
 			<a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i></a>
 			<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			
-			<a ui-sref="{{$parent.page}}({id:null})" class="current-page" ng-hide="$parent.page == 'login' || $parent.page == 'profile'">{{$parent.page}}</a>
+			<a ng-click="gotoPage()" class="current-page" ng-hide="$parent.page == 'login' || $parent.page == 'profile'">{{$parent.page}}</a>
 		</div>
 		
 		<a ng-show="$parent.isAuthenticated() && ($parent.page == 'profile' || $parent.page == 'home')" 
