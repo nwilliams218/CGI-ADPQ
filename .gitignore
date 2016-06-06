@@ -1,3 +1,5 @@
+.gradle
+build/
 bower_components
 client/dist
 node_modules
