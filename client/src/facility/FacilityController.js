@@ -19,7 +19,6 @@
 			$scope.getFacilities = function(zipcode) {
 				facilityService.getFacilities(zipcode).then(function(facilities) {
 					$scope.facilities = facilities;
-					console.log($scope.facilities);
 				});
 			};
 			

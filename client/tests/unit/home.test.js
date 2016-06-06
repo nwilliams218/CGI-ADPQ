@@ -1,4 +1,4 @@
-describe('Main Controller', function() {
+describe('Home Controller', function() {
 	beforeEach(module('ui.router'));
 	beforeEach(module('gettext'));
 	beforeEach(module('ngStorage'));
