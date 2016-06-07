@@ -6,4 +6,4 @@ COPY services/CasewokerService/target/CasewokerService-0.0.1-SNAPSHOT.jar app.ja
 
 RUN sh -c 'touch /app.jar'
 
-ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom", " -Dspring.profiles.active=testing","-jar","/app.jar"]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-Dspring.profiles.active=testing","-jar","/app.jar"]
