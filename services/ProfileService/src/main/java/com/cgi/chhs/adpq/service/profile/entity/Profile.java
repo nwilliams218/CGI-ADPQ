@@ -169,12 +169,4 @@ public class Profile {
 		this.email = email;
 	}
 
-
-	public Integer getHouseholdId() {
-		return householdId;
-	}
-
-	public void setHouseholdId(Integer householdId) {
-		this.householdId = householdId;
-	}
 }
