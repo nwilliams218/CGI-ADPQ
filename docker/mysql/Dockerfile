@@ -7,4 +7,4 @@ COPY ./conf.d /etc/mysql/conf.d
 
 ##
 # Add scripts to execute at startup
-ADD ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d
+COPY ./docker-entrypoint-initdb.d /docker-entrypoint-initdb.d

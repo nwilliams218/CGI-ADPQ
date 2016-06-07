@@ -13,15 +13,15 @@ services:
     ports:
       - "80:80"
 
-  ### Spring Boot Container #########################################
-  # spring-boot:
-  #   build:
-  #     context: ../
-  #     dockerfile: docker/spring-boot/Dockerfile
-  #   container_name: cgi-spring-boot
-  #   image: quay.io/surgeforward/cgi:spring-boot
-  #   ports:
-  #     - "8080:8080"
+  ### Spring Boot HouseholdService Container #########################################
+  springboot-household:
+    build:
+      context: ../
+      dockerfile: docker/springboot/household/Dockerfile
+    container_name: cgi-springboot-household
+    image: quay.io/surgeforward/cgi:springboot-household
+    ports:
+      - "8080:8080"
 
 
   ### DATA Container ##########################################
@@ -41,7 +41,7 @@ services:
     volumes_from:
       - data
     environment:
-      - MYSQL_DATABASE=cgi_adpq
+      - MYSQL_DATABASE=fostercare_schema
       - MYSQL_USER=cgi_adpq_user
       - MYSQL_PASSWORD=UtcPWBk.+6wEirpez4j)P
       - MYSQL_ROOT_PASSWORD=QyzgkE]CWC(Pd7Aq9(Gmj

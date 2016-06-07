@@ -47,9 +47,7 @@ describe('App', function() {
 //	beforeEach(mockTemplate('', 'staticPages/login.html'));
 //	beforeEach(mockTemplate.bind('home', 'staticPages/login.html'));
 
-	it('remembers the last route prior to login', function () {
-		console.log('adfd');
-			
+	it('remembers the last route prior to login', function () {	
 		$templateCache.put('login', 'user/login.html');
 			
 		var nextState = {name: 'home', params: {}};

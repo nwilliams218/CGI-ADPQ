@@ -1,5 +1,12 @@
 <div ng-controller="EditProfileController" class="row edit-profile">	
 	<form ng-submit="save(user)" class="col-md-6">
+		<i class="fa fa-user" aria-hidden="true"></i> 
+		<a ng-click="uploadPicture()" translate>Update Profile Picture</a>
+		
+		
+		<fieldset class="form-group">
+			<input ng-model="user.relationship" type="input" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" required>
+		</fieldset>
 		<fieldset class="form-group">
 			<input ng-model="user.firstName" type="input" class="form-control" id="firstName" placeholder="{{'First Name'|translate}}" required>
 		</fieldset>
@@ -13,19 +20,25 @@
 			<input ng-model="user.city" type="input" class="form-control" id="city" placeholder="{{'City'|translate}}" required>
 		</fieldset>
 		<fieldset class="form-group">
-			<select ng-model="user.state" ng-options="key as value for (key , value) in states" class="form-control" id="state" required></select>
+			<select ng-model="user.state" ng-options="key as value for (key , value) in states" class="form-control" name="state" id="state" required>
+				<option></option>
+			</select>
 		</fieldset>
 		<fieldset class="form-group">
 			<input ng-model="user.zip" type="input" class="form-control" id="zip" placeholder="{{'Zip'|translate}}" required>
 		</fieldset>
 		<fieldset class="form-group">
-			<input ng-model="user.phone" type="input" class="form-control" id="phone" placeholder="{{'Home Phone #'|translate}}" required>
+			<input ng-model="user.phone" type="input" class="form-control" id="phone" placeholder="{{'Home Phone #'|translate}}" >
 		</fieldset>
 		<fieldset class="form-group">
-			<input ng-model="user.cell" type="input" class="form-control" id="cell" placeholder="{{'Cell Phone #'|translate}}" required>
+			<input ng-model="user.cell" type="input" class="form-control" id="cell" placeholder="{{'Cell Phone #'|translate}}" >
 		</fieldset>
 		<fieldset class="form-group">
-			<input ng-model="user.email" type="input" class="form-control" id="email" placeholder="{{'Email'|translate}}" required>
+			<input ng-model="user.email" type="input" class="form-control" id="email" placeholder="{{'Email'|translate}}" >
+		</fieldset>
+		<fieldset class="form-group">
+			<input ng-model="user.dob" type="date" class="form-control" id="dob" placeholder="{{'Date of Birth'|translate}}" >
+			
 		</fieldset>
 		<fieldset class="form-group">
 			<label class="radio-inline"><input ng-model="user.gender" value="Female" type="radio" name="gender" translate>Female</label>
@@ -33,7 +46,6 @@
 			
 			<small translate>You are not required to give a response to this section.</small>
 		</fieldset>
-		
 		<hr>
 		
 		<button class="btn btn-primary col-sm-5" translate>Done</button>
