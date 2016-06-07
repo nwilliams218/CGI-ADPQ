@@ -22,6 +22,9 @@ services:
     image: quay.io/surgeforward/cgi:springboot-household
     ports:
       - "8080:8080"
+    depends_on:
+      - mysql
+  
   ### Spring Boot HouseholdService Container #########################################
   springboot-profile:
     build:
@@ -31,6 +34,8 @@ services:
     image: quay.io/surgeforward/cgi:springboot-profile
     ports:
       - "8081:8081"
+    depends_on:
+      - mysql
 
   ### DATA Container ##########################################
   data:
