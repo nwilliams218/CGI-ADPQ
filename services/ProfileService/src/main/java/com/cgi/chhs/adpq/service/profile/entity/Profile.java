@@ -4,7 +4,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.sql.Date;
 
 @Entity
 public class Profile {
@@ -22,9 +21,9 @@ public class Profile {
 	private String facility;
 	private String relationship;
 	private String gender;
-	private Integer group;
+	private Integer groupId;
 	private String goal;
-	private Date dob;
+	private String dob;
 	private String firstName;
 	private String lastName;
 	private String profilePicture;
@@ -61,15 +60,13 @@ public class Profile {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
-
-	public Date getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
-
 	public String getGoal() {
 		return goal;
 	}
@@ -78,12 +75,12 @@ public class Profile {
 		this.goal = goal;
 	}
 
-	public Integer getGroup() {
-		return group;
+	public Integer getGroupId() {
+		return groupId;
 	}
 
-	public void setGroup(Integer group) {
-		this.group = group;
+	public void setGroupId(Integer groupId) {
+		this.groupId = groupId;
 	}
 
 	public String getGender() {
