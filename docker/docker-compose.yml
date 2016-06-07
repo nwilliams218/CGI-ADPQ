@@ -22,7 +22,15 @@ services:
     image: quay.io/surgeforward/cgi:springboot-household
     ports:
       - "8080:8080"
-
+  ### Spring Boot HouseholdService Container #########################################
+  springboot-profile:
+    build:
+      context: ../
+      dockerfile: docker/springboot/profile/Dockerfile
+    container_name: cgi-springboot-profile
+    image: quay.io/surgeforward/cgi:springboot-profile
+    ports:
+      - "8081:8081"
 
   ### DATA Container ##########################################
   data:
