@@ -2,7 +2,7 @@ FROM frolvlad/alpine-oraclejdk8:slim
 
 VOLUME /tmp
 
-COPY services/HouseholdService/build/libs/household-0.0.1-SNAPSHOT.jar app.jar
+COPY services/CasewokerService/target/CasewokerService-0.0.1-SNAPSHOT.jar app.jar
 
 RUN sh -c 'touch /app.jar'
 
