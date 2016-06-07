@@ -13,7 +13,7 @@ public class Profile {
 	private long id;
 	private String password;
 	private String email;
-	private String address;
+	private String address1;
 	private String address2;
 	private String zip;
 	private String phone;
@@ -153,11 +153,11 @@ public class Profile {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getAddress() {
-		return address;
+	public String getAddress1() {
+		return address1;
 	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setAddress1(String address1) {
+		this.address1 = address1;
 	}
 	public String getEmail() {
 		return email;

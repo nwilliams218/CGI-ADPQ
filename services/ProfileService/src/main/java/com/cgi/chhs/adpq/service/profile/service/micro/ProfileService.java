@@ -39,7 +39,7 @@ public class ProfileService extends CGIService{
         try {
             Profile profileDBObj = repository.findOne(profileObj.getId());
             profileDBObj.setPassword(profileObj.getPassword());
-            profileDBObj.setAddress(profileObj.getAddress());
+            profileDBObj.setAddress1(profileObj.getAddress1());
             profileDBObj.setEmail(profileObj.getEmail());
 
             repository.save(profileDBObj);
@@ -61,7 +61,7 @@ public class ProfileService extends CGIService{
 
 		try {
 			Profile profile = new Profile();
-			profile.setAddress(params.get("address"));
+			profile.setAddress1(params.get("address"));
 			profile.setEmail(params.get("email"));
 			profile.setPassword(params.get("password"));
 			profile.setFirstName(params.get("firstName"));
