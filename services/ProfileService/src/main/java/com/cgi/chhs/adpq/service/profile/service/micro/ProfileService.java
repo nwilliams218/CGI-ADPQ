@@ -68,6 +68,7 @@ public class ProfileService extends CGIService{
 			profile.setLastName(params.get("lastName"));
 			profile.setZip(params.get("zip"));
 			profile.setPhone(params.get("phone"));
+            profile.setAddress2(params.get("address2"));
 			profile.setLocation(params.get("location"));
 			profile.setFacility(params.get("facility"));
 			profile.setRelationship(params.get("relationship"));
