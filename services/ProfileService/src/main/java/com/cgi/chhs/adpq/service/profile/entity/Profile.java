@@ -4,7 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 public class Profile {
@@ -22,19 +22,19 @@ public class Profile {
 	private String facility;
 	private String relationship;
 	private String gender;
-	private Boolean group;
+	private Integer group;
 	private String goal;
 	private Date dob;
 	private String firstName;
 	private String lastName;
 	private String profilePicture;
-	private long parentId;
+	private Integer parentId;
 
-	public long getParentId() {
+	public Integer getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(long parentId) {
+	public void setParentId(Integer parentId) {
 		this.parentId = parentId;
 	}
 
@@ -78,11 +78,11 @@ public class Profile {
 		this.goal = goal;
 	}
 
-	public Boolean getGroup() {
+	public Integer getGroup() {
 		return group;
 	}
 
-	public void setGroup(Boolean group) {
+	public void setGroup(Integer group) {
 		this.group = group;
 	}
 
