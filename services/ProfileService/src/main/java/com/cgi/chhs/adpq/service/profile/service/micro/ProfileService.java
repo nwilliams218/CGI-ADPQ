@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Profile;
 
+import java.sql.Date;
 import java.util.HashMap;
 
 @Component
@@ -64,7 +65,18 @@ public class ProfileService extends CGIService{
 			profile.setAddress(params.get("address"));
 			profile.setEmail(params.get("email"));
 			profile.setPassword(params.get("password"));
-            profile.setHouseholdId(Integer.parseInt(params.get("household_id")));
+			profile.setFirstName(params.get("firstName"));
+			profile.setLastName(params.get("lastName"));
+			profile.setZip(params.get("zip"));
+			profile.setPhone(params.get("phone"));
+			profile.setLocation(params.get("location"));
+			profile.setFacility(params.get("facility"));
+			profile.setRelationship(params.get("relationship"));
+			profile.setGroup(Integer.parseInt(params.get("group")));
+			profile.setGoal(params.get("goal"));
+			profile.setDob(Date.valueOf(params.get("dob")));
+			profile.setProfilePicture(params.get("profilePicture"));
+			profile.setParentId(Integer.parseInt(params.get("parentId")));
 			repository.save(profile);
 			saveStatus.setSuccess(true);
 			saveStatus.setMessage("Profile added successfully and a notification has been sent to the case worker.");
