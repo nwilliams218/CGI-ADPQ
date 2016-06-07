@@ -1,4 +1,4 @@
-package com.cgi.chhs.adpq.service.common;
+package com.cgi.chhs.adpq.service.profile.service.micro;
 
 
 import javax.ws.rs.GET;
@@ -8,15 +8,13 @@ import org.springframework.stereotype.Component;
 import com.cgi.chhs.adpq.service.micro.ServiceHealth;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-
 @Component
 @Path("/service")
 public class CGIService {
 
 	public ServiceHealth serviceHealth = new ServiceHealth("CGI-ADPQ: Profile Microservice Up and Running!!");	
-	
+
 	@GET
-    @CrossOrigin
 	@Path("/health")
     @Produces("application/json")
     public ServiceHealth health() {

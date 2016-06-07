@@ -11,14 +11,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cgi.chhs.adpq.service.common.CGIService;
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Profile;
 
 import java.util.HashMap;
 
 @Component
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 public class ProfileService extends CGIService{
 
 
@@ -28,9 +27,7 @@ public class ProfileService extends CGIService{
 	@Path("/view/{id}")
 	@GET
     @Produces("application/json")
-	public Profile view(@PathParam("id") Long id)
-	{
-
+	public Profile view(@PathParam("id") Long id) {
 		return repository.findOne(id);
 	}
 
