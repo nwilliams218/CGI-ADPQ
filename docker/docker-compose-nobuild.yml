@@ -13,12 +13,29 @@ services:
     ports:
       - "80:80"
 
-  ### Spring Boot HouseholdService Container #########################################
+      ### Spring Boot HouseholdService Container #########################################
   springboot-household:
+#    build:
+#      context: ../
+#      dockerfile: docker/springboot/household/Dockerfile
     container_name: cgi-springboot-household
     image: quay.io/surgeforward/cgi:springboot-household
     ports:
       - "8080:8080"
+    depends_on:
+      - mysql
+
+  ### Spring Boot HouseholdService Container #########################################
+  springboot-profile:
+#    build:
+#      context: ../
+#      dockerfile: docker/springboot/profile/Dockerfile
+    container_name: cgi-springboot-profile
+    image: quay.io/surgeforward/cgi:springboot-profile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mysql
 
 
   ### DATA Container ##########################################
