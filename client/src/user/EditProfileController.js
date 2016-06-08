@@ -26,6 +26,8 @@
 			
 			$scope.showRelation = false;
 			if ($stateParams.id === 'new') {
+				$scope.showLocation = true;
+				setupFacilities();
 			} else {
 				getProfile($stateParams.id);
 			}
