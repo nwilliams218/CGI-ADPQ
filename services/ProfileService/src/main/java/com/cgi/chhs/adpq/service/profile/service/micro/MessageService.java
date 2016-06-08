@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
@@ -40,6 +42,8 @@ public class MessageService {
             message.setSubject(params.get("subject"));
             message.setFromId(Integer.parseInt(params.get("from")));
             message.setToId(Integer.parseInt(params.get("to")));
+            message.setCreatedAt(new Date(Calendar.getInstance().getTime().getTime()));
+            message.setIsRead(false);
             repository.save(message);
             saveStatus.setSuccess(true);
             saveStatus.setMessage(message.getBody());

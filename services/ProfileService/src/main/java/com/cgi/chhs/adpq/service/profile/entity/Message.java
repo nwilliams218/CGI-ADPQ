@@ -19,7 +19,7 @@ public class Message {
     private String body;
     private Integer toId;
     private Integer fromId;
-    private Boolean read;
+    private Boolean isRead;
 
     public long getToId() {
         return toId;
@@ -65,11 +65,11 @@ public class Message {
         this.createdAt = createdAt;
     }
 
-    public Boolean getRead() {
-        return read;
+    public Boolean getIsRead() {
+        return isRead;
     }
 
-    public void setRead(Boolean read) {
-        this.read = read;
+    public void setIsRead(Boolean isRead) {
+        this.isRead = isRead;
     }
 }
