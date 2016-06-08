@@ -78,11 +78,15 @@
 		})
 		.constant('ENDPOINTS', {
 			//configure these per your setup
-			host: 'https://cgi-test.herokuapp.com',
-			profilePort: '',
+			host: 'http://52.9.243.241',
+			profilePort: '8081',
+			messagingPort: '8081',
+			facilityPort: '8081',
 			
 			//these stay the same
-			get profile() { return this.host + (this.profilePort.length > 0 ? ':' + this.profilePort : '') + '/service/'; }
+			get profile() { return this.host + (this.profilePort.length > 0 ? ':' + this.profilePort : '') + '/service/'; },
+			get messaging() { return this.host + (this.profilePort.length > 0 ? ':' + this.profilePort : '') + '/messages/'; },
+			get facility() { return this.host + (this.profilePort.length > 0 ? ':' + this.profilePort : '') + '/service/getCommunityCareInfo/'; }
 		})
 		; 
 })();

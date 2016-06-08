@@ -10,11 +10,11 @@
 			<input ng-model="user.lastName" type="text" class="form-control" id="lastName" placeholder="{{'Last Name'|translate}}" required>
 		</fieldset>
 		<fieldset class="form-group">
-			<input ng-model="user.relationship" ng-show=" user.parentid || !user.hasOwnProperty('id')" type="text" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" ng-required="user.parentid || !user.hasOwnProperty('id')">
+			<input ng-model="user.relationship" ng-show=" user.parentId || !user.hasOwnProperty('id')" type="text" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" ng-required="user.parentId || !user.hasOwnProperty('id')">
 		</fieldset>
 		
 		<fieldset class="form-group" ng-show="showLocation">
-			<select ng-model="user.location" class="form-control" name="location" id="location" required>
+			<select ng-model="user.location" class="form-control" name="location" id="location" ng-required="showLocation">
 				<option value="">Location</option>
 				<option value="In Home">In Home</option>
 				<option value="In Placement">In Placement</option>
@@ -72,6 +72,8 @@
 		<li ng-repeat="f in facilities" ng-click="selectFacility(f)" class="col-xs-12">
 			<span class="facility">{{f.name}}</span><span class="zip">{{f.zipcode}}</span>
 		</li>
+		
+		<li ng-hide="facilities" class="col-xs-12" translate>No Results Found</li>
 		<li class="col-xs-12"><button ng-click="cancelFacilities()" class="btn btn-primary" translate>Cancel</button></li>
 	</ul>
 </div>
