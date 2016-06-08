@@ -49,7 +49,6 @@
 		
 		var emailLookup = {
 			'janeausten@lighthouse.com': 1,
-			'parent2@test.com': 2,
 			'maria@emailaddress.com': 2,
 			'lewissmith@emailaddress.com': 3,
 			'atrason@foster.ca.gov': 10
