@@ -31,7 +31,7 @@
 			<div>
 				<h3>{{f.firstName}} {{f.lastName}}</h3>
 				
-				<div>{{f.gender}} <span ng-show="user.dob">/</span> {{f.relationship}}</div>
+				<div>{{f.gender}} <span ng-show="f.gender">/</span> {{f.relationship}}</div>
 				
 				<div ng-show="f.dob"><span translate>DOB:</span> {{f.dob|date:'M/d/yy'}}</div>
 			</div>

@@ -47,13 +47,13 @@
 		<div>
 			<div>
 				<h2>{{plan.firstName}} {{plan.lastName}}</h2>
-				<span><span translate>Location:</span> {{plan.location}}</span>
+				<span ng-show="plan.location"><span translate>Location:</span> {{plan.location}}</span>
 			</div>
 			<div>
 				<h4 translate>Schedule</h4>
 				
 				<table>
-					<tr ng-repeat="event in events[plan.id]">
+					<tr ng-repeat="event in events | orderBy:'-date' | limitTo:2">
 						<td>
 							<a ui-sref="event({id: event.id})">
 								<i class="fa" aria-hidden="true" 

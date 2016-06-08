@@ -3,8 +3,8 @@
 	
 	var messageModule = angular.module('cgiAdpq.message');
 	
-		messageModule.controller('MessagesController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'AUTH_EVENTS', 'messageService', 'gettextCatalog',
-									    		function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   AUTH_EVENTS,   messageService,   gettextCatalog) {	
+		messageModule.controller('MessagesController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'AUTH_EVENTS', 'authService', 'familyService', 'messageService', 'gettextCatalog',
+									    		function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   AUTH_EVENTS,   authService,   familyService,   messageService,   gettextCatalog) {	
 			
 			$scope.messageId = $stateParams.id;
 			$scope.message = null;
@@ -35,12 +35,11 @@
 				    }
 			    });
 			};
-			$scope.getMessages($scope.$parent.userData.id);
 			
 			$scope.newMessage = null;
 			$scope.createNewMessage = function(replyToId, subject) {
 				$scope.newMessage = {
-					from: $scope.$parent.userData.firstName + ' ' + $scope.$parent.userData.lastName,
+					from: $scope.user.firstName + ' ' + $scope.user.lastName,
 					subject: '',
 					body: ''	
 				};
@@ -70,5 +69,11 @@
 					});
 				}			
 			};
+			
+			$scope.user = {};
+			familyService.getUser(authService.getUserId()).then(function(data) {
+				$scope.user = data;
+				$scope.getMessages($scope.user.id);
+			});
 		}]);
 })();

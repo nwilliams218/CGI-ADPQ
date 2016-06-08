@@ -31,7 +31,7 @@
 			$scope.saveComment = function(item, comment) {
 				item.comments.push(comment);
 				
-				var key = 'item-comments-' + session.data.userId + '-' + item.id;
+				var key = 'item-comments-' + session.data.userId + '-' + $scope.user.id + '-' + item.id;
 				
 				$localStorage[key] = angular.copy(item.comments);
 				

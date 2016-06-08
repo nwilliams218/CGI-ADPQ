@@ -3,8 +3,8 @@
 	
 	var mainModule = angular.module('cgiAdpq.main');
 	
-	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS',
-									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS) {	
+	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS', 'authService',
+									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS,   authService) {	
 		
 		function bootstrap() {
 			$scope.getMessages($scope.user.id);
@@ -46,21 +46,14 @@
 				  
 				  events[ele.eventFor].push(ele);
 				});
-				$scope.events = events;
+				
+				$scope.events = data;
 			});
 		};
 		
-		if ($scope.$parent.userData !== null) {
-			$scope.user = angular.copy($scope.$parent.userData);
-			
+		familyService.getUser(authService.getUserId()).then(function(data) {
+			$scope.user = data;
 			bootstrap();
-		} else {
-			$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data){					
-				$scope.user = angular.copy(data);
-				
-				bootstrap();
-			});
-		}
-		
+		});		
 	}]);
 })();

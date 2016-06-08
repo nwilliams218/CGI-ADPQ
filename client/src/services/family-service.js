@@ -5,6 +5,30 @@
 	
 	userModule.factory('familyService', ['$http', '$q', '$rootScope', '$localStorage', 'session', 'AUTH_EVENTS', 'ENDPOINTS',
 								function ($http,   $q,   $rootScope,   $localStorage,   session,   AUTH_EVENTS,   ENDPOINTS) {	
+		var caseworker = {
+			name: 'Ann Trason',
+			email: 'caseworker@internet.com',
+			phone:  '000.999.8888'
+		};
+		
+		var items = [
+			{
+				id: 1,
+				serviceType: 'Service 1',
+				explanation: 'Explanation',
+				provider: 'Providence',
+				frequency: 'Weekly'
+			},
+			{
+				id: 2,
+				serviceType: 'Service 2',
+				explanation: 'Explanation',
+				provider: 'Moda',
+				frequency: '5/1/2015 - 11/23/16'
+			}
+		];
+
+		
 		var comments = [
 			{
 				from: 'Amy Treyvan',
@@ -46,34 +70,19 @@
 		
 		var service = {
 			getFamily: function(userId) {
-				var deferred = $q.defer();
-				
-				var family;
-				
-				var key = 'family-' + session.data.userId;
-
-				if (!$localStorage.hasOwnProperty(key)) { 
-					$localStorage[key] = data;
-				}
-				
-				family = $localStorage[key];
-				
-				
-				deferred.resolve(family);
-				
-				return deferred.promise;
+				return $http.get(ENDPOINTS.profile + 'getFamily/' + userId).then(function(response) {
+					return response.data;
+				});
 			},
 			
 			getPlans: function(userId) {
-				var plans =  data.filter(function(ele) {
-					return ele.hasOwnProperty('hasPlan') && ele.hasPlan === true;
-				});
-				
-				var deferred = $q.defer();
-				
-				deferred.resolve(plans);
-				
-				return deferred.promise;
+				return this.getFamily(userId).then(function(data) {
+					var plans =  data.filter(function(ele) {
+						return ele.hasOwnProperty('hasPlan') && ele.hasPlan === true;
+					});
+					
+					return plans;
+				});			
 			},
 				
 			getUserId: function(email) {
@@ -90,13 +99,32 @@
 				var userPromise = $http.get(ENDPOINTS.profile + 'view/' + userId);
 				
 				return userPromise.then(function(response) {
-					return response.data;
+					var user = response.data;
+					
+					if (user.id !== session.data.userId) {
+						user.items = angular.copy(items);
+						if (user.hasOwnProperty('items')) {
+							for (var i = 0; i < user.items.length; i++) {
+								var key = 'item-comments-' + session.data.userId + '-' + user.id + '-' + user.items[i].id;
+								
+								if ($localStorage.hasOwnProperty(key)) {
+									user.items[i].comments = $localStorage[key];
+								} else {
+									user.items[i].comments = angular.copy(comments);
+								}
+							}
+						}
+					}
+					
+					return user;
 				});
 			},
 			
 			saveUser: function(user) {
 				if (session.data.userId != user.id) {
 					user.parentId = session.data.userId;
+				} else if (user.parentId === null || user.parentId === '') {
+					user.parentId = 0;
 				}
 				
 				//extraneous leftover field
@@ -128,7 +156,10 @@
 					method = 'updateProfile';
 				}
 				
-				return $http.post(ENDPOINTS.profile + method, user).then(function(response) {
+				var userToSave = angular.copy(user);
+				delete userToSave.items;
+				
+				return $http.post(ENDPOINTS.profile + method, userToSave).then(function(response) {
 					if (response.data.success) {
 						return 'success';
 					} else {

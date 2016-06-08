@@ -23,14 +23,19 @@
 					var user = data;
 					
 					user.password = $scope.credentials.password;
-					familyService.saveUser(user).then(function() {
-						authService.login($scope.credentials).then(function(data) {
-							$rootScope.loggedinEmail = $scope.credentials.email;
-							
-							$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
-							
-							$state.go('editProfile', {id: user.id});
-						});
+					familyService.saveUser(user).then(function(save) {
+
+						if (save === 'error') {
+							postman.error(gettextCatalog.getString('There was a problem registering'));
+						} else {						
+							authService.login($scope.credentials).then(function(data) {
+								$rootScope.loggedinEmail = $scope.credentials.email;
+								
+								$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+								
+								$state.go('editProfile', {id: user.id});
+							});
+						}
 					});
 				});
 				
