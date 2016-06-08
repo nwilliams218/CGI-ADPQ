@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by michael on 6/5/16.
  */
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @Component
 @Path("/messages")
 public class MessageService {
@@ -39,10 +39,12 @@ public class MessageService {
             message.setContent(params.get("content"));
             message.setFromId(Integer.parseInt(params.get("from")));
             message.setToId(Integer.parseInt(params.get("to")));
+            saveStatus.setSuccess(true);
+            saveStatus.setMessage(message.getContent());
             repository.save(message);
         } catch (Exception e) {
             saveStatus.setSuccess(false);
-            saveStatus.setMessage("Adding  message failed, a notification has been sent to the case worker.");
+            saveStatus.setMessage(e.getMessage());
             return saveStatus;
         }
         return saveStatus;
