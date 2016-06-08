@@ -128,7 +128,6 @@ public class ProfileService extends CGIService{
 		return members;
 	}
 
-	@CrossOrigin()
 	@Path("/getCommunityCareInfo/{zipCode}")
 	@GET
 	@Produces("application/json")
