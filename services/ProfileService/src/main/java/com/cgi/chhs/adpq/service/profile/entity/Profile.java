@@ -17,6 +17,10 @@ public class Profile {
 	private String address2;
 	private String zip;
 	private String phone;
+	private String city;
+	private String state;
+	private String cell;
+	private Boolean hasPlan;
 	private String location;
 	private String facility;
 	private String relationship;
@@ -139,6 +143,37 @@ public class Profile {
 		this.address2 = address2;
 	}
 
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getState() {
+		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public String getCell() {
+		return cell;
+	}
+
+	public void setCell(String cell) {
+		this.cell = cell;
+	}
+
+	public Boolean getHasPlan() {
+		return hasPlan;
+	}
+
+	public void setHasPlan(Boolean hasPlan) {
+		this.hasPlan = hasPlan;
+	}
 
 	public long getId() {
 		return id;
