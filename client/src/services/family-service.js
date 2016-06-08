@@ -48,7 +48,7 @@
 		];
 		
 		var emailLookup = {
-			'JaneAusten@lighthouse.com': 1,
+			'janeausten@lighthouse.com': 1,
 			'parent2@test.com': 2,
 			'atrason@foster.ca.gov': 10
 		};
@@ -86,8 +86,8 @@
 			},
 				
 			getUserId: function(email) {
-				if (emailLookup.hasOwnProperty(email)) {
-					return emailLookup[email];
+				if (emailLookup.hasOwnProperty(email.toLowerCase())) {
+					return emailLookup[email.toLowerCase()];
 				} else {
 					return null;
 				}
