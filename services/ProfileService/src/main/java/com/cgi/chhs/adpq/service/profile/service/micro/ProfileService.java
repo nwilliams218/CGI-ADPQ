@@ -8,16 +8,16 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import com.cgi.chhs.adpq.service.common.CGIService;
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Profile;
 
 import java.util.HashMap;
 
 @Component
-
+@CrossOrigin
 public class ProfileService extends CGIService{
 
 
@@ -27,9 +27,7 @@ public class ProfileService extends CGIService{
 	@Path("/view/{id}")
 	@GET
     @Produces("application/json")
-	public Profile view(@PathParam("id") Long id)
-	{
-
+	public Profile view(@PathParam("id") Long id) {
 		return repository.findOne(id);
 	}
 
@@ -41,7 +39,7 @@ public class ProfileService extends CGIService{
         try {
             Profile profileDBObj = repository.findOne(profileObj.getId());
             profileDBObj.setPassword(profileObj.getPassword());
-            profileDBObj.setAddress(profileObj.getAddress());
+            profileDBObj.setAddress1(profileObj.getAddress1());
             profileDBObj.setEmail(profileObj.getEmail());
 
             repository.save(profileDBObj);
@@ -63,10 +61,22 @@ public class ProfileService extends CGIService{
 
 		try {
 			Profile profile = new Profile();
-			profile.setAddress(params.get("address"));
+			profile.setAddress1(params.get("address"));
 			profile.setEmail(params.get("email"));
 			profile.setPassword(params.get("password"));
-            profile.setHouseholdId(Integer.parseInt(params.get("household_id")));
+			profile.setFirstName(params.get("firstName"));
+			profile.setLastName(params.get("lastName"));
+			profile.setZip(params.get("zip"));
+			profile.setPhone(params.get("phone"));
+            profile.setAddress2(params.get("address2"));
+			profile.setLocation(params.get("location"));
+			profile.setFacility(params.get("facility"));
+			profile.setRelationship(params.get("relationship"));
+			profile.setGroupId(Integer.parseInt(params.get("group")));
+			profile.setGoal(params.get("goal"));
+			profile.setDob(params.get("dob"));
+			profile.setProfilePicture(params.get("profilePicture"));
+			profile.setParentId(Integer.parseInt(params.get("parentId")));
 			repository.save(profile);
 			saveStatus.setSuccess(true);
 			saveStatus.setMessage("Profile added successfully and a notification has been sent to the case worker.");
@@ -74,7 +84,7 @@ public class ProfileService extends CGIService{
 			return saveStatus;
 		} catch (Exception e) {
 			saveStatus.setSuccess(false);
-			saveStatus.setMessage("Adding  profile failed, a notification has been sent to the case worker.");
+			saveStatus.setMessage(e.getMessage());
 			return saveStatus;
 		}
 	}
