@@ -7,8 +7,8 @@
 								function ($http,   $q,   $rootScope,   $localStorage,   gettextCatalog,   session,   AUTH_EVENTS,   ENDPOINTS) {	
 		var caseworker = {
 			name: 'Ann Trason',
-			email: 'caseworker@internet.com',
-			phone:  '000.999.8888'
+			email: 'atrason@foster.ca.gov',
+			phone:  '(408) 299-5437'
 		};
 		
 		var items = [
@@ -48,9 +48,9 @@
 		];
 		
 		var emailLookup = {
-			'parent1@test.com': 1,
+			'JaneAusten@lighthouse.com': 1,
 			'parent2@test.com': 2,
-			'caseworker@test.com': 3
+			'atrason@foster.ca.gov': 10
 		};
 		
 		function getProfilePicture() {
@@ -128,7 +128,7 @@
 					user.parentId = session.data.userId;
 				}
 				
-				if (user.parentId === null || user.parentId === '') {
+				if (typeof(user.parentId) === 'undefined' || user.parentId === null || user.parentId === '') {
 					user.parentId = 0;
 				}
 				
