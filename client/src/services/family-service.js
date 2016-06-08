@@ -174,6 +174,10 @@
 				
 				return $http.post(ENDPOINTS.profile + method, userToSave).then(function(response) {
 					if (response.data.success) {
+						if (session.data.userId == user.id) {
+							$rootScope.$broadcast(AUTH_EVENTS.userInfo, userToSave);
+						}
+						
 						return 'success';
 					} else {
 						return 'error';
