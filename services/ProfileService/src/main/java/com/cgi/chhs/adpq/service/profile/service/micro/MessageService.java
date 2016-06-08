@@ -80,10 +80,13 @@ public class MessageService {
             Message message = repository.findOne(id);
             message.setIsRead(true);
             repository.save(message);
+            saveStatus.setSuccess(true);
+            saveStatus.setMessage("message marked as read");
+            saveStatus.setSavedObjectId(message.getId());
         } catch (Exception e) {
             saveStatus.setSuccess(false);
             saveStatus.setSavedObjectId(id);
-            saveStatus.setMessage("Message marked as read");
+            saveStatus.setMessage("operation failed");
         }
         return saveStatus;
     }
