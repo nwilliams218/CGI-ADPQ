@@ -41,7 +41,18 @@ public class ProfileService extends CGIService{
             profileDBObj.setPassword(profileObj.getPassword());
             profileDBObj.setAddress1(profileObj.getAddress1());
             profileDBObj.setEmail(profileObj.getEmail());
-
+			profileDBObj.setAddress2(profileObj.getAddress2());
+			profileDBObj.setCity(profileObj.getCity());
+			profileDBObj.setState(profileObj.getState());
+			profileDBObj.setCell(profileObj.getCell());
+			profileDBObj.setFacility(profileObj.getFacility());
+			profileDBObj.setLocation(profileObj.getLocation());
+			profileDBObj.setFirstName(profileObj.getFirstName());
+			profileDBObj.setLastName(profileObj.getLastName());
+			profileDBObj.setGoal(profileObj.getGoal());
+			profileDBObj.setRelationship(profileDBObj.getRelationship());
+			profileDBObj.setGender(profileObj.getGender());
+			profileDBObj.setDob(profileObj.getDob());
             repository.save(profileDBObj);
             editStatus.setSuccess(true);
             editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
@@ -58,7 +69,6 @@ public class ProfileService extends CGIService{
 	@Produces("application/json")
 	public SaveStatus addProfile(@RequestBody HashMap<String, String> params) {
 		SaveStatus saveStatus = new SaveStatus();
-
 		try {
 			Profile profile = new Profile();
 			profile.setAddress1(params.get("address"));
