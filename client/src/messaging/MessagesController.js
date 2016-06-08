@@ -19,7 +19,7 @@
 	
 					var count = 0;
 					angular.forEach($scope.messages, function(message){
-				        count += message.read ? 0 : 1;
+				        count += message.isRead ? 0 : 1;
 				    });			
 				    $scope.unreadCount = count;
 
@@ -29,7 +29,7 @@
 					    });
 					    
 					    if ($scope.message !== null) {
-						    $scope.message.read = true;
+						    $scope.message.isRead = true;
 						    messageService.markRead($scope.message.id);
 					    }
 				    }
@@ -37,20 +37,29 @@
 			};
 			
 			$scope.newMessage = null;
-			$scope.createNewMessage = function(replyToId, subject) {
+			$scope.createNewMessage = function(message) {
 				$scope.newMessage = {
 					from: $scope.user.firstName + ' ' + $scope.user.lastName,
 					subject: '',
 					body: ''	
 				};
 				
-				if (typeof replyToId !== 'undefined') {
-					$scope.newMessage.replyToId = replyToId;					
+				if (typeof message !== 'undefined') {
+					var toId = authService.getUserId !== message.fromId ? message.fromId : message.toId;
+					var fromId = authService.getUserId === message.fromId ? message.fromId : message.toId;
+				
+					$scope.newMessage.to = toId;
+					$scope.newMessage.fromId = fromId;
+				} else {
+					$scope.newMessage.to = 3;
+					$scope.newMessage.fromId = authService.getUserId();
 				}
 				
-				if (typeof subject !== 'undefined') {
-					$scope.newMessage.subject = 'Re: ' + subject;
+				if (typeof message !== 'undefined') {
+					$scope.newMessage.subject = 'Re: ' + message.subject;
 				}
+				
+				console.log(message, $scope.newMessage);
 			};
 			
 			$scope.sendMessage = function(message) {
@@ -64,6 +73,9 @@
 						postman.success(gettextCatalog.getString('Message sent'));
 						$scope.newMessage = null;						
 						$state.go('messages', {id:null});
+
+						$scope.getMessages($scope.$parent.userData.id);
+						
 					}, function() {
 						postman.error(gettextCatalog.getString('Your message could not be sent'));
 					});

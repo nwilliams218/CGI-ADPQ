@@ -16,7 +16,7 @@
 			function getProfile(userId) {
 				familyService.getUser(userId).then(function(user) {
 					$scope.user = angular.copy(user);
-					
+
 					if (authService.getUserId() != $scope.user.id) {
 						$scope.showLocation = true;
 						setupFacilities();
@@ -83,6 +83,10 @@
 							$scope.showOther = true;
 						}
 						
+						if (val != oldVal) {
+							$scope.user.facility = '';
+						}
+						
 						$scope.showFacility = true;
 					} else if (val == 'Other') {
 						$scope.user.facility = '';
@@ -90,7 +94,7 @@
 					} else if (val == 'In Home') {
 						var user = $scope.$parent.userData;
 						$scope.showOther = true;
-						$scope.user.facility = 'Home ' + user.address1 + ' ' + user.city + ', ' + user.state + ' ' + user.zip;
+						$scope.user.facility = 'Home ' + $scope.$parent.userData.address1 + ' ' + $scope.$parent.userData.city + ', ' + $scope.$parent.userData.state + ' ' + $scope.$parent.userData.zip;
 					}
 				});
 

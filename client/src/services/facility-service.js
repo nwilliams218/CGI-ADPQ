@@ -3,8 +3,8 @@
 	
 	var facilityModule = angular.module('cgiAdpq.facility');
 	
-	facilityModule.factory('facilityService', ['$http', '$q', '$rootScope', 'AUTH_EVENTS',
-									  function ($http,   $q,   $rootScope,   AUTH_EVENTS) {
+	facilityModule.factory('facilityService', ['$http', '$q', '$rootScope', 'AUTH_EVENTS', 'ENDPOINTS',
+									  function ($http,   $q,   $rootScope,   AUTH_EVENTS,   ENDPOINTS) {
 		var data = [
 			{
 				name: 'White Oaks',
@@ -34,19 +34,13 @@
 			
 		var service = {
 			getFacilities: function(zipcode) {
-				var filtered = [];				
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].zipcode == zipcode) {
-						filtered.push(data[i]);
-					}
-				}
-
-				
-				var deferred = $q.defer();	
-				
-				deferred.resolve(filtered);
-				
-				return deferred.promise;
+				return $http.get(ENDPOINTS.facility + zipcode).then(function(response) {
+					var results = angular.fromJson(response.data.message).map(function(ele) {
+						return { name: ele.facility_name, zipcode: ele.facility_zip };
+					});
+					
+					return results;
+				});
 			}
 		};
 		

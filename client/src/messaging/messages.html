@@ -10,17 +10,20 @@
 		</fieldset>
 	</div>
 	
-	<div class="row message" ng-repeat="m in messages | filter:search | orderBy:'!date'" ng-hide="messageId || newMessage" ng-class="{'read': m.read}">
+	<div class="row message" ng-repeat="m in messages | filter:search | orderBy:'-createdAt'" ng-hide="messageId || newMessage" ng-class="{'read': m.isRead}">
 		<a ui-sref="messages({id: m.id})" class="view-message">
-			<div class="col-xs-6 col-sm-3 from">
+			<div class="col-xs-8 col-sm-4 from">
+				<i class="fa fa-reply" aria-hidden="true" ng-hide="m.fromId == $parent.userData.id"></i>
+				<i class="fa fa-share" aria-hidden="true" ng-show="m.fromId == $parent.userData.id"></i>
+				
 				<i class="fa fa-envelope" aria-hidden="true" ></i>
 				
 				<h5>{{m.from}}</h5>
 				
-				<div class="date">{{m.date|date:'MMM d'}}</div>
+				<div class="date">{{m.createdAt|date:'MMM d'}}</div>
 			</div>
 			
-			<div class="col-xs-6 col-sm-9 content">
+			<div class="col-xs-4 col-sm-8 content">
 				<h5>{{m.subject}}</h5>
 				<div class="body">{{m.body}}</div>
 			</div>
@@ -30,7 +33,7 @@
 	<div class="single-message " ng-show="messageId" ng-hide="newMessage">
 		<h5>{{message.from}}</h5>
 				
-		<div class="date">{{message.date|date:'MMM d'}}</div>
+		<div class="date">{{message.createdAt|date:'MMM d'}}</div>
 			
 		<h5 class="subject">{{message.subject}}</h5>
 		<div class="body">{{message.body}}</div>
@@ -38,7 +41,7 @@
 	</div>
 	
 	<div class="row" ng-hide="!messageId || newMessage">
-		<a ng-click="createNewMessage(message.id, message.subject)" class="btn btn-primary col-xs-12" translate>Reply</a>
+		<a ng-click="createNewMessage(message)" class="btn btn-primary col-xs-12" translate>Reply</a>
 	</div>
 	
 	<div class="reply" ng-show="newMessage">

@@ -20,7 +20,7 @@
 
 				var count = 0;
 				angular.forEach($scope.messages, function(message){
-			        count += message.read ? 0 : 1;
+			        count += message.isRead ? 0 : 1;
 			    });			
 			    $scope.unreadCount = count;
 		    });
