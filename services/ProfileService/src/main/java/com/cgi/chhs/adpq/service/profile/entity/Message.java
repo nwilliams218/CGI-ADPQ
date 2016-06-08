@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by michael on 6/5/16.
@@ -14,7 +15,7 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    private Date createdAt;
+    private Timestamp createdAt;
     private String subject;
     private String body;
     private Integer toId;
@@ -57,11 +58,11 @@ public class Message {
         return id;
     }
 
-    public Date getCreatedAt() {
+    public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Timestamp createdAt) {
         this.createdAt = createdAt;
     }
 

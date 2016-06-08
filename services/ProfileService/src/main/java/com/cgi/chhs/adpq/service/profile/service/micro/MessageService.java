@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.inject.Inject;
 import javax.ws.rs.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -42,7 +43,9 @@ public class MessageService {
             message.setSubject(params.get("subject"));
             message.setFromId(Integer.parseInt(params.get("from")));
             message.setToId(Integer.parseInt(params.get("to")));
-            message.setCreatedAt(new Date(Calendar.getInstance().getTime().getTime()));
+            java.util.Date date = new java.util.Date();
+            Timestamp timestamp = new Timestamp(date.getTime());
+            message.setCreatedAt(timestamp);
             message.setIsRead(false);
             repository.save(message);
             saveStatus.setSuccess(true);
