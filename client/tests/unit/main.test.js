@@ -16,7 +16,7 @@ describe('Main Controller', function() {
 	var currentState = 'login';
 	var otherState = 'contact';
 	
-	beforeEach(inject(function (_$rootScope_, $controller, _$state_, _gettextCatalog_, _$localStorage_, _LOCALES_, _session_, $httpBackend, _AUTH_EVENTS_) {
+	beforeEach(inject(function (_$rootScope_, $controller, _$state_, _gettextCatalog_, _$localStorage_, _LOCALES_, _session_, $httpBackend, _AUTH_EVENTS_, ENDPOINTS) {
 		$rootScope = _$rootScope_;
 		scope = $rootScope.$new();
 		$localStorage = _$localStorage_;
@@ -38,6 +38,8 @@ describe('Main Controller', function() {
 		
 		$httpBackend.whenGET('user/login.html').respond('login page');
 		//$httpBackend.expectGET('user/login.html');
+
+		$httpBackend.whenGET(ENDPOINTS.profile + 'view/1').respond('get user');
 
 	}));
 	

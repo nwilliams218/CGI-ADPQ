@@ -6,6 +6,12 @@
 	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS',
 									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS) {	
 		
+		function bootstrap() {
+			$scope.getMessages($scope.user.id);
+			$scope.getPlans($scope.user.id);
+			$scope.getEvents($scope.user.id);
+		}
+				
 		$scope.unreadCount = 0;
 		$scope.messages = [];
 		$scope.getMessages = function(id) {
@@ -19,7 +25,7 @@
 			    $scope.unreadCount = count;
 		    });
 		};
-		$scope.getMessages($scope.$parent.userData.id);
+		
 		
 		$scope.plans = [];
 		$scope.getPlans = function(id) {
@@ -27,7 +33,7 @@
 				$scope.plans = plans;
 			});
 		};	
-		$scope.getPlans($scope.$parent.userData.id);
+		
 		
 		$scope.events = [];
 		$scope.getEvents = function(id) {
@@ -43,6 +49,18 @@
 				$scope.events = events;
 			});
 		};
-		$scope.getEvents($scope.$parent.userData.id);
+		
+		if ($scope.$parent.userData !== null) {
+			$scope.user = angular.copy($scope.$parent.userData);
+			
+			bootstrap();
+		} else {
+			$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data){					
+				$scope.user = angular.copy(data);
+				
+				bootstrap();
+			});
+		}
+		
 	}]);
 })();

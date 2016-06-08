@@ -22,5 +22,9 @@
 				});
 			};
 			$scope.getFamily($scope.$parent.userData.id);
+			
+			$rootScope.$on(AUTH_EVENTS.logoutSuccess, function() {
+				$scope.user = {};
+			});
 	}]);
 })();

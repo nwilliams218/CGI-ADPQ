@@ -1,7 +1,7 @@
 <div ng-controller="HomeController">
 	<div class="summary-section messages">
-		<div>
-			<a ui-sref="messages">
+		<div ui-sref="messages">
+			<a ui-sref="messages" class="block-wrap">
 				<i class="fa fa-envelope" aria-hidden="true">
 					<div class="badge" ng-show="unreadCount > 0">
 						<span>{{unreadCount}}</span>
@@ -53,7 +53,7 @@
 				<h4 translate>Schedule</h4>
 				
 				<table>
-					<tr ng-repeat="event in events[plan.planUserId]">
+					<tr ng-repeat="event in events[plan.id]">
 						<td>
 							<a ui-sref="event({id: event.id})">
 								<i class="fa" aria-hidden="true" 

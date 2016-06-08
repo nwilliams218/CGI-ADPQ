@@ -76,5 +76,13 @@
 		    "WI": "Wisconsin",
 		    "WY": "Wyoming"
 		})
-		;	
+		.constant('ENDPOINTS', {
+			//configure these per your setup
+			host: 'http://52.9.243.241',
+			profilePort: '8081',
+			
+			//these stay the same
+			get profile() { return this.host + ':' + this.profilePort + '/service/'; }
+		})
+		; 
 })();

@@ -1,4 +1,4 @@
-<div ng-controller="LoginController" class="row">	
+<div ng-controller="LoginController" class="login row">	
 	<form ng-submit="login()" class="col-md-6">
 		<fieldset class="form-group">
 			<label for="email" translate>Email address</label>
@@ -13,5 +13,6 @@
 		<button type="submit" class="btn btn-primary login-btn" translate>Login</button>
 		
 		<a ng-click="return;" class="link-button-color forgot-password" translate>Forgot Password</a>
+		<a ui-sref="register" class="link-button-color" translate>Register</a>
 	</form>
 </div>

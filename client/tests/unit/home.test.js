@@ -61,13 +61,6 @@ describe('Home Controller', function() {
 			LOCALES: LOCALES,
 			messageService: messageService
 		});
-		
-		$httpBackend.whenGET('main/home.html').respond('home view');
-		//$httpBackend.expectGET('staticPages/home.html');
-		
-		$httpBackend.whenGET('user/login.html').respond('login page');
-		//$httpBackend.expectGET('user/login.html');
-
 	}));
 	
 	it('gets messages', function() {
@@ -91,7 +84,7 @@ describe('Home Controller', function() {
 				lastName: 'Woolf',
 				profilePicture: 'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png',
 				location: 'White Plains Group Home',
-				planUserId: 1,
+				id: 1,
 				hasPlan: true,
 				relationship: 'son',
 				gender: 'Male',
@@ -103,7 +96,7 @@ describe('Home Controller', function() {
 				lastName: 'Woolf',
 				profilePicture: 'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png',
 				location: 'Palo Alto Foster Services',
-				planUserId: 2,
+				id: 2,
 				hasPlan: true,
 				relationship: 'daughter',
 				gender: 'Female',
@@ -116,7 +109,7 @@ describe('Home Controller', function() {
 				lastName: 'Woolf',
 				profilePicture: 'https://dl.dropboxusercontent.com/s/5bp3skd2joxc5w8/lwoolf.jpeg',
 				location: 'Palo Alto Foster Services',
-				planUserId: 2,
+				id: 3,
 				hasPlan: false,
 				relationship: 'husband',
 				gender: 'Male',

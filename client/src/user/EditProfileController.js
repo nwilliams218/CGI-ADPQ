@@ -3,14 +3,24 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-		userModule.controller('EditProfileController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'gettextCatalog', 'authService', 'AUTH_EVENTS', 'STATES', 'familyService',
-									    		function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   gettextCatalog,   authService,   AUTH_EVENTS,   STATES,   familyService) {	
+		userModule.controller('EditProfileController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'gettextCatalog', 'authService', 'AUTH_EVENTS', 'STATES', 'familyService', 'facilityService',
+									    		function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   gettextCatalog,   authService,   AUTH_EVENTS,   STATES,   familyService,   facilityService) {	
 			$scope.states = STATES;
+
+			$scope.showLocation = false;
+			$scope.showFacility = false;
+			$scope.showOther = false;
+			$scope.resultsReturned = false;
 			
 			$scope.user = {};			
 			function getProfile(userId) {
 				familyService.getUser(userId).then(function(user) {
 					$scope.user = angular.copy(user);
+					
+					if (authService.getUserId() != $scope.user.id) {
+						$scope.showLocation = true;
+						setupFacilities();
+					}
 				});
 			}
 			
@@ -20,8 +30,12 @@
 				getProfile($stateParams.id);
 			}
 			
-			
 			$scope.save = function(user) {
+				if (user.location === 'Location') {
+					postman.warn(gettextCatalog.getString('Please select a location'));
+					return;
+				}
+				
 				familyService.saveUser(user).then(function(result) {
 					postman.success('', gettextCatalog.getString('User updated'));					
 					
@@ -31,6 +45,67 @@
 				}, function() {
 					postman.error('', gettextCatalog.getString('User could not be updated'));
 				});	
+			};
+			
+			$scope.facilities = [];
+			$scope.input = { zipcode: '' };
+			$scope.getFacilities = function(zipcode) {
+				facilityService.getFacilities(zipcode).then(function(facilities) {
+					$scope.facilities = facilities;
+					
+					$scope.resultsReturned = true;
+				});
+			};
+			
+			var firstRun = true;
+			function setupFacilities() {
+				
+				$scope.$watch('user.location', function(val, oldVal) {
+					if (val == oldVal && !firstRun) {	
+						return;	
+					} 
+					
+					firstRun = false;
+					
+					$scope.showFacility = false;
+					$scope.showOther = false;
+					
+					if (firstRun) {
+						//$scope.user.facility = null;
+					} 
+					
+					if (val == 'In Placement') { 
+						if ($scope.user.facility !== null && $scope.user.facility !== '') {
+							$scope.showOther = true;
+						}
+						
+						$scope.showFacility = true;
+					} else if (val == 'Other') {
+						$scope.user.facility = '';
+						$scope.showOther = true;
+					} else if (val == 'In Home') {
+						var user = $scope.$parent.userData;
+						$scope.showOther = true;
+						$scope.user.facility = 'Home ' + user.address1 + ' ' + user.city + ', ' + user.state + ' ' + user.zip;
+					}
+				});
+
+				$scope.$watch('input.zipcode', function() {
+					if ($scope.input.zipcode.length === 5) {
+						$scope.getFacilities($scope.input.zipcode);
+					}
+				});
+			}
+			
+			$scope.selectFacility = function(facility) {
+				$scope.user.facility = facility.name;
+				$scope.cancelFacilities();	
+			};
+			
+			$scope.cancelFacilities = function() {
+				$scope.input.zipcode = '';
+				$scope.facilities = [];
+				$scope.resultsReturned = false;
 			};
 	}]);
 })();

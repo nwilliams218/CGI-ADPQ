@@ -16,6 +16,10 @@
 					url: "/login",
 					templateUrl: "user/login.html"
 				})
+				.state('register', {
+					url: "/register",
+					templateUrl: "user/register.html"
+				})
 				.state('about', {
 					url: "/about",
 					templateUrl: "staticPages/about.html"
