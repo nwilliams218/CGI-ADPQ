@@ -41,20 +41,6 @@
 					
 					return results;
 				});
-				
-				var filtered = [];				
-				for (var i = 0; i < data.length; i++) {
-					if (data[i].zipcode == zipcode) {
-						filtered.push(data[i]);
-					}
-				}
-
-				
-				var deferred = $q.defer();	
-				
-				deferred.resolve(filtered);
-				
-				return deferred.promise;
 			}
 		};
 		
