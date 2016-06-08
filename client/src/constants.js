@@ -76,5 +76,13 @@
 		    "WI": "Wisconsin",
 		    "WY": "Wyoming"
 		})
-		;	
+		.constant('ENDPOINTS', {
+			//configure these per your setup
+			host: 'https://cgi-test.herokuapp.com',
+			profilePort: '',
+			
+			//these stay the same
+			get profile() { return this.host + (this.profilePort.length > 0 ? ':' + this.profilePort : '') + '/service/'; }
+		})
+		; 
 })();

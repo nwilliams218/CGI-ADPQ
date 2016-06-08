@@ -22,7 +22,7 @@
 	<h1 translate>Family & Household</h1>
 	<a class="btn btn-primary add-family" translate ui-sref="editProfile({id:'new'})">Add New Family or Friend</a>
 	
-	<div class="family-member" ng-class="{'has-plan': f.hasPlan}" ng-repeat="f in family">
+	<div class="family-member" ng-repeat="f in family" ng-show="f.relationship">
 		<a ui-sref="plan({id:f.id})" class="block-wrap">
 			<div class="circle-picture">
 				<img ng-src="{{f.profilePicture}}">
@@ -31,15 +31,17 @@
 			<div>
 				<h3>{{f.firstName}} {{f.lastName}}</h3>
 				
-				<div>{{f.gender}} <span ng-show="user.dob">/</span> {{f.relationship}}</div>
+				<div>{{f.gender}} <span ng-show="f.gender">/</span> {{f.relationship}}</div>
 				
 				<div ng-show="f.dob"><span translate>DOB:</span> {{f.dob|date:'M/d/yy'}}</div>
 			</div>
 			
+<!--
 			<div>
 				<i class="fa fa-users" aria-hidden="true" ng-show="f.group"></i>
 				<i class="fa fa-home" aria-hidden="true" ng-show="f.home"></i>
 			</div>
+-->
 		</a>
 	</div>
 </div>

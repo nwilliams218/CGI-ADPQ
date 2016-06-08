@@ -3,12 +3,16 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-	userModule.factory('authService', ['$http', '$q', 'session', 'gettextCatalog', 'AUTH_EVENTS', '$rootScope',
-							  function ($http,   $q,   session,   gettextCatalog,   AUTH_EVENTS,   $rootScope) {
+	userModule.factory('authService', ['$http', '$q', 'session', 'gettextCatalog', 'AUTH_EVENTS', '$rootScope', 'familyService',
+							  function ($http,   $q,   session,   gettextCatalog,   AUTH_EVENTS,   $rootScope,   familyService) {
 		var authService = {};
 		
 		authService.isAuthenticated = function () {
 			return !!session.data.userId;
+		};
+		
+		authService.getUserId = function() {
+			return session.data.userId;
 		};
 /*
 		
@@ -24,8 +28,10 @@
 */
 		authService.login = function(credentials) {
 			var d = new $q.defer();
-			if (credentials.password == 'testing' + new Date().getDate()) {
-				session.create({sessionId: new Date().getTime(), userId: new Date().getTime(), userRole: ''});
+			if (credentials.password !== '') {
+				var userId = familyService.getUserId(credentials.email);
+				
+				session.create({sessionId: new Date().getTime(), userId: userId, userRole: ''});
 
 				d.resolve(gettextCatalog.getString('success'));
 			} else {

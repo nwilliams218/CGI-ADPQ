@@ -5,22 +5,12 @@
 	</div>
 	
 	<div class="row message-filter" ng-hide="messageId || newMessage">
-		<a ng-click="messageType = 'received'" 
-		   class="btn col-xs-12 col-sm-5" ng-class="{'btn-primary': messageType == 'received', 'btn-secondary': messageType != 'received'}"
-		   translate
-		>
-			Received Messages
-		</a>
-		
-		<a ng-click="messageType = 'sent'" 
-		   class="btn col-xs-12 col-sm-5 col-sm-offset-2" ng-class="{'btn-primary': messageType != 'received', 'btn-secondary': messageType == 'received'}"
-		   translate
-		>
-			Sent Messages
-		</a>
+		<fieldset class="form-group">
+			<input ng-model="search" class="form-control" placeholder="{{'search messages'|translate}}">
+		</fieldset>
 	</div>
 	
-	<div class="row message" ng-repeat="m in messages | orderBy:'!date'" ng-hide="messageId || newMessage" ng-class="{'read': m.read}">
+	<div class="row message" ng-repeat="m in messages | filter:search | orderBy:'!date'" ng-hide="messageId || newMessage" ng-class="{'read': m.read}">
 		<a ui-sref="messages({id: m.id})" class="view-message">
 			<div class="col-xs-6 col-sm-3 from">
 				<i class="fa fa-envelope" aria-hidden="true" ></i>

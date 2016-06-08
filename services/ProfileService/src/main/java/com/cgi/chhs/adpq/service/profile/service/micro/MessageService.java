@@ -8,12 +8,14 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.inject.Inject;
 import javax.ws.rs.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by michael on 6/5/16.
  */
-@CrossOrigin(origins = "*", maxAge = 3600)
+@CrossOrigin
 @Component
 @Path("/messages")
 public class MessageService {
@@ -35,15 +37,30 @@ public class MessageService {
         try {
             Message message = new Message();
             message.setContent(params.get("content"));
-            message.setProfileId(Long.parseLong(params.get("profile")));
-            message.setCaseworkerId(Long.parseLong(params.get("caseworker")));
+            message.setFromId(Integer.parseInt(params.get("from")));
+            message.setToId(Integer.parseInt(params.get("to")));
+            saveStatus.setSuccess(true);
+            saveStatus.setMessage(message.getContent());
             repository.save(message);
         } catch (Exception e) {
             saveStatus.setSuccess(false);
-            saveStatus.setMessage("Adding  message failed, a notification has been sent to the case worker.");
+            saveStatus.setMessage(e.getMessage());
             return saveStatus;
         }
         return saveStatus;
+    }
+
+    @Path("/get/{id}")
+    @GET
+    @Produces("application/json")
+    public List<Message> getMessages(@PathParam("id") Integer id) {
+        List messages = new ArrayList<Message>();
+        for (Message m: repository.findAll()) {
+            if (m.getToId() == id || m.getFromId() == id) {
+                messages.add(m);
+            }
+        }
+        return messages;
     }
 
 }

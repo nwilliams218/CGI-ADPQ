@@ -3,9 +3,15 @@
 	
 	var mainModule = angular.module('cgiAdpq.main');
 	
-	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS',
-									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS) {	
+	mainModule.controller('HomeController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'messageService', 'eventService', 'familyService', 'AUTH_EVENTS', 'authService',
+									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   messageService,   eventService,   familyService,   AUTH_EVENTS,   authService) {	
 		
+		function bootstrap() {
+			$scope.getMessages($scope.user.id);
+			$scope.getPlans($scope.user.id);
+			$scope.getEvents($scope.user.id);
+		}
+				
 		$scope.unreadCount = 0;
 		$scope.messages = [];
 		$scope.getMessages = function(id) {
@@ -19,7 +25,7 @@
 			    $scope.unreadCount = count;
 		    });
 		};
-		$scope.getMessages($scope.$parent.userData.id);
+		
 		
 		$scope.plans = [];
 		$scope.getPlans = function(id) {
@@ -27,7 +33,7 @@
 				$scope.plans = plans;
 			});
 		};	
-		$scope.getPlans($scope.$parent.userData.id);
+		
 		
 		$scope.events = [];
 		$scope.getEvents = function(id) {
@@ -40,9 +46,14 @@
 				  
 				  events[ele.eventFor].push(ele);
 				});
-				$scope.events = events;
+				
+				$scope.events = data;
 			});
 		};
-		$scope.getEvents($scope.$parent.userData.id);
+		
+		familyService.getUser(authService.getUserId()).then(function(data) {
+			$scope.user = data;
+			bootstrap();
+		});		
 	}]);
 })();

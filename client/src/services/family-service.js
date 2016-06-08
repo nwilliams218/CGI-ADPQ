@@ -3,211 +3,170 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-	userModule.factory('familyService', ['$http', '$q', '$rootScope', 'AUTH_EVENTS',
-								function ($http,   $q,   $rootScope,   AUTH_EVENTS) {
-								  
-		var data = [
+	userModule.factory('familyService', ['$http', '$q', '$rootScope', '$localStorage', 'session', 'AUTH_EVENTS', 'ENDPOINTS',
+								function ($http,   $q,   $rootScope,   $localStorage,   session,   AUTH_EVENTS,   ENDPOINTS) {	
+		var caseworker = {
+			name: 'Ann Trason',
+			email: 'caseworker@internet.com',
+			phone:  '000.999.8888'
+		};
+		
+		var items = [
+			{
+				id: 1,
+				serviceType: 'Service 1',
+				explanation: 'Explanation',
+				provider: 'Providence',
+				frequency: 'Weekly'
+			},
 			{
 				id: 2,
-				firstName: 'Walter',
-				lastName: 'Woolf',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				location: 'In Placement', 
-				facility: 'White Plains Group Home',
-				planUserId: 1,
-				hasPlan: true,
-				relationship: 'son',
-				gender: 'Male',
-				dob: '2005-01-15',
-				group: true,
-				goal: 'Reunification',
-				items: [
-					{
-						id: 1,
-						serviceType: 'Service 1',
-						explanation: 'Explanation',
-						provider: 'Providence',
-						frequency: 'Weekly',
-						comments: [
-							{
-								from: 'Amy Treyvan',
-								date: '2016-03-22',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							},
-							{
-								from: 'John Treyvan',
-								date: '2016-03-23',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							},
-							{
-								from: 'Lori Smith',
-								date: '2016-04-22',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							}
-						]
-					},
-					{
-						id: 2,
-						serviceType: 'Service 2',
-						explanation: 'Explanation',
-						provider: 'Moda',
-						frequency: '5/1/2015 - 11/23/16',
-						comments: [
-							{
-								from: 'Amy Treyvan',
-								date: '2016-03-22',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							},
-							{
-								from: 'John Treyvan',
-								date: '2016-03-23',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							},
-							{
-								from: 'Lori Smith',
-								date: '2016-04-22',
-								body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
-							}
-						]
-					}
-				]
-			},
-			{
-				id: 3,
-				firstName: 'Lilly',
-				lastName: 'Woolf',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				location: 'Group Home',
-				facility: 'Palo Alto Foster Services',
-				planUserId: 2,
-				hasPlan: true,
-				relationship: 'daughter',
-				gender: 'Female',
-				dob: '2010-03-22',
-				group: true,
-				home: true
-			},
-			{
-				id: 4,
-				firstName: 'Leonard',
-				lastName: 'Woolf',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/5bp3skd2joxc5w8/lwoolf.jpeg',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				
-				location: 'Palo Alto Foster Services',
-				planUserId: 2,
-				hasPlan: false,
-				relationship: 'husband',
-				gender: 'Male',
-				dob: '1972-07-14'
+				serviceType: 'Service 2',
+				explanation: 'Explanation',
+				provider: 'Moda',
+				frequency: '5/1/2015 - 11/23/16'
 			}
-		];							  
+		];
+
 		
-		var userData = {
-			id: 1,
-			firstName: 'Virginia',
-			lastName: 'Woolf',
-			profilePicture: 'https://dl.dropboxusercontent.com/s/3o5ahnqhnf17820/u311.png',
-			address1: '1444 S. Alameda St.',
-			address2: '',
-			city: 'Los Angeles',
-			state: 'CA',
-			zip: '90021',
-			phone: '3049339016',
-			cell: '5037575467',
-			email: 'virginiawoolf@lighthouse.com',
-			gender: 'Female',
-			dob: new Date (1882, 1, 25),
+		var comments = [
+			{
+				from: 'Amy Treyvan',
+				date: '2016-03-22',
+				body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
+			},
+			{
+				from: 'John Treyvan',
+				date: '2016-03-23',
+				body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
+			},
+			{
+				from: 'Lori Smith',
+				date: '2016-04-22',
+				body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus et sem eu est tristique condimentum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Cras porta massa sit amet lectus mollis, aliquam placerat risus porttitor. Vivamus pulvinar ligula ac magna volutpat, at laoreet velit consectetur. Morbi eleifend et mauris ac tempus. Ut nec lacus tellus. In mollis nisi pulvinar, congue diam et, volutpat sem. In hac'
+			}
+		];
+		
+		var emailLookup = {
+			'parent1@test.com': 1,
+			'parent2@test.com': 2,
+			'caseworker@test.com': 3
 		};
+		
+		function getProfilePicture() {
+			var pictures = [
+				'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png',
+				'https://dl.dropboxusercontent.com/s/xifwhewttibrweq/u480.png',
+				'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png',
+				'https://dl.dropboxusercontent.com/s/nou3oes1k6snx8a/u342.png'
+			];
+			
+			
+			var picture = pictures[Math.floor(Math.random() * pictures.length)];
+			
+			return picture;
+		}
+
 		
 		var service = {
 			getFamily: function(userId) {
-				var deferred = $q.defer();
-				
-				deferred.resolve(data);
-				
-				return deferred.promise;
+				return $http.get(ENDPOINTS.profile + 'getFamily/' + userId).then(function(response) {
+					return response.data;
+				});
 			},
 			
-			getPlans: function(userId) { 
-				var plans =  data.filter(function(ele) {
-					return ele.hasOwnProperty('hasPlan') && ele.hasPlan === true;
-				});
+			getPlans: function(userId) {
+				return this.getFamily(userId).then(function(data) {
+					var plans =  data.filter(function(ele) {
+						return ele.hasOwnProperty('hasPlan') && ele.hasPlan === true;
+					});
+					
+					return plans;
+				});			
+			},
 				
-				var deferred = $q.defer();
-				
-				deferred.resolve(plans);
-				
-				return deferred.promise;
+			getUserId: function(email) {
+				if (emailLookup.hasOwnProperty(email)) {
+					return emailLookup[email];
+				} else {
+					return null;
+				}
 			},
 					
 			getUser: function(userId) {
-				var d = new $q.defer();
-	
-				//dummy branching until working GET
-				if (1==1) {	
+				userId = userId || 1;
+				
+				var userPromise = $http.get(ENDPOINTS.profile + 'view/' + userId);
+				
+				return userPromise.then(function(response) {
+					var user = response.data;
 					
-					var user = userData;
-					if (typeof(userId) !== 'undefined' && userId > 1) {
-						user = data.find(function(ele) { return ele.id == userId; });	
-					} else {
-						user = angular.copy(userData);
+					if (user.id !== session.data.userId) {
+						user.items = angular.copy(items);
+						if (user.hasOwnProperty('items')) {
+							for (var i = 0; i < user.items.length; i++) {
+								var key = 'item-comments-' + session.data.userId + '-' + user.id + '-' + user.items[i].id;
+								
+								if ($localStorage.hasOwnProperty(key)) {
+									user.items[i].comments = $localStorage[key];
+								} else {
+									user.items[i].comments = angular.copy(comments);
+								}
+							}
+						}
 					}
-						
-					d.resolve(user);
-				} else {
-					d.reject(AUTH_EVENTS.notAuthorized);
-				}
-	
-				return d.promise;
+					
+					return user;
+				});
 			},
 			
 			saveUser: function(user) {
-				
-				if (user.id > 1 ||  !user.hasOwnProperty('id')) {
-					var index = -1;
-					for (var i = 0; i < data.length; i++) {
-						if (data[i].id == user.id) {
-							index = i;
-						}
-					} 
-
-					if (i > -1 && user.hasOwnProperty('id')) {
-						data.splice(index, 1, user);
-					} else if (!user.hasOwnProperty('id')) {
-						data.push(user);
-					}
-					
-				} else {
-					userData = user;
-					
-					$rootScope.$broadcast(AUTH_EVENTS.userInfo, user);
+				if (session.data.userId != user.id) {
+					user.parentId = session.data.userId;
+				} else if (user.parentId === null || user.parentId === '') {
+					user.parentId = 0;
 				}
 				
-				var d = new $q.defer();
+				//extraneous leftover field
+				user.group = 1;
+				user.address = user.address1;
+	
+				if (!user.hasOwnProperty('profilePicture') || user.profilePicture === null || user.profilePicture === '') {
+					user.profilePicture = getProfilePicture();
+				}
 				
-				d.resolve('success');
+				if (!user.hasOwnProperty('hasPlan')) {
+					user.hasPlan = (!!Math.floor(Math.random() * 2)).toString();
+				}
 				
-				return d.promise;
+				var keys = Object.keys(user);
+				
+				
+				//set unset fields to ""
+				for (var i = 0; i < keys.length; i++) {
+					var key = keys[i];
+					
+					if (user.hasOwnProperty(key) && user[key] === null) {
+						user[key] = '';
+					}
+				}
+				
+				var method = 'addProfile';
+				if (user.hasOwnProperty('id')) {
+					method = 'updateProfile';
+				}
+				
+				var userToSave = angular.copy(user);
+				delete userToSave.items;
+				
+				return $http.post(ENDPOINTS.profile + method, userToSave).then(function(response) {
+					if (response.data.success) {
+						return 'success';
+					} else {
+						return 'error';
+					}
+				});
 			}
-
 		};
 		
 		

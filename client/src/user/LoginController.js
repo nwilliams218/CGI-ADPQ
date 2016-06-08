@@ -3,10 +3,8 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-	userModule.controller('LoginController', ['$scope', 'authService', 'postman', '$state', '$localStorage', 'gettextCatalog',
-									  function($scope,   authService,   postman,   $state,   $localStorage,   gettextCatalog) {	
-		//console.log(user.isAuthed());
-		
+	userModule.controller('LoginController', ['$scope', '$rootScope', 'authService', 'postman', '$state', '$localStorage', 'gettextCatalog', 'AUTH_EVENTS',
+									  function($scope,   $rootScope,   authService,   postman,   $state,   $localStorage,   gettextCatalog,   AUTH_EVENTS) {	
 		$scope.credentials = {
 			email: '',
 			password: ''
@@ -14,7 +12,11 @@
 		
 		$scope.login = function() { 
 			authService.login($scope.credentials).then(function(data) {
+				$rootScope.loggedinEmail = $scope.credentials.email;
+				
 				postman.success(gettextCatalog.getString('Logged in!'));
+
+				$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 
 				if ($localStorage.nextState) { 
 					var nextState = angular.copy($localStorage.nextState);
