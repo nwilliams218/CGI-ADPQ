@@ -34,26 +34,31 @@ public class ProfileService extends CGIService{
 	@Path("/updateProfile")
 	@POST
     @Produces("application/json")
-    public SaveStatus editProfile(@RequestBody Profile profileObj){
+    public SaveStatus editProfile(@RequestBody HashMap<String, String> params){
         SaveStatus editStatus = new SaveStatus();
         try {
-            Profile profileDBObj = repository.findOne(profileObj.getId());
-            profileDBObj.setPassword(profileObj.getPassword());
-            profileDBObj.setAddress1(profileObj.getAddress1());
-            profileDBObj.setEmail(profileObj.getEmail());
-			profileDBObj.setAddress2(profileObj.getAddress2());
-			profileDBObj.setCity(profileObj.getCity());
-			profileDBObj.setState(profileObj.getState());
-			profileDBObj.setCell(profileObj.getCell());
-			profileDBObj.setFacility(profileObj.getFacility());
-			profileDBObj.setLocation(profileObj.getLocation());
-			profileDBObj.setFirstName(profileObj.getFirstName());
-			profileDBObj.setLastName(profileObj.getLastName());
-			profileDBObj.setGoal(profileObj.getGoal());
-			profileDBObj.setRelationship(profileDBObj.getRelationship());
-			profileDBObj.setGender(profileObj.getGender());
-			profileDBObj.setDob(profileObj.getDob());
-            repository.save(profileDBObj);
+            Profile profile = repository.findOne(Long.parseLong(params.get("id")));
+			profile.setAddress1(params.get("address"));
+			profile.setEmail(params.get("email"));
+			profile.setPassword(params.get("password"));
+			profile.setFirstName(params.get("firstName"));
+			profile.setLastName(params.get("lastName"));
+			profile.setZip(params.get("zip"));
+			profile.setPhone(params.get("phone"));
+			profile.setAddress2(params.get("address2"));
+			profile.setLocation(params.get("location"));
+			profile.setFacility(params.get("facility"));
+			profile.setRelationship(params.get("relationship"));
+			profile.setGroupId(Integer.parseInt(params.get("group")));
+			profile.setGoal(params.get("goal"));
+			profile.setDob(params.get("dob"));
+			profile.setCell(params.get("cell"));
+			profile.setCity(params.get("city"));
+			profile.setState(params.get("state"));
+			profile.setHasPlan(Boolean.valueOf(params.get("hasPlan")));
+			profile.setProfilePicture(params.get("profilePicture"));
+			profile.setParentId(Integer.parseInt(params.get("parentId")));
+            repository.save(profile);
             editStatus.setSuccess(true);
             editStatus.setMessage("Profile updated  successfully and a notification has been sent to the case worker.");
             return editStatus;
