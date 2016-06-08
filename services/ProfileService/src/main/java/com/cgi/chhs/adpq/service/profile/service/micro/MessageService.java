@@ -40,9 +40,10 @@ public class MessageService {
             message.setSubject(params.get("subject"));
             message.setFromId(Integer.parseInt(params.get("from")));
             message.setToId(Integer.parseInt(params.get("to")));
+            repository.save(message);
             saveStatus.setSuccess(true);
             saveStatus.setMessage(message.getBody());
-            repository.save(message);
+            saveStatus.setSavedObjectId(message.getId());
         } catch (Exception e) {
             saveStatus.setSuccess(false);
             saveStatus.setMessage(e.getMessage());
