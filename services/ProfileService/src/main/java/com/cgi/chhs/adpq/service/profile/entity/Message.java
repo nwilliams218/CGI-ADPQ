@@ -13,17 +13,10 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
-    private String content;
+    private String subject;
+    private String body;
     private Integer toId;
     private Integer fromId;
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
 
     public long getToId() {
         return toId;
@@ -39,5 +32,21 @@ public class Message {
 
     public void setFromId(Integer fromId) {
         this.fromId = fromId;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public void setBody(String body) {
+        this.body = body;
     }
 }

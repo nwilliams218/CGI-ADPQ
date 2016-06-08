@@ -36,11 +36,12 @@ public class MessageService {
         SaveStatus saveStatus = new SaveStatus();
         try {
             Message message = new Message();
-            message.setContent(params.get("content"));
+            message.setBody(params.get("body"));
+            message.setSubject(params.get("subject"));
             message.setFromId(Integer.parseInt(params.get("from")));
             message.setToId(Integer.parseInt(params.get("to")));
             saveStatus.setSuccess(true);
-            saveStatus.setMessage(message.getContent());
+            saveStatus.setMessage(message.getBody());
             repository.save(message);
         } catch (Exception e) {
             saveStatus.setSuccess(false);
@@ -49,7 +50,6 @@ public class MessageService {
         }
         return saveStatus;
     }
-
     @Path("/get/{id}")
     @GET
     @Produces("application/json")
