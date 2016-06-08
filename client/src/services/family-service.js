@@ -4,123 +4,7 @@
 	var userModule = angular.module('cgiAdpq.user');
 	
 	userModule.factory('familyService', ['$http', '$q', '$rootScope', '$localStorage', 'session', 'AUTH_EVENTS', 'ENDPOINTS',
-								function ($http,   $q,   $rootScope,   $localStorage,   session,   AUTH_EVENTS,   ENDPOINTS) {
-								  
-		var data = [
-			{id: 2},
-			{id: 3},
-			{
-				id: 4,
-				parent_id: 1,
-				household_id: 1,
-				firstName: 'Walter',
-				lastName: 'Austen',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				location: 'In Placement', 
-				facility: 'White Plains Group Home',
-				hasPlan: true,
-				relationship: 'Son',
-				gender: 'Male',
-				dob: '2005-01-15',
-				group: true,
-				goal: 'Reunification',
-				caseworker: {
-					name: 'Ann Trason',
-					email: 'caseworker@internet.com',
-					phone:  '000.999.8888'
-				},
-				items: [
-					{
-						id: 1,
-						serviceType: 'Service 1',
-						explanation: 'Explanation',
-						provider: 'Providence',
-						frequency: 'Weekly'
-					},
-					{
-						id: 2,
-						serviceType: 'Service 2',
-						explanation: 'Explanation',
-						provider: 'Moda',
-						frequency: '5/1/2015 - 11/23/16'
-					}
-				]
-			},
-			{
-				id: 5,
-				parent_id: 1,
-				household_id: 1,
-				firstName: 'Lilly',
-				lastName: 'Austen',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				location: 'Group Home',
-				facility: 'Palo Alto Foster Services',
-				hasPlan: true,
-				relationship: 'Daughter',
-				gender: 'Female',
-				dob: '2010-03-22',
-				group: true,
-				home: true,
-				goal: 'Reunification',
-				caseworker: {
-					name: 'Ann Trason',
-					email: 'caseworker@internet.com',
-					phone:  '000.999.8888'
-				}
-			},
-			{
-				id: 6,
-				parent_id: 1,
-				household_id: 1,
-				firstName: 'Tom',
-				lastName: 'Austen',
-				profilePicture: 'https://dl.dropboxusercontent.com/s/xifwhewttibrweq/u480.png',
-				address1: '1444 S. Alameda St.',
-				address2: '',
-				city: 'Los Angeles',
-				state: 'CA',
-				zip: '90021',
-				phone: '3049339016',
-				location: 'Palo Alto Foster Services',
-				planUserId: 2,
-				hasPlan: false,
-				relationship: 'Brother',
-				gender: 'Male',
-				dob: '1972-07-14'
-			}
-		];							  
-		
-		var userData = {
-			id: 1,
-			parent_id: 0,
-			household_id: 1,
-			firstName: 'Jane',
-			lastName: 'Austen',
-			profilePicture: 'https://dl.dropboxusercontent.com/s/nou3oes1k6snx8a/u342.png',
-			address1: '1444 S. Alameda St.',
-			address2: '',
-			city: 'Los Angeles',
-			state: 'CA',
-			zip: '90021',
-			phone: '3049339016',
-			cell: '5037575467',
-			email: 'virginiawoolf@lighthouse.com',
-			gender: 'Female',
-			dob: '1/2/1868',
-		};
-		
+								function ($http,   $q,   $rootScope,   $localStorage,   session,   AUTH_EVENTS,   ENDPOINTS) {	
 		var comments = [
 			{
 				from: 'Amy Treyvan',
@@ -145,16 +29,42 @@
 			'caseworker@test.com': 3
 		};
 		
+		function getProfilePicture() {
+			var pictures = [
+				'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png',
+				'https://dl.dropboxusercontent.com/s/xifwhewttibrweq/u480.png',
+				'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png',
+				'https://dl.dropboxusercontent.com/s/nou3oes1k6snx8a/u342.png'
+			];
+			
+			
+			var picture = pictures[Math.floor(Math.random() * pictures.length)];
+			
+			return picture;
+		}
+
+		
 		var service = {
 			getFamily: function(userId) {
 				var deferred = $q.defer();
 				
-				deferred.resolve(data);
+				var family;
+				
+				var key = 'family-' + session.data.userId;
+
+				if (!$localStorage.hasOwnProperty(key)) { 
+					$localStorage[key] = data;
+				}
+				
+				family = $localStorage[key];
+				
+				
+				deferred.resolve(family);
 				
 				return deferred.promise;
 			},
 			
-			getPlans: function(userId) { 
+			getPlans: function(userId) {
 				var plans =  data.filter(function(ele) {
 					return ele.hasOwnProperty('hasPlan') && ele.hasPlan === true;
 				});
@@ -179,81 +89,53 @@
 				
 				var userPromise = $http.get(ENDPOINTS.profile + 'view/' + userId);
 				
-				userPromise.then(function(response) {
-					console.log(response);
+				return userPromise.then(function(response) {
+					return response.data;
 				});
-				
-				var d = new $q.defer();
-	
-				//dummy branching until working GET
-				if (1==1) {	
-					
-					var user = userData;
-					if (typeof(userId) !== 'undefined' && userId > 1) {
-						user = data.find(function(ele) { return ele.id == userId; });	
-					} else {
-						user = angular.copy(userData);
-					}
-					
-					if (user.hasOwnProperty('hasPlan') && user.hasPlan) {
-						if (user.hasOwnProperty('items')) {
-							for (var i = 0; i < user.items.length; i++) {
-								var key = 'item-comments-' + session.data.userId + '-' + user.items[i].id;
-								
-								if ($localStorage.hasOwnProperty(key)) {
-									user.items[i].comments = $localStorage[key];
-								} else {
-									user.items[i].comments = comments;
-								}
-							}
-						}
-					}
-						
-					d.resolve(user);
-				} else {
-					d.reject(AUTH_EVENTS.notAuthorized);
-				}
-	
-				return d.promise;
 			},
 			
 			saveUser: function(user) {
+				if (session.data.userId != user.id) {
+					user.parentId = session.data.userId;
+				}
+				
+				//extraneous leftover field
+				user.group = 1;
+				user.address = user.address1;
+	
+				if (!user.hasOwnProperty('profilePicture') || user.profilePicture === null || user.profilePicture === '') {
+					user.profilePicture = getProfilePicture();
+				}
+				
+				if (!user.hasOwnProperty('hasPlan')) {
+					user.hasPlan = (!!Math.floor(Math.random() * 2)).toString();
+				}
+				
+				var keys = Object.keys(user);
+				
+				
+				//set unset fields to ""
+				for (var i = 0; i < keys.length; i++) {
+					var key = keys[i];
+					
+					if (user.hasOwnProperty(key) && user[key] === null) {
+						user[key] = '';
+					}
+				}
+				
 				var method = 'addProfile';
 				if (user.hasOwnProperty('id')) {
-					method = 'editProfile';
+					method = 'updateProfile';
 				}
 				
-				$http.post(ENDPOINTS.profile + method, user).then(function(response) {
-					console.log(response);
-				});
-				
-				if (user.id == session.data.userId)  {
-					userData = user;
-					
-					$rootScope.$broadcast(AUTH_EVENTS.userInfo, user);
-				} else if (user.id > 1 ||  !user.hasOwnProperty('id')) {
-					var index = -1;
-					for (var i = 0; i < data.length; i++) {
-						if (data[i].id == user.id) {
-							index = i;
-						}
-					} 
-
-					if (i > -1 && user.hasOwnProperty('id')) {
-						data.splice(index, 1, user);
-					} else if (!user.hasOwnProperty('id')) {
-						data.push(user);
+				return $http.post(ENDPOINTS.profile + method, user).then(function(response) {
+					if (response.data.success) {
+						return 'success';
+					} else {
+						return 'error';
 					}
-					
-				}
-				
-				var d = new $q.defer();
-				
-				d.resolve('success');
-				
-				return d.promise;
+				});
 			}
-
 		};
 		
 		

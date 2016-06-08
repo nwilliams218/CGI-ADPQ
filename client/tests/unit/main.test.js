@@ -40,6 +40,9 @@ describe('Main Controller', function() {
 		//$httpBackend.expectGET('user/login.html');
 
 		$httpBackend.whenGET(ENDPOINTS.profile + 'view/1').respond('get user');
+		
+		//$httpBackend.whenGET('https://cgi-test.herokuapp.com/service/view/1').respond('');
+
 
 	}));
 	

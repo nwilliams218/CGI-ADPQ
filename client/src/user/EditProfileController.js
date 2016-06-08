@@ -37,9 +37,11 @@
 				}
 				
 				familyService.saveUser(user).then(function(result) {
-					postman.success('', gettextCatalog.getString('User updated'));					
-					
-					//$rootScope.$broadcast(AUTH_EVENTS.userInfo, user);
+					if (result === 'success') {
+						postman.success('', gettextCatalog.getString('User updated'));					
+					} else {
+						postman.error('', gettextCatalog.getString('User could not be updated'));
+					}
 
 					$state.go('profile');
 				}, function() {
