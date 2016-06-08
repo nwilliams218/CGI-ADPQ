@@ -28,7 +28,7 @@
 						if (save === 'error') {
 							postman.error(gettextCatalog.getString('There was a problem registering'));
 						} else {						
-							authService.login($scope.credentials).then(function(data) {
+							authService.login($scope.credentials).then(function(data) { console.log('here');
 								$rootScope.loggedinEmail = $scope.credentials.email;
 								
 								$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
