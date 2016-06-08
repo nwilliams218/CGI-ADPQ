@@ -116,8 +116,10 @@ public class ProfileService extends CGIService{
 	public List<Profile> getFamily(@PathParam("id") Long id) {
 		List<Profile> members = new ArrayList<Profile>();
 		for (Profile p : repository.findAll()) {
-			if (p.getParentId() == id.intValue()) {
-				members.add(p);
+			if (p.getParentId() != null) {
+				if (p.getParentId() == id.intValue()) {
+					members.add(p);
+				}
 			}
 		}
 		return members;
