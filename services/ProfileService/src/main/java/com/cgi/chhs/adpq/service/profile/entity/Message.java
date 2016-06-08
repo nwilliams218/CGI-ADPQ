@@ -12,9 +12,10 @@ import javax.persistence.Id;
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    long id;
     private String content;
-    private long profileId;
-    private long caseworkerId;
+    private Integer toId;
+    private Integer fromId;
 
     public String getContent() {
         return content;
@@ -24,19 +25,19 @@ public class Message {
         this.content = content;
     }
 
-    public long getProfileId() {
-        return profileId;
+    public long getToId() {
+        return toId;
     }
 
-    public void setProfileId(long profileId) {
-        this.profileId = profileId;
+    public void setToId(Integer toId) {
+        this.toId = toId;
     }
 
-    public long getCaseworkerId() {
-        return caseworkerId;
+    public long getFromId() {
+        return fromId;
     }
 
-    public void setCaseworkerId(long caseworkerId) {
-        this.caseworkerId = caseworkerId;
+    public void setFromId(Integer fromId) {
+        this.fromId = fromId;
     }
 }
