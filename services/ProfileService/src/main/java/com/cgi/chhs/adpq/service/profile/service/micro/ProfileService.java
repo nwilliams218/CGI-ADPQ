@@ -75,6 +75,10 @@ public class ProfileService extends CGIService{
 			profile.setGroupId(Integer.parseInt(params.get("group")));
 			profile.setGoal(params.get("goal"));
 			profile.setDob(params.get("dob"));
+			profile.setCell(params.get("cell"));
+			profile.setCity(params.get("city"));
+			profile.setState(params.get("state"));
+			profile.setHasPlan(Boolean.valueOf(params.get("hasPlan")));
 			profile.setProfilePicture(params.get("profilePicture"));
 			profile.setParentId(Integer.parseInt(params.get("parentId")));
 			repository.save(profile);
