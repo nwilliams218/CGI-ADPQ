@@ -52,7 +52,7 @@ public class MessageService {
     @GET
     @Produces("application/json")
     public List<Message> getMessages(@PathParam("id") Integer id) {
-        List messages = new ArrayList<>();
+        List messages = new ArrayList<Message>();
         for (Message m: repository.findAll()) {
             if (m.getToId() == id || m.getFromId() == id) {
                 messages.add(m);
