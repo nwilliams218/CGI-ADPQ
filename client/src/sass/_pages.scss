@@ -436,7 +436,7 @@
 	.body {
 		text-overflow: ellipsis;
 		overflow: hidden;
-		height: 3vh;
+		height: 2.5vh;
 	}
 	
 	.single-message {
@@ -457,6 +457,10 @@
 			height: auto;
 			margin-bottom: 25px;
 		}
+	}
+	
+	.cancel {
+		margin-left: 25px;
 	}
 }
 

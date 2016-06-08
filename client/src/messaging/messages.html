@@ -13,8 +13,8 @@
 	<div class="row message" ng-repeat="m in messages | filter:search | orderBy:'-createdAt'" ng-hide="messageId || newMessage" ng-class="{'read': m.isRead}">
 		<a ui-sref="messages({id: m.id})" class="view-message">
 			<div class="col-xs-8 col-sm-4 from">
-				<i class="fa fa-reply" aria-hidden="true" ng-hide="m.fromId == $parent.userData.id"></i>
-				<i class="fa fa-share" aria-hidden="true" ng-show="m.fromId == $parent.userData.id"></i>
+				<i class="fa fa-reply" aria-hidden="true" ng-show="m.fromId == $parent.userData.id"></i>
+				<i class="fa fa-share" aria-hidden="true" ng-hide="m.fromId == $parent.userData.id"></i>
 				
 				<i class="fa fa-envelope" aria-hidden="true" ></i>
 				
@@ -56,6 +56,7 @@
 		</fieldset>
 		
 		<button class="btn btn-primary" ng-click="sendMessage(newMessage)" translate>Send</button>
+		<a class="link-button-color cancel" ng-click="newMessage = null" translate>Cancel</a>
 	</div>
 
 </div>

@@ -8,8 +8,8 @@
 		var service = {
 			getMessages: function(userId) {
 				var senderLookup = {
-					'1': 'Amy Taylor',
-					'3': 'Amy Taylor'
+					'10': 'Ann Trason',
+					'11': 'CA CareMail'
 					
 				};
 				
@@ -18,7 +18,7 @@
 					
 					for (var i = 0; i < messages.length; i++) {
 						var senderKey = messages[i].fromId == session.data.userId ? messages[i].toId : messages[i].fromId;
-						messages[i].id = i + 1;
+						//messages[i].id = i + 1;
 						messages[i].from = senderLookup[senderKey];
 						//messages[i].date = getDate();
 					}
@@ -43,7 +43,9 @@
 			},
 			
 			markRead: function(messageId) {
-				
+				return $http.post(ENDPOINTS.messaging + 'markRead/' + messageId).then(function(response) {
+					
+				});
 			},
 			
 			sendMessage: function(message) {
