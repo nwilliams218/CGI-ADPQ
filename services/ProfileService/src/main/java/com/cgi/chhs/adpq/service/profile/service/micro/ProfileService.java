@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cgi.chhs.adpq.service.micro.SaveStatus;
 import com.cgi.chhs.adpq.service.profile.entity.Profile;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -55,6 +56,7 @@ public class ProfileService extends CGIService{
 			profile.setGoal(params.get("goal"));
 			profile.setDob(params.get("dob"));
 			profile.setCell(params.get("cell"));
+			profile.setGender(params.get("gender"));
 			profile.setCity(params.get("city"));
 			profile.setState(params.get("state"));
 			profile.setHasPlan(Boolean.valueOf(params.get("hasPlan")));
@@ -95,6 +97,7 @@ public class ProfileService extends CGIService{
 			profile.setCell(params.get("cell"));
 			profile.setCity(params.get("city"));
 			profile.setState(params.get("state"));
+			profile.setGender(params.get("gender"));
 			profile.setHasPlan(Boolean.valueOf(params.get("hasPlan")));
 			profile.setProfilePicture(params.get("profilePicture"));
 			profile.setParentId(Integer.parseInt(params.get("parentId")));
@@ -123,5 +126,26 @@ public class ProfileService extends CGIService{
 			}
 		}
 		return members;
+	}
+
+	@Path("/getCommunityCareInfo/{zipCode}")
+	@GET
+	@Produces("application/json")
+	public SaveStatus communityCareInfo(@PathParam("zipCode") Long zipCode) {
+		SaveStatus saveStatus = new SaveStatus();
+		try {
+			System.out.println("Zip Code entered is " + zipCode);
+			RestTemplate restTemplate = new RestTemplate();
+			String jsonResp = restTemplate.getForObject("https://chhs.data.ca.gov/resource/mffa-c6z5.json?facility_zip="+zipCode, String.class) ;
+			saveStatus.setSuccess(true);
+			saveStatus.setMessage(jsonResp);
+			return saveStatus;
+		} catch (Exception e) {
+			saveStatus.setSuccess(false);
+			saveStatus.setMessage("Failed invoking service call to community care .");
+			return saveStatus;
+
+		}
+
 	}
 }
