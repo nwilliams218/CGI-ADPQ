@@ -18,8 +18,16 @@
 			if ($scope.credentials.password != $scope.credentials.confirm) {
 				$scope.passwordsMatch = false;	
 			} else {
+				var userId = familyService.getUserId($scope.credentials.email);
+				
+				if (!userId) {
+					postman.info(gettextCatalog.getString('We could not log you in.'), gettextCatalog.getString('Please contact your caseworker.'));
+					
+					return;
+				}
+				
 				//save password
-				familyService.getUser(familyService.getUserId($scope.credentials.email)).then(function(data){
+				familyService.getUser(userId).then(function(data){
 					var user = data;
 					
 					user.password = $scope.credentials.password;

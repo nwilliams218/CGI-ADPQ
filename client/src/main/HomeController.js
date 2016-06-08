@@ -29,7 +29,7 @@
 		
 		$scope.plans = [];
 		$scope.getPlans = function(id) {
-			familyService.getPlans($scope.$parent.userData.id).then(function(plans) {
+			familyService.getPlans($scope.user.id).then(function(plans) {
 				$scope.plans = plans;
 			});
 		};	
