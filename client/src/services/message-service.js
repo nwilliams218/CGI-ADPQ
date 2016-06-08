@@ -20,7 +20,7 @@
 						var senderKey = messages[i].fromId == session.data.userId ? messages[i].toId : messages[i].fromId;
 						messages[i].id = i + 1;
 						messages[i].from = senderLookup[senderKey];
-						messages[i].date = getDate();
+						//messages[i].date = getDate();
 					}
 					
 					return messages;
