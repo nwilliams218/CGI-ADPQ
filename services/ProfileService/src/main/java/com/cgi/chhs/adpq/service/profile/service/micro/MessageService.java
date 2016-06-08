@@ -71,4 +71,21 @@ public class MessageService {
         return messages;
     }
 
+    @Path("/markRead/{id}")
+    @GET
+    @Produces("application/json")
+    public SaveStatus markMessageAsRead(@PathParam("id") Long id) {
+        SaveStatus saveStatus = new SaveStatus();
+        try {
+            Message message = repository.findOne(id);
+            message.setIsRead(true);
+            repository.save(message);
+        } catch (Exception e) {
+            saveStatus.setSuccess(false);
+            saveStatus.setSavedObjectId(id);
+            saveStatus.setMessage("Message marked as read");
+        }
+        return saveStatus;
+    }
+
 }
