@@ -83,6 +83,10 @@
 							$scope.showOther = true;
 						}
 						
+						if (val != oldVal) {
+							$scope.user.facility = '';
+						}
+						
 						$scope.showFacility = true;
 					} else if (val == 'Other') {
 						$scope.user.facility = '';
