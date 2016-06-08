@@ -7,9 +7,22 @@
 	background: #fff;
 	display: inline-block;
 	overflow: hidden;
+	position: relative;
 	
 	img {
 		width: 100%;
+		position: relative;
+	}
+	
+	&::before {
+		color: #444;
+	    content: "\f007";
+	    font-family: FontAwesome;
+	    font-size: 65px;
+	    left: 50%;
+	    position: absolute;
+	    top: 68%;
+	    transform: translate(-50%, -53%);
 	}
 }
 
@@ -186,7 +199,7 @@
 	
 	& > a > div:last-child {
 		position: absolute;
-		top: 5px;
+		top: 20px;
 		right: 5px;
 		
 		i {

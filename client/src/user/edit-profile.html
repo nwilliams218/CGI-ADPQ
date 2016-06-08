@@ -10,7 +10,7 @@
 			<input ng-model="user.lastName" type="text" class="form-control" id="lastName" placeholder="{{'Last Name'|translate}}" required>
 		</fieldset>
 		<fieldset class="form-group">
-			<input ng-model="user.relationship" type="text" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" required>
+			<input ng-model="user.relationship" ng-show=" user.parentid || !user.hasOwnProperty('id')" type="text" class="form-control" id="relationship" placeholder="{{'Relationship'|translate}}" ng-required="user.parentid || !user.hasOwnProperty('id')">
 		</fieldset>
 		
 		<fieldset class="form-group" ng-show="showLocation">

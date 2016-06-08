@@ -19,9 +19,9 @@
 	       class="navbar-brand circle-picture {{$parent.page}}" 
 		   ui-sref="home"
 		>
-			<img ng-src="{{$parent.userData.profilePicture}}">
+			<img ng-show="$parent.userData.profilePicture" ng-src="{{$parent.userData.profilePicture}}">
 		</a>
-      <h1 ng-hide="$parent.isAuthenticated()" translate>Login</h1>
+      <h1 ng-hide="$parent.isAuthenticated() || $parent.page == 'register'" translate>Login</h1>
       <div class="welcome" ng-show="$parent.isAuthenticated() && $parent.page == 'home'">
 	      <h4 translate>Welcome</h4>
 	      <h2>{{$parent.userData.firstName}} {{$parent.userData.lastName}}</h2>

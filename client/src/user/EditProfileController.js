@@ -17,7 +17,7 @@
 				familyService.getUser(userId).then(function(user) {
 					$scope.user = angular.copy(user);
 					
-					if ($scope.$parent.userData.id != $scope.user.id) {
+					if (authService.getUserId() != $scope.user.id) {
 						$scope.showLocation = true;
 						setupFacilities();
 					}
@@ -74,7 +74,7 @@
 						//$scope.user.facility = null;
 					} 
 					
-					if (val == 'In Placement') {
+					if (val == 'In Placement') { 
 						if ($scope.user.facility !== null && $scope.user.facility !== '') {
 							$scope.showOther = true;
 						}
@@ -89,7 +89,7 @@
 						$scope.user.facility = 'Home ' + user.address1 + ' ' + user.city + ', ' + user.state + ' ' + user.zip;
 					}
 				});
-				
+
 				$scope.$watch('input.zipcode', function() {
 					if ($scope.input.zipcode.length === 5) {
 						$scope.getFacilities($scope.input.zipcode);

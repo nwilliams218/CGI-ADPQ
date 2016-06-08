@@ -26,20 +26,32 @@
 		$scope.logout = function() {
 			authService.logout();
 			
+			delete $rootScope.loggedinEmail;
+			
+			$scope.userData = {};
+			
 			$state.go('login');
 		};
 		
 		$scope.userLoaded = false;
 		$scope.userData = null;
-		this.getUserData = function() {
-			familyService.getUser().then(function(userData) {
+		function getUserData() {
+			familyService.getUser(authService.getUserId()).then(function(userData) {
 				$scope.userLoaded = true;
 				
 				$scope.userData = angular.copy(userData);
 			});
-		};
-		this.getUserData();
-				
+		}
+		
+		if (authService.isAuthenticated()) {
+			
+			getUserData();
+		}
+		
+		$rootScope.$on(AUTH_EVENTS.loginSuccess, function(event, data) {
+			getUserData();
+		});
+		
 		$rootScope.$on(AUTH_EVENTS.userInfo, function(event, data) {
 			$scope.userData = angular.copy(data);
 		});

@@ -3,8 +3,8 @@
 	
 	var planModule = angular.module('cgiAdpq.plan');
 	
-		planModule.controller('PlanController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'AUTH_EVENTS', 'familyService',
-									     function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   AUTH_EVENTS,   familyService) {	
+		planModule.controller('PlanController', ['$scope', '$rootScope', 'userService', 'postman', '$state', '$stateParams', 'AUTH_EVENTS', 'session', 'familyService', '$localStorage',
+									     function($scope,   $rootScope,   userService,   postman,   $state,   $stateParams,   AUTH_EVENTS,   session,   familyService,   $localStorage) {	
 			$scope.user = {};
 			$scope.getUser = function(userId) {
 				familyService.getUser(userId).then(function(user) {
@@ -30,6 +30,11 @@
 			
 			$scope.saveComment = function(item, comment) {
 				item.comments.push(comment);
+				
+				var key = 'item-comments-' + session.data.userId + '-' + item.id;
+				
+				$localStorage[key] = angular.copy(item.comments);
+				
 				$scope.comment = null;
 			};
 	}]);

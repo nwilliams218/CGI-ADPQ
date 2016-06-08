@@ -1,3 +1,52 @@
+//login/register
+.login, .register {
+	::-webkit-input-placeholder {
+	   font-style: italic;
+	}
+	:-moz-placeholder {
+	   font-style: italic;  
+	}
+	::-moz-placeholder {
+	   font-style: italic;  
+	}
+	:-ms-input-placeholder {  
+	   font-style: italic; 
+	}
+	
+	h1 {
+		margin-bottom: 25px;
+		font-weight: lighter;
+		
+		.fa {
+			font-size: 35px;
+			margin-left: 25px;
+		}
+	}
+	
+	p {
+		margin-bottom: 25px;
+	}
+	
+	input {	
+		font-size: 16px;
+		border: none;
+		border-radius: 0;
+		box-shadow: none;
+		border-bottom: 1px solid #999;
+	}
+	
+	.forgot-password {
+		margin-right: 30px;
+	}
+	
+	.login-btn {
+		margin-bottom: 20px;
+	    position: relative;
+	    top: 8px;
+	}
+
+}
+
 //home
 .summary-section {
 	&.messages {
@@ -28,11 +77,13 @@
 			& > div {
 				float: left;
 				width: 50%;
-				border-left: 1px solid #aaa;
 				padding-left: 10px;
 				position: relative;
 				top: 10px;
 				
+				&:last-child {
+					border-left: 1px solid #aaa;
+				}
 			}
 			
 			h4 {
