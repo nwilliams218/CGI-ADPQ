@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.sql.Date;
 
 /**
  * Created by michael on 6/5/16.
@@ -13,10 +14,12 @@ public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    private Date createdAt;
     private String subject;
     private String body;
     private Integer toId;
     private Integer fromId;
+    private Boolean read;
 
     public long getToId() {
         return toId;
@@ -52,5 +55,21 @@ public class Message {
 
     public long getId() {
         return id;
+    }
+
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public Boolean getRead() {
+        return read;
+    }
+
+    public void setRead(Boolean read) {
+        this.read = read;
     }
 }
