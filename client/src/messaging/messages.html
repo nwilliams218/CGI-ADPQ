@@ -45,6 +45,8 @@
 	</div>
 	
 	<div class="reply" ng-show="newMessage">
+		<p>{{messageDate|date:'MMMM d @ h:MM a'}}</p>
+		
 		<fieldset class="form-group">
 			<label for="subject" translate>Subject</label>
 			<input ng-model="newMessage.subject" type="input" class="form-control" id="subject" placeholder="{{'Subject'|translate}}" required>

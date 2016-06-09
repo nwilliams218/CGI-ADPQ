@@ -7,12 +7,12 @@
 		</fieldset>
 		<fieldset class="form-group">
 <!-- 			<label for="password" translate>Password</label> -->
-			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="{{'Password'|translate}}" required>
+			<input ng-model="credentials.password" type="password" class="form-control" id="password" placeholder="{{'Password'|translate}}">
 		</fieldset>
 		
 		<button type="submit" class="btn btn-primary login-btn" translate>Login</button>
 		
-		<a ng-click="return;" class="link-button-color forgot-password" translate>Forgot Password</a>
+		<a ui-sref="placeholder({page:'Forgot-Password'})" class="link-button-color forgot-password" translate>Forgot Password</a>
 		<a ui-sref="register" class="link-button-color" translate>Register</a>
 	</form>
 </div>

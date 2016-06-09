@@ -33,7 +33,7 @@
 			}
 			
 			$scope.save = function(user) {
-				if (user.location === 'Location') {
+				if (user.location === '') {
 					postman.warn(gettextCatalog.getString('Please select a location'));
 					return;
 				}
@@ -56,7 +56,7 @@
 			$scope.getFacilities = function(zipcode) {
 				facilityService.getFacilities(zipcode).then(function(facilities) {
 					$scope.facilities = facilities;
-					
+				
 					$scope.resultsReturned = true;
 				});
 			};

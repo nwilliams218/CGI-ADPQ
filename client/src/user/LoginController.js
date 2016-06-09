@@ -3,14 +3,26 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-	userModule.controller('LoginController', ['$scope', '$rootScope', 'authService', 'postman', '$state', '$localStorage', 'gettextCatalog', 'AUTH_EVENTS',
-									  function($scope,   $rootScope,   authService,   postman,   $state,   $localStorage,   gettextCatalog,   AUTH_EVENTS) {	
+	userModule.controller('LoginController', ['$scope', '$rootScope', 'authService', 'postman', '$state', '$localStorage', 'gettextCatalog', 'familyService', 'AUTH_EVENTS',
+									  function($scope,   $rootScope,   authService,   postman,   $state,   $localStorage,   gettextCatalog,   familyService,   AUTH_EVENTS) {	
 		$scope.credentials = {
 			email: '',
 			password: ''
 		};
 		
 		$scope.login = function() { 
+			var userId = familyService.getUserId($scope.credentials.email);
+			
+			if (userId === null) {
+				postman.info(gettextCatalog.getString('Use valid email address'));
+				return;
+			}
+			
+			if (!$scope.credentials.password) {
+				postman.info(gettextCatalog.getString('Password is required'));
+				return;
+			}
+			
 			authService.login($scope.credentials).then(function(data) {
 				$rootScope.loggedinEmail = $scope.credentials.email;
 				

@@ -12,7 +12,9 @@
 			<a ui-sref="home"><i class="fa fa-home" aria-hidden="true"></i></a>
 			<i class="fa fa-chevron-right" aria-hidden="true"></i>
 			
-			<a ng-click="gotoPage()" class="current-page" ng-hide="$parent.page == 'login' || $parent.page == 'profile'">{{$parent.page}}</a>
+			<a class="current-page" ng-show="$root.pageName">{{$root.pageName}}</a>
+						
+			<a ng-click="gotoPage()" class="current-page" ng-hide="$parent.page == 'login' || $parent.page == 'profile' || $parent.page == 'placeholder'">{{$parent.page}}</a>
 		</div>
 		
 		<a ng-show="$parent.isAuthenticated() && ($parent.page == 'profile' || $parent.page == 'home')" 
@@ -21,7 +23,7 @@
 		>
 			<img ng-show="$parent.userData.profilePicture" ng-src="{{$parent.userData.profilePicture}}">
 		</a>
-      <h1 ng-hide="$parent.isAuthenticated() || $parent.page == 'register'" translate>Login</h1>
+      <h1 ng-hide="$parent.isAuthenticated() || $parent.page == 'register' || $parent.page == 'placeholder'" translate>Login</h1>
       <div class="welcome" ng-show="$parent.isAuthenticated() && $parent.page == 'home'">
 	      <h4 translate>Welcome</h4>
 	      <h2>{{$parent.userData.firstName}} {{$parent.userData.lastName}}</h2>

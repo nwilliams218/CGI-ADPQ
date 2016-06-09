@@ -58,6 +58,11 @@
 					templateUrl: "user/edit-profile.html",
 					data: {auth:true}
 				})
+				.state('placeholder', {
+					url: "/placeholder/:page",
+					templateUrl: "staticPages/placeholder.html"
+				})
+				
 			;
 
 			$urlRouterProvider.otherwise("/login");

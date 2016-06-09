@@ -43,7 +43,7 @@
 			},
 			
 			markRead: function(messageId) {
-				return $http.post(ENDPOINTS.messaging + 'markRead/' + messageId).then(function(response) {
+				return $http.get(ENDPOINTS.messaging + 'markRead/' + messageId).then(function(response) {
 					
 				});
 			},

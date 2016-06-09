@@ -24,7 +24,7 @@
 				    $scope.unreadCount = count;
 
 				    if (typeof $scope.messageId !== 'undefined' && $scope.messageId !== '') {
-					    $scope.message = messages.find(function(ele) {
+					    $scope.message = _(messages).find(function(ele) {
 						    return ele.id == $scope.messageId;
 					    });
 					    
@@ -44,6 +44,8 @@
 					body: ''	
 				};
 				
+				$scope.messageDate = new Date();
+				
 				if (typeof message !== 'undefined') {
 					var toId = authService.getUserId !== message.fromId ? message.fromId : message.toId;
 					var fromId = authService.getUserId === message.fromId ? message.fromId : message.toId;
@@ -56,7 +58,8 @@
 				}
 				
 				if (typeof message !== 'undefined') {
-					$scope.newMessage.subject = 'Re: ' + message.subject;
+					var prefix = message.subject.indexOf('Re') < 0 ? 'Re: ' : '';
+					$scope.newMessage.subject =  prefix + message.subject;
 				}
 				
 				console.log(message, $scope.newMessage);

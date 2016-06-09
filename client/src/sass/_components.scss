@@ -301,3 +301,41 @@
 		padding: 10px;
 	}
 }
+
+.facilities {
+	& {
+		list-style: none;
+		padding: 0;
+		
+		li {
+			padding: 15px; 
+			border-bottom: 1px solid #ccc;
+			cursor: pointer;
+			
+			&:hover {
+				background: darken(white, 10%);
+			}
+			
+			.facility {
+				display: inline-block;
+				width: 70%;
+			}
+			
+			.zip {
+				display: inline-block;
+				width: 30%;
+				text-align: right;
+			}
+			
+			&:last-child {
+				border: none;
+				padding-top: 25px;
+				padding-left: 0;
+				
+				@media (max-width: ($small-screen-max)) {
+					padding-left: 15px;
+				}
+			}
+		}
+	}
+}

@@ -3,9 +3,11 @@
 	
 	var mainModule = angular.module('cgiAdpq.main');
 	
-	mainModule.controller('MainController', ['$scope', '$rootScope', 'postman', '$state', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', 'familyService',
-									  function($scope,  $rootScope,   postman,   $state,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   familyService) {	
+	mainModule.controller('MainController', ['$scope', '$rootScope', 'postman', '$state', '$stateParams', 'gettextCatalog', '$localStorage', 'LOCALES', 'AUTH_EVENTS', 'authService', 'familyService',
+									  function($scope,  $rootScope,   postman,   $state,   $stateParams,   gettextCatalog,   $localStorage,   LOCALES,   AUTH_EVENTS,   authService,   familyService) {	
 		$scope.page = $state.current.name;
+		
+		$rootScope.pageName = ($stateParams.page || '').replace('-', ' ');
 		
 		$rootScope.$on('$stateChangeStart', function (event, next) {
 			$scope.page = next.name;

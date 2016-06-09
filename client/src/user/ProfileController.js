@@ -3,8 +3,8 @@
 	
 	var userModule = angular.module('cgiAdpq.user');
 	
-		userModule.controller('ProfileController', ['$scope', '$rootScope', 'userService', 'postman', '$state', 'AUTH_EVENTS', 'authService', 'familyService',
-									    	function($scope,   $rootScope,   userService,   postman,   $state,   AUTH_EVENTS,   authService,   familyService) {	
+		userModule.controller('ProfileController', ['$scope', '$rootScope', 'userService', 'facilityService', 'postman', '$state', 'AUTH_EVENTS', 'authService', 'familyService',
+									    	function($scope,   $rootScope,   userService,   facilityService,   postman,   $state,   AUTH_EVENTS,   authService,   familyService) {	
 			$scope.user = {};
 						
 			$scope.family = [];
@@ -23,5 +23,23 @@
 				$scope.user = data;
 				$scope.getFamily($scope.user.id);
 			});
+			
+			
+			$scope.facilities = [];
+			$scope.input = { zipcode: '' };
+			$scope.getFacilities = function(zipcode) {
+				facilityService.getFacilities(zipcode).then(function(facilities) {
+					$scope.facilities = facilities;
+				
+					$scope.resultsReturned = true;
+				});
+			};
+			
+			$scope.$watch('input.zipcode', function() {
+				if ($scope.input.zipcode.length === 5) {
+					$scope.getFacilities($scope.input.zipcode);
+				}
+			});
+
 	}]);
 })();
