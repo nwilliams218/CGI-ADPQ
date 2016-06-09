@@ -6,6 +6,10 @@ VALUES
 	(10, 'atrason@foster.ca.gov', 'password', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', 'Female', NULL, 'Ann', 'Trason', 'https://dl.dropboxusercontent.com/s/tms282gf9aua6wy/ann-trason.png', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL),
 	(11, 'cacaremail@foster.ca.gov', 'PASSWORD', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', NULL, NULL, 'System', 'User', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL);
 
+INSERT INTO profile (id, email) VALUES
+(14, 'ashley@email.com'),
+(15, 'mike@email.com'),
+(16, 'tim@email.com');
 
 INSERT INTO `profile` (`Id`, `email`, `password`, `address1`, `zip`, `phone`, `location`, `facility`, `relationship`, `gender`, `goal`, `first_name`, `last_name`, `profile_picture`, `dob`, `group_id`, `parent_id`, `address2`, `has_plan`, `cell`, `city`, `state`)
 VALUES
