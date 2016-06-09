@@ -4,6 +4,7 @@ module.exports = function (grunt) {
         //"lodash.min.js": "lodash/dist/lodash.min.js",
         //"moment.min.js": "moment/min/moment.min.js",
         "postman.min.js": "angular-postman/js/postman.min.js",
+        "lodash.min.js": "lodash/dist/lodash.min.js",
         "ui-bootstrap.min.js": "angular-bootstrap/ui-bootstrap.min.js",
         "ui-bootstrap-tpls.min.js": "angular-bootstrap/ui-bootstrap-tpls.min.js",
         //"angular-mocks.js": "angular-mocks/angular-mocks.js",
