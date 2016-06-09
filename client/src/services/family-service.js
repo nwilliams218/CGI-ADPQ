@@ -51,7 +51,10 @@
 			'janeausten@lighthouse.com': 1,
 			'maria@emailaddress.com': 2,
 			'lewissmith@emailaddress.com': 3,
-			'atrason@foster.ca.gov': 10
+			'atrason@foster.ca.gov': 10,
+			'ashley@email.com': 14,
+			'mike@email.com': 15,
+			'tim@email.com': 16
 		};
 		
 		function getProfilePicture() {
