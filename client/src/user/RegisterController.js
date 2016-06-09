@@ -15,8 +15,7 @@
 		$scope.register = function() {
 			$scope.passwordsMatch = true;
 			
-			
-			if (!$scope.credentials.password || $scope.credentials.confirm) {
+			if (!$scope.credentials.password || !$scope.credentials.confirm) {
 				postman.warn(gettextCatalog.getString('Password is required'));
 			} else if ($scope.credentials.password != $scope.credentials.confirm) {
 				$scope.passwordsMatch = false;	
