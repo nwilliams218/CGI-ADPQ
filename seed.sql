@@ -3,8 +3,8 @@ VALUES
 	(1, 'JaneAusten@lighthouse.com', 'a', '1444 S. Alameda St.', '90021', '(213) 765-3100', '', '', '', 'Female', '', 'Jane', 'Austen', 'https://dl.dropboxusercontent.com/s/nou3oes1k6snx8a/u342.png', '1/25/1882', 1, 0, '', 0, '(213) 876-5555', 'Los Angeles', 'CA'),
 	(4, '', '', '1444 S. Alameda St.', '90021', '', 'In Placement', 'GUARDIANS OF LOVE', 'Son', 'Male', 'Reunification', 'Walter', 'Austen', 'https://dl.dropboxusercontent.com/s/6fcdjqaufim9njo/u298.png', '1/25/1909', 1, 1, '', 1, '', 'Los Angeles', 'CA'),
 	(5, '', '', '1444 S. Alameda St.', '90021', '', 'In Placement', 'EGGLESTON FAMILY SERVICES', 'Daughter', 'Female', 'Reunification', 'Lilly', 'Austen', 'https://dl.dropboxusercontent.com/s/9f3kny5kq0saalh/u322.png', '3/23/1913', 1, 1, '', 1, '', 'Los Angeles', 'CA'),
-	(10, 'atrason@foster.ca.gov', 'password', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', 'Female', NULL, 'Ann', 'Trason', ‘https://dl.dropboxusercontent.com/s/tms282gf9aua6wy/ann-trason.png’, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL),
-	(11, 'cacaremail@foster.ca.gov', 'password', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', NULL, NULL, ’System’, ‘User’, NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL);
+	(10, 'atrason@foster.ca.gov', 'password', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', 'Female', NULL, 'Ann', 'Trason', 'https://dl.dropboxusercontent.com/s/tms282gf9aua6wy/ann-trason.png', NULL, NULL, 0, NULL, 0, NULL, NULL, NULL),
+	(11, 'cacaremail@foster.ca.gov', 'PASSWORD', '110 Lewis St Eatontown NJ', NULL, NULL, NULL, NULL, 'Caseworker', NULL, NULL, 'System', 'User', NULL, NULL, NULL, 0, NULL, 0, NULL, NULL, NULL);
 
 
 INSERT INTO `profile` (`Id`, `email`, `password`, `address1`, `zip`, `phone`, `location`, `facility`, `relationship`, `gender`, `goal`, `first_name`, `last_name`, `profile_picture`, `dob`, `group_id`, `parent_id`, `address2`, `has_plan`, `cell`, `city`, `state`)
@@ -15,12 +15,12 @@ VALUES
 	(3, 'lewissmith@emailaddress.com', '', '1657 Riverside Drive', '96001', '555.444.3333', '', '', '', 'Male', '', 'Lewis', 'Smith', 
 	'https://dl.dropboxusercontent.com/s/70fj6nvpbr5obuk/Lewis-Smith.png', '11/9/1972', 1, 0, '', 0, '', 'Reading', 'CA'),
 	
-	(6, '', '', '1120 N Street', '94287', '', 'In Placement', 'GUARDIANS OF LOVE', 'Son', 'Male', 'Reunification', 'Jose', 
+	(6, '', '', '1120 N Street', '94287', '', 'IN Placement', 'GUARDIANS OF LOVE', 'Son', 'Male', 'Reunification', 'Jose', 
 	'Jiminez', 'https://dl.dropboxusercontent.com/s/c84cckyhl3b10gq/jose%20jimenez.png', '7/13/2001', 1, 1, '', 1, '', 'Sacramento', 'CA'),
-	(7, '', '', '1120 N Street', '94287', '', 'In Placement', 'EGGLESTON FAMILY SERVICES', 'Daughter', 'Female', 'Reunification', 
+	(7, '', '', '1120 N Street', '94287', '', 'IN Placement', 'EGGLESTON FAMILY SERVICES', 'Daughter', 'Female', 'Reunification', 
 	'Josefina', 'Jiminez', 'https://dl.dropboxusercontent.com/s/j4sb2bnrpktqlh0/josefina-jimenez.png', '3/23/2007', 1, 1, '', 1, '', 'Sacramento', 'CA'),
 	
-	(8, '', '', '1444 S. Alameda St.', '96001', '', 'In Placement', 'GUARDIANS OF LOVE', 'Son', 'Male', 'Reunification', 'James', 
+	(8, '', '', '1444 S. Alameda St.', '96001', '', 'IN Placement', 'GUARDIANS OF LOVE', 'Son', 'Male', 'Reunification', 'James', 
 	'Smith', 'https://dl.dropboxusercontent.com/s/4lef88g8zw19u7g/james%20smith.png', '11/25/1909', 1, 1, '', 1, '', 'Redding', 'CA');
 
 INSERT INTO `message` (`id`, `to_id`, `from_id`, `body`, `subject`, `is_read`, `created_at`)
