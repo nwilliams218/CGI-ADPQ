@@ -33,12 +33,6 @@
 			}
 			
 			$scope.save = function(user) {
-/*
-				if (user.location === '') {
-					postman.warn(gettextCatalog.getString('Please select a location'));
-					return;
-				}
-*/
 				
 				familyService.saveUser(user).then(function(result) {
 					if (result === 'success') {
