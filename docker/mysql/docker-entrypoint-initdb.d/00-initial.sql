@@ -45,34 +45,31 @@ UNLOCK TABLES;
 -- Table structure for table `Profile`
 --
 
-DROP TABLE IF EXISTS `Profile`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Profile` (
+CREATE TABLE `profile` (
   `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `email` varchar(45) DEFAULT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `address1` varchar(45) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `address1` varchar(255) DEFAULT NULL,
   `zip` varchar(45) DEFAULT NULL,
   `phone` varchar(45) DEFAULT NULL,
-  `location` varchar(45) DEFAULT NULL,
-  `facility` varchar(45) DEFAULT NULL,
+  `location` varchar(255) DEFAULT NULL,
+  `facility` varchar(255) DEFAULT NULL,
   `relationship` varchar(45) DEFAULT NULL,
   `gender` varchar(45) DEFAULT NULL,
   `goal` varchar(45) DEFAULT NULL,
-  `first_name` varchar(45) DEFAULT NULL,
-  `last_name` varchar(45) DEFAULT NULL,
-  `profile_picture` varchar(45) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
+  `profile_picture` varchar(255) DEFAULT NULL,
   `dob` varchar(45) DEFAULT NULL,
   `group_id` int(11) DEFAULT NULL,
   `parent_id` int(11) DEFAULT NULL,
-  `address2` varchar(45) DEFAULT NULL,
+  `address2` varchar(255) DEFAULT NULL,
   `has_plan` int(11) DEFAULT '0',
   `cell` varchar(45) DEFAULT NULL,
-  `city` varchar(45) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
   `state` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
