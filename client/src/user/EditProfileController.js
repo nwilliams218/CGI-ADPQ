@@ -41,7 +41,7 @@
 						postman.error('', gettextCatalog.getString('User could not be updated'));
 					}
 
-					if (authService.getUserId() != $stateParams.id) {
+					if (authService.getUserId() != $stateParams.id && $stateParams.id != 'new') {
 						$state.go('plan', {id: $stateParams.id});
 					} else {
 						$state.go('profile');
