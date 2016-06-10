@@ -39,6 +39,7 @@
 						postman.success('', gettextCatalog.getString('User updated'));					
 					} else {
 						postman.error('', gettextCatalog.getString('User could not be updated'));
+						return;
 					}
 
 					if (authService.getUserId() != $stateParams.id && $stateParams.id != 'new') {
